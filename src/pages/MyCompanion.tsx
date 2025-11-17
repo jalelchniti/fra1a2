@@ -3,29 +3,71 @@ import { motion } from 'framer-motion';
 
 const MyCompanion = () => {
   useEffect(() => {
-    let scriptElement: HTMLScriptElement | null = null;
-
-    // Wait for avatar container to be available
-    const waitForContainer = setInterval(() => {
-      const avatarContainer = document.getElementById('heygen-avatar-container');
-      if (avatarContainer && !scriptElement) {
-        clearInterval(waitForContainer);
-
-        // Inject the HeyGen embedding script
-        scriptElement = document.createElement('script');
-        scriptElement.innerHTML = '!function(window){const host="https://labs.heygen.com",url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJUaGFkZGV1c19Qcm9mZXNzaW9uYWxMb29r%0D%0AX3B1YmxpYyIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzhkYzJjYWExNzJjZDRlNjc5NmIzN2U5ZjE2OTU0YjdlXzU1OTUwL3ByZXZpZXdfdGFyZ2V0Lndl%0D%0AYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6dHJ1ZSwia25vd2xlZGdlQmFzZUlkIjoiNTY0OWZl%0D%0AZTc5YjlkNDFiNDlmNDEyYzM3ODM5NTQwY2QiLCJ1c2VybmFtZSI6IjI0MGU3NDU3OGUzNTQ1MzM5%0D%0AMmIwYmU5MGE2OTE0NDNmIn0%3D&inIFrame=1",clientWidth=document.body.clientWidth,wrapDiv=document.createElement("div");wrapDiv.id="heygen-streaming-embed";const container=document.createElement("div");container.id="heygen-streaming-container";const stylesheet=document.createElement("style");stylesheet.innerHTML=`\n  #heygen-streaming-embed {\n    z-index: 999;\n    position: relative;\n    margin: 0 auto;\n    width: 600px;\n    height: 600px;\n    border-radius: 50%;\n    border: 2px solid #fff;\n    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);\n    transition: all linear 0.1s;\n    overflow: hidden;\n\n    opacity: 0;\n    visibility: hidden;\n  }\n  #heygen-streaming-embed.show {\n    opacity: 1;\n    visibility: visible;\n  }\n  #heygen-streaming-embed.expand {\n    ${clientWidth<540?"height: 798px; width: 96%; margin: 0 auto;":"height: 1098px; width: calc(1098px * 16 / 9); margin: 0 auto;"}\n    border: 0;\n    border-radius: 8px;\n  }\n  #heygen-streaming-container {\n    width: 100%;\n    height: 100%;\n  }\n  #heygen-streaming-container iframe {\n    width: 100%;\n    height: 100%;\n    border: 0;\n  }\n  `;const iframe=document.createElement("iframe");iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;let visible=!1,initial=!1;window.addEventListener("message",(e=>{e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial)):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible)):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible)))})),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.getElementById("heygen-avatar-container").appendChild(wrapDiv)}(globalThis);';
-        document.body.appendChild(scriptElement);
-      }
-    }, 100);
+    // Load official HeyGen script
+    const script = document.createElement('script');
+    script.innerHTML = `
+      !function(window){
+        const host="https://labs.heygen.com",
+              url=host+"/guest/streaming-embed?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJUaGFkZGV1c19Qcm9mZXNzaW9uYWxMb29r%0D%0AX3B1YmxpYyIsInByZXZpZXdJbWciOiJodHRwczovL2ZpbGVzMi5oZXlnZW4uYWkvYXZhdGFyL3Yz%0D%0ALzhkYzJjYWExNzJjZDRlNjc5NmIzN2U5ZjE2OTU0YjdlXzU1OTUwL3ByZXZpZXdfdGFyZ2V0Lndl%0D%0AYnAiLCJuZWVkUmVtb3ZlQmFja2dyb3VuZCI6dHJ1ZSwia25vd2xlZGdlQmFzZUlkIjoiODVhNjg1%0D%0ANGI0OTA1NDBhMGEzZmZlZWJmN2I1MzlhMzAiLCJ1c2VybmFtZSI6IjI0MGU3NDU3OGUzNTQ1MzM5%0D%0AMmIwYmU5MGE2OTE0NDNmIn0%3D&inIFrame=1",
+              clientWidth=document.body.clientWidth,
+              wrapDiv=document.createElement("div");
+        wrapDiv.id="heygen-streaming-embed";
+        const container=document.createElement("div");
+        container.id="heygen-streaming-container";
+        const stylesheet=document.createElement("style");
+        stylesheet.innerHTML=\`
+          #heygen-streaming-embed {
+            z-index: 9999;
+            position: fixed;
+            left: 40px;
+            bottom: 40px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
+            transition: all linear 0.1s;
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+          }
+          #heygen-streaming-embed.show {
+            opacity: 1;
+            visibility: visible;
+          }
+          #heygen-streaming-embed.expand {
+            \${clientWidth<540?"height: 266px; width: 96%; left: 50%; transform: translateX(-50%);":"height: 366px; width: calc(366px * 16 / 9);"}
+            border: 0;
+            border-radius: 8px;
+          }
+          #heygen-streaming-container {
+            width: 100%;
+            height: 100%;
+          }
+          #heygen-streaming-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+          }
+        \`;
+        const iframe=document.createElement("iframe");
+        iframe.allowFullscreen=!1,iframe.title="Streaming Embed",iframe.role="dialog",iframe.allow="microphone",iframe.src=url;
+        let visible=!1,initial=!1;
+        window.addEventListener("message",(e=>{
+          e.origin===host&&e.data&&e.data.type&&"streaming-embed"===e.data.type&&("init"===e.data.action?(initial=!0,wrapDiv.classList.toggle("show",initial),console.log("HeyGen avatar initialized")):"show"===e.data.action?(visible=!0,wrapDiv.classList.toggle("expand",visible),console.log("HeyGen avatar expanded")):"hide"===e.data.action&&(visible=!1,wrapDiv.classList.toggle("expand",visible),console.log("HeyGen avatar collapsed")))
+        })),container.appendChild(iframe),wrapDiv.appendChild(stylesheet),wrapDiv.appendChild(container),document.body.appendChild(wrapDiv)
+      }(globalThis);
+    `;
+    document.body.appendChild(script);
 
     return () => {
-      clearInterval(waitForContainer);
+      // Clean up HeyGen avatar on unmount
       const embed = document.getElementById('heygen-streaming-embed');
       if (embed) {
         embed.remove();
       }
-      if (scriptElement?.parentNode) {
-        scriptElement.parentNode.removeChild(scriptElement);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
       }
     };
   }, []);
@@ -72,36 +114,26 @@ const MyCompanion = () => {
             <p className="flex gap-3">
               <span className="text-primary-600 font-bold min-w-fit">1.</span>
               <span>
-                <strong>Start the conversation</strong> - Click the avatar button in the bottom-left corner to activate your English Companion
+                <strong>Start the conversation</strong> - Click the avatar button to activate your English Companion and allow microphone access
               </span>
             </p>
 
             <p className="flex gap-3">
               <span className="text-primary-600 font-bold min-w-fit">2.</span>
               <span>
-                <strong>Open with greeting</strong> - Start the conversation with: <br />
-                <span className="italic text-primary-700 bg-blue-50 p-2 rounded inline-block mt-2">
-                  "Hello. I am a non-native learner of English. My level is A1. I want you to help me converse in English about who I am, shopping and everyday activities."
-                </span>
+                <strong>Duration</strong> - Each conversation lasts approximately <strong>10 minutes</strong>
               </span>
             </p>
 
             <p className="flex gap-3">
               <span className="text-primary-600 font-bold min-w-fit">3.</span>
               <span>
-                <strong>Duration</strong> - Each conversation lasts approximately <strong>10 minutes</strong>
-              </span>
-            </p>
-
-            <p className="flex gap-3">
-              <span className="text-primary-600 font-bold min-w-fit">4.</span>
-              <span>
                 <strong>Share your progress</strong> - At the end of the conversation, copy the script and send it to your teacher&apos;s WhatsApp for feedback
               </span>
             </p>
 
             <p className="flex gap-3">
-              <span className="text-primary-600 font-bold min-w-fit">5.</span>
+              <span className="text-primary-600 font-bold min-w-fit">4.</span>
               <span>
                 <strong>Topics covered</strong> - Your AI companion will help you practice:
               </span>
@@ -125,7 +157,7 @@ const MyCompanion = () => {
         </div>
       </motion.section>
 
-      {/* Avatar Section */}
+      {/* Avatar Section - HeyGen avatar loads in bottom-left corner */}
       <motion.section
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -133,9 +165,19 @@ const MyCompanion = () => {
         className="py-16 px-4 sm:px-6 lg:px-8 bg-white"
       >
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">Start Your Conversation</h2>
-          <div id="heygen-avatar-container" className="w-full flex justify-center items-center">
-            {/* HeyGen Avatar will be injected here - centered */}
+          <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Start Your Conversation</h2>
+          <p className="text-gray-600 text-center mb-8">
+            Click the avatar button in the bottom-left corner to begin your conversation with your AI English coach.
+          </p>
+          <div className="w-full rounded-lg bg-gradient-to-b from-blue-50 to-indigo-50 p-8 text-center min-h-[300px] flex items-center justify-center">
+            <div className="max-w-md">
+              <p className="text-gray-600 mb-4">
+                Your HeyGen avatar is ready to chat in the bottom-left corner of your screen.
+              </p>
+              <p className="text-sm text-gray-500">
+                Make sure to allow microphone access when your browser asks for permission.
+              </p>
+            </div>
           </div>
         </div>
       </motion.section>
@@ -251,7 +293,7 @@ const MyCompanion = () => {
         <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to Start?</h2>
           <p className="text-gray-600 mb-8">
-            Look for the avatar button in the bottom-left corner of your screen and click it to begin your conversation.
+            Look for the avatar button and click it to begin your conversation.
           </p>
           <p className="text-gray-500 text-sm">
             Make sure you allow microphone access when prompted by your browser.

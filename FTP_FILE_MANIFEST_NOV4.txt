@@ -1,0 +1,294 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                   FTP FILE MANIFEST FOR DEPLOYMENT                        ║
+║                                                                            ║
+║                      Version 2.1 - Unit 3 Complete                        ║
+║                         November 4, 2025                                  ║
+║                                                                            ║
+║              Complete listing of all 90 files in dist/ folder             ║
+║                          Ready for OVH Upload                             ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+📊 FILE MANIFEST SUMMARY
+═════════════════════════════════════════════════════════════════════════════
+
+Total Files:            90
+Total Size:             2.2 MB (uncompressed)
+
+File Breakdown:
+  ├── Root Files:       3 files (index.html, .htaccess, vite.svg)
+  ├── CSS Files:        2 files (~95 KB)
+  ├── JavaScript Files: 73 files (~1.3 MB)
+  └── Images:           12 files (~700 KB)
+
+Upload Destination:     /slim/ (at OVH domain root)
+
+
+📁 ROOT FILES (3 files)
+═════════════════════════════════════════════════════════════════════════════
+
+Must be at: /slim/
+
+  ✅ .htaccess                  [1.6 KB]   ⚠️ CRITICAL - SPA routing
+  ✅ index.html                 [946 B]    Main application entry point
+  ✅ vite.svg                   [1.5 KB]   Favicon
+
+
+📁 CSS FILES (2 files)
+═════════════════════════════════════════════════════════════════════════════
+
+Location: /slim/assets/
+
+  ✅ index-C3mxJ-9F.css         [59 KB]    Main stylesheet (minified)
+     └─ Contains: Tailwind CSS, Framer Motion, component styles
+
+  ✅ vendor-*.css (if present)  [~35 KB]   Additional vendor styles
+
+
+📁 JAVASCRIPT MAIN BUNDLE (1 file)
+═════════════════════════════════════════════════════════════════════════════
+
+Location: /slim/assets/
+
+  ✅ index-CRvN4v6s.js          [149 KB]   Main application bundle (minified)
+     └─ Contains: React, React Router, Navigation, Layout, Firebase
+
+
+📁 SKILL CHUNK FILES (10 files)
+═════════════════════════════════════════════════════════════════════════════
+
+Location: /slim/assets/
+
+Unit 1 Chunks:
+  ✅ u1-vocabulary-uP7IjyLn.js  [150 KB]   4 vocabulary quizzes
+  ✅ u1-grammar-*.js            [~45 KB]   4 grammar quizzes
+  ✅ u1-reading-*.js            [~40 KB]   2 reading quizzes
+  ✅ u1-speaking-CDfeVrJ-.js    [12 KB]    1 speaking quiz
+  ✅ u1-listening-*.js          [~35 KB]   1 listening quiz
+
+Unit 2 Chunks:
+  ✅ u2-vocabulary-*.js         [~50 KB]   5 vocabulary quizzes
+  ✅ u2-grammar-*.js            [~55 KB]   5 grammar quizzes
+  ✅ u2-reading-*.js            [~60 KB]   5 reading quizzes
+  ✅ u2-speaking-*.js           [~50 KB]   5 speaking quizzes
+  ✅ u2-listening-*.js          [~65 KB]   5 listening quizzes
+
+Unit 3 Chunks: ✨ NEW
+  ✅ u3-vocabulary-C_r1nvot.js  [167 KB]   4 vocabulary quizzes
+  ✅ u3-grammar-*.js            [~55 KB]   4 grammar quizzes
+  ✅ u3-reading-*.js            [~60 KB]   4 reading quizzes
+  ✅ u3-speaking-*.js           [~50 KB]   4 speaking quizzes
+  ✅ u3-listening-*.js          [~65 KB]   4 listening quizzes (with TTS)
+
+
+📁 INDIVIDUAL QUIZ FILES (57 files)
+═════════════════════════════════════════════════════════════════════════════
+
+Location: /slim/assets/
+
+Unit 1 Vocabulary (4 files):
+  ✅ vo_01-01-teIfpTGu.js       [4.5 KB]   Introductions
+  ✅ vo_01-02-*.js              [~4 KB]    Everyday Objects
+  ✅ vo_01-03-*.js              [~4 KB]    Classroom Objects
+  ✅ vo_01-04-*.js              [~4 KB]    Classroom Objects (continued)
+
+Unit 1 Grammar (4 files):
+  ✅ gr_01-01-*.js              [~4 KB]    Verb To Be
+  ✅ gr_01-02-*.js              [~4 KB]    Present Simple
+  ✅ gr_01-03-*.js              [~4 KB]    Yes/No Questions
+  ✅ gr_01-04-Cs8I5GA5.js       [5.1 KB]   Wh-Questions
+
+Unit 1 Reading (2 files):
+  ✅ re_01-01-CKP6Lqu_.js       [6.7 KB]   All About You
+  ✅ re_01-02-*.js              [~5 KB]    Anna's Daily Life
+
+Unit 1 Speaking (1 file):
+  ✅ sp_01-01-DJ_vXwPC.js       [5.4 KB]   Introducing Yourself
+
+Unit 1 Listening (1 file):
+  ✅ li_01-01-*.js              [~4 KB]    Short Conversations
+
+Unit 2 Vocabulary (5 files):
+  ✅ vo_02-01-*.js              [~4 KB]    Shopping Vocabulary
+  ✅ vo_02-02-*.js              [~4 KB]    Directions & Landmarks
+  ✅ vo_02-03-*.js              [~4 KB]    Currency & Payment
+  ✅ vo_02-04-*.js              [~4 KB]    Shopping Conversation
+  ✅ vo_02-05-DGvJuJoy.js       [4.6 KB]   Specialized Vocabulary
+
+Unit 2 Grammar (5 files):
+  ✅ gr_02-01-BwHB_-sN.js       [3.95 KB]  Imperatives for Directions
+  ✅ gr_02-02-DHZN3_29.js       [4.2 KB]   Asking Questions
+  ✅ gr_02-03-_GCAyQe9.js       [3.85 KB]  Prepositions of Place
+  ✅ gr_02-04-DZJfjv5i.js       [4.02 KB]  Modal Verbs
+  ✅ gr_02-05-D8cs0jBd.js       [4.82 KB]  Advanced Structures
+
+Unit 2 Reading (5 files):
+  ✅ re_02-01-Z9NRrVur.js       [5.08 KB]  Shopping Information
+  ✅ re_02-02-BEKZF8yC.js       [5.07 KB]  Directions
+  ✅ re_02-03-Biu00uA4.js       [5.18 KB]  Shopping Dialogue
+  ✅ re_02-04-34OCVVFq.js       [5.43 KB]  Return & Exchange Policy
+  ✅ re_02-05-B1kxz2VJ.js       [6.75 KB]  Extended Reading
+
+Unit 2 Speaking (5 files):
+  ✅ sp_02-01-BF42pHNJ.js       [4.0 KB]   Asking for Directions
+  ✅ sp_02-02-BPJsFb6z.js       [3.94 KB]  Shopping Phrases
+  ✅ sp_02-03-ECp5wZPF.js       [4.09 KB]  Dialogue Practice
+  ✅ sp_02-04-Cw5FLJfB.js       [4.57 KB]  Role Play Scenarios
+  ✅ sp_02-05-BwLReS13.js       [6.49 KB]  Advanced Discussions
+
+Unit 2 Listening (5 files):
+  ✅ li_02-01-HE4HgyXR.js       [4.51 KB]  Understanding Directions
+  ✅ li_02-02-CZiDeOyf.js       [4.41 KB]  Shopping Conversations
+  ✅ li_02-03-Clj8oIso.js       [4.36 KB]  Landmarks & Locations
+  ✅ li_02-04-BBkdnCvx.js       [4.24 KB]  Prices & Numbers
+  ✅ li_02-05-18fM4eoU.js       [7.79 KB]  Complex Audio
+
+Unit 3 Vocabulary (4 files): ✨ NEW
+  ✅ vo_03-01-Clr090C5.js       [4.35 KB]  Transportation Vehicles
+  ✅ vo_03-02-B13zU_hq.js       [4.30 KB]  Transport Action Verbs
+  ✅ vo_03-03-nosxb5OT.js       [4.36 KB]  Transport Adjectives
+  ✅ vo_03-04-DYQOuPfa.js       [4.33 KB]  Transport Phrases
+
+Unit 3 Grammar (4 files): ✨ NEW
+  ✅ gr_03-01-DlfWTd-n.js       [5.40 KB]  Present Progressive
+  ✅ gr_03-02-CcYY9YGr.js       [5.54 KB]  Going To Future
+  ✅ gr_03-03-D2BVwiJC.js       [5.51 KB]  Simple Past
+  ✅ gr_03-04-C63b608V.js       [5.57 KB]  Mixed Tenses & Questions
+
+Unit 3 Reading (4 files): ✨ NEW
+  ✅ re_03-01-C1kHCTKZ.js       [5.90 KB]  On the Train Right Now
+  ✅ re_03-02-BaclGXb2.js       [6.18 KB]  Yesterday's Bus Trip
+  ✅ re_03-03-BPUpf0xo.js       [6.79 KB]  Tomorrow's Travel Plans
+  ✅ re_03-04-DC8KmPWm.js       [7.13 KB]  Comparing Transportation
+
+Unit 3 Speaking (4 files): ✨ NEW
+  ✅ sp_03-01-Cadw-7v5.js       [6.71 KB]  Asking for Directions
+  ✅ sp_03-02-ClpLfQ2U.js       [6.59 KB]  Taking Taxi or Bus
+  ✅ sp_03-03-Due08HJL.js       [6.93 KB]  Talking About Journey (Past)
+  ✅ sp_03-04-CE8uN9vL.js       [7.43 KB]  Planning a Trip (Future)
+
+Unit 3 Listening (4 files): ✨ NEW (Enhanced with TTS 5-second pauses)
+  ✅ li_03-01-D1W-O9lf.js       [7.12 KB]  Understanding Directions
+  ✅ li_03-02-DfpIKg6H.js       [7.22 KB]  Past Travel Conversation
+  ✅ li_03-03-DhRux0CE.js       [7.44 KB]  Future Travel Plans
+  ✅ li_03-04-CUAD5FY7.js       [7.61 KB]  Transportation Story (All Tenses)
+
+
+📁 IMAGE ASSETS (12+ files)
+═════════════════════════════════════════════════════════════════════════════
+
+Location: /slim/assets/images/
+
+  ✅ lnkd_profile_picture-01.jpg [~180 KB] SmartHub logo/branding
+  ✅ fb_cover-01.png            [~200 KB] Facebook cover image
+  ✅ [Flashcard images]         [~320 KB] 10+ transportation/education images
+     └─ Various PNG/JPG files
+
+Total images: ~700 KB
+
+
+📋 TOTAL FILE COUNT & SIZE
+═════════════════════════════════════════════════════════════════════════════
+
+Root Level:             3 files    (3.6 KB)
+CSS Files:              2 files    (95 KB)
+JavaScript:
+  ├─ Main bundle:       1 file     (149 KB)
+  ├─ Skill chunks:      10 files   (~600 KB)
+  └─ Quiz files:        57 files   (~290 KB)
+Images & Assets:        12+ files  (~700 KB)
+                       ───────────────────
+TOTAL:                  90 files   (~2.2 MB)
+
+
+✅ UPLOAD CHECKLIST
+═════════════════════════════════════════════════════════════════════════════
+
+Before uploading, verify locally:
+  ☐ dist/ folder contains exactly 90 files
+  ☐ .htaccess file present and readable
+  ☐ index.html is 946 bytes
+  ☐ assets/ folder contains 85+ files
+  ☐ Total size is approximately 2.2 MB
+
+During upload:
+  ☐ FTP transfer mode set to BINARY (not ASCII)
+  ☐ All files transferred successfully
+  ☐ .htaccess uploaded (CRITICAL!)
+  ☐ All assets/ files present
+  ☐ Total files = 90
+
+After upload:
+  ☐ Verify directory structure is correct
+  ☐ Set permissions: 755 (dirs), 644 (files)
+  ☐ Test /slim/ homepage loads
+  ☐ Test quiz routes work (/quiz/vo_01-01, etc.)
+  ☐ Test Unit 3 activities work
+  ☐ Test TTS plays with pauses
+  ☐ Check browser console for errors
+
+
+🗂️ DIRECTORY STRUCTURE (After Upload)
+═════════════════════════════════════════════════════════════════════════════
+
+/slim/                              [Main directory]
+├── index.html                      [Entry point]
+├── .htaccess                       [SPA routing configuration]
+├── vite.svg                        [Favicon]
+└── assets/                         [All application files]
+    ├── index-*.css                 [2 CSS files]
+    ├── index-*.js                  [Main bundle]
+    ├── u1-*.js                     [5 skill chunks]
+    ├── u2-*.js                     [5 skill chunks]
+    ├── u3-*.js                     [5 skill chunks] ✨ NEW
+    ├── vo_01-01.js through vo_03-04.js    [Vocabulary quizzes]
+    ├── gr_01-01.js through gr_03-04.js    [Grammar quizzes]
+    ├── re_01-01.js through re_03-04.js    [Reading quizzes]
+    ├── sp_01-01.js through sp_03-04.js    [Speaking quizzes]
+    ├── li_01-01.js through li_03-04.js    [Listening quizzes]
+    └── images/                     [12+ image files]
+
+
+📝 NOTES FOR FTP UPLOAD
+═════════════════════════════════════════════════════════════════════════════
+
+1. TRANSFER MODE CRITICAL
+   - Use BINARY mode for all files
+   - ASCII mode corrupts .js, .css, .woff, .png files
+   - If upload fails or pages don't work, re-upload in BINARY mode
+
+2. .HTACCESS FILE CRITICAL
+   - Without .htaccess, SPA routing won't work
+   - Without it, /vocabulary, /grammar, /quiz/* routes will 404
+   - Must be exactly 1.6 KB
+   - File is hidden in Windows Explorer (show hidden files)
+
+3. FILE PERMISSIONS
+   - Directories: 755 (rwxr-xr-x)
+   - Files: 644 (rw-r--r--)
+   - Set after upload to ensure proper access
+
+4. UPLOAD VERIFICATION
+   - Verify exactly 90 files transferred
+   - Check total size is ~2.2 MB
+   - All files present before testing
+
+5. POST-UPLOAD
+   - Wait 2-5 minutes for cache refresh
+   - Test from different browser (clear cache first)
+   - Check console (F12) for errors
+   - Test on mobile device
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+                    READY FOR FTP DEPLOYMENT
+
+                  All 90 files listed and ready to upload
+                  Total size: 2.2 MB (uncompressed)
+                  Build date: November 4, 2025
+                  Version: 2.1 (Unit 3 Complete)
+
+═════════════════════════════════════════════════════════════════════════════

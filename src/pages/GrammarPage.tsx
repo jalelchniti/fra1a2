@@ -82,6 +82,39 @@ const GrammarPage = () => {
       topic: 'Verbs',
       quizId: 'gr_02-04',
     },
+    // Unit 3
+    {
+      id: 'gr_03-01',
+      title: 'Present Progressive',
+      content: 'Practice the present progressive tense. Actions happening RIGHT NOW. Form: am/is/are + -ing verb.',
+      level: 'A1',
+      topic: 'Tenses',
+      quizId: 'gr_03-01',
+    },
+    {
+      id: 'gr_03-02',
+      title: 'Future with Going To',
+      content: 'Learn to express future plans using "going to". Form: am/is/are going to + base verb.',
+      level: 'A1',
+      topic: 'Tenses',
+      quizId: 'gr_03-02',
+    },
+    {
+      id: 'gr_03-03',
+      title: 'Simple Past Tense',
+      content: 'Master the simple past with regular verbs. Form: base verb + -ed. For finished actions.',
+      level: 'A1',
+      topic: 'Tenses',
+      quizId: 'gr_03-03',
+    },
+    {
+      id: 'gr_03-04',
+      title: 'Mixed Tenses & Questions',
+      content: 'Practice all three tenses and question formation. Yes/no questions and wh-questions.',
+      level: 'A1',
+      topic: 'Tenses',
+      quizId: 'gr_03-04',
+    },
   ];
 
   const filteredGrammar = selectedTopic === 'All Topics'

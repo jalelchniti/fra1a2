@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speaking Worksheet 01 - Greetings & Personal Info</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px dashed #667eea;
+        }
+        
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #764ba2;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        
+        .student-info {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .student-info h3 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+        
+        .level-badge {
+            display: inline-block;
+            background: white;
+            color: #f5576c;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .game-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            border: 3px solid #ff9a56;
+        }
+        
+        .game-title {
+            color: #d63031;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .game-icon {
+            font-size: 1.5em;
+        }
+        
+        .game-instructions {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border-left: 5px solid #d63031;
+        }
+        
+        .game-instructions strong {
+            color: #d63031;
+        }
+        
+        .dialogue-box {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .character {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            flex-shrink: 0;
+        }
+        
+        .teacher-avatar {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        
+        .student-avatar {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .speech-bubble {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 15px;
+            position: relative;
+        }
+        
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #f8f9fa transparent transparent;
+        }
+        
+        .speech-bubble strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .blank-line {
+            display: inline-block;
+            min-width: 200px;
+            border-bottom: 2px dotted #667eea;
+            margin: 0 5px;
+            padding: 0 10px;
+        }
+        
+        .points-card {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 20px 0;
+            border: 3px solid #fa709a;
+        }
+        
+        .points-card h3 {
+            color: #d63031;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .star-rating {
+            font-size: 2em;
+            color: #ffd700;
+        }
+        
+        .word-bank {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .word-bank h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        
+        .word-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .word-pill {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: 2px solid #667eea;
+            color: #667eea;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .challenge-box {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 3px dashed #ff9a9e;
+        }
+        
+        .challenge-box h4 {
+            color: #d63031;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        
+        .challenge-item {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            border-left: 5px solid #d63031;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .checkbox-item input {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+        }
+        
+        .score-tracker {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .score-tracker h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .score-item {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .score-item strong {
+            display: block;
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🎮 SPEAKING GAME LEVEL 1 🎮</h1>
+            <div class="subtitle">Topics: Greetings & Personal Information</div>
+        </div>
+        
+        <!-- Student Info -->
+        <div class="student-info">
+            <h3>👤 Student: Slim Gharbi</h3>
+            <div>📅 SmartHub Educational Services - Tunis City Center</div>
+            <div class="level-badge">⭐ Level: A1.1</div>
+        </div>
+        
+        <!-- GAME 1: DIALOGUE COMPLETION CHALLENGE -->
+        <div class="game-section">
+            <h2 class="game-title">
+                <span class="game-icon">🎯</span>
+                GAME 1: Complete the Dialogue!
+            </h2>
+            
+            <div class="game-instructions">
+                <strong>📋 HOW TO PLAY:</strong><br>
+                Teacher reads the dialogue. Slim fills in the blanks by SPEAKING the answers out loud. 
+                Each correct answer = 10 points! 🏆
+            </div>
+            
+            <div class="word-bank">
+                <h4>💡 Word Bank (Help Box):</h4>
+                <div class="word-pills">
+                    <span class="word-pill">Hello</span>
+                    <span class="word-pill">My name is</span>
+                    <span class="word-pill">I'm</span>
+                    <span class="word-pill">18</span>
+                    <span class="word-pill">from</span>
+                    <span class="word-pill">Tunisia</span>
+                    <span class="word-pill">Nice to meet you</span>
+                    <span class="word-pill">How are you?</span>
+                </div>
+            </div>
+            
+            <div class="dialogue-box">
+                <div class="character">
+                    <div class="avatar teacher-avatar">👨‍🏫</div>
+                    <div class="speech-bubble">
+                        <strong>Teacher:</strong>
+                        Hello! Good morning!
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar student-avatar">👨</div>
+                    <div class="speech-bubble">
+                        <strong>Slim:</strong>
+                        <span class="blank-line">_____________</span>! Good morning!
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar teacher-avatar">👨‍🏫</div>
+                    <div class="speech-bubble">
+                        <strong>Teacher:</strong>
+                        What's your name?
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar student-avatar">👨</div>
+                    <div class="speech-bubble">
+                        <strong>Slim:</strong>
+                        <span class="blank-line">_____________</span> Slim.
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar teacher-avatar">👨‍🏫</div>
+                    <div class="speech-bubble">
+                        <strong>Teacher:</strong>
+                        Nice to meet you, Slim! How old are you?
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar student-avatar">👨</div>
+                    <div class="speech-bubble">
+                        <strong>Slim:</strong>
+                        <span class="blank-line">_____________</span> <span class="blank-line">_____________</span> years old.
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar teacher-avatar">👨‍🏫</div>
+                    <div class="speech-bubble">
+                        <strong>Teacher:</strong>
+                        Where are you from?
+                    </div>
+                </div>
+                
+                <div class="character">
+                    <div class="avatar student-avatar">👨</div>
+                    <div class="speech-bubble">
+                        <strong>Slim:</strong>
+                        I'm <span class="blank-line">_____________</span> <span class="blank-line">_____________</span>.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="points-card">
+                <h3>🎯 Game 1 Score:</h3>
+                <div class="star-rating">⭐⭐⭐⭐⭐</div>
+                <div style="margin-top: 10px; color: #d63031; font-size: 1.3em; font-weight: bold;">
+                    _____ / 50 points
+                </div>
+            </div>
+        </div>
+        
+        <!-- GAME 2: ROLE REVERSAL CHALLENGE -->
+        <div class="game-section">
+            <h2 class="game-title">
+                <span class="game-icon">🔄</span>
+                GAME 2: Now YOU Ask ME!
+            </h2>
+            
+            <div class="game-instructions">
+                <strong>📋 HOW TO PLAY:</strong><br>
+                Now Slim asks the questions, and Teacher answers! 
+                Each correct question = 15 points! 🌟
+            </div>
+            
+            <div class="word-bank">
+                <h4>💡 Question Starters:</h4>
+                <div class="word-pills">
+                    <span class="word-pill">What's your...?</span>
+                    <span class="word-pill">How old...?</span>
+                    <span class="word-pill">Where are you...?</span>
+                    <span class="word-pill">What do you...?</span>
+                </div>
+            </div>
+            
+            <div class="challenge-box">
+                <h4>🎤 Slim's Turn to Ask Questions:</h4>
+                
+                <div class="challenge-item">
+                    <strong>Question 1:</strong> Ask about the teacher's name<br>
+                    <em style="color: #888;">Hint: What's...?</em><br>
+                    <div style="margin-top: 10px;">
+                        Slim says: <span class="blank-line" style="min-width: 300px;">_____________________</span>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <strong>Question 2:</strong> Ask about the teacher's age<br>
+                    <em style="color: #888;">Hint: How old...?</em><br>
+                    <div style="margin-top: 10px;">
+                        Slim says: <span class="blank-line" style="min-width: 300px;">_____________________</span>
+                    </div>
+                </div>
+                
+                <div class="challenge-item">
+                    <strong>Question 3:</strong> Ask where the teacher is from<br>
+                    <em style="color: #888;">Hint: Where...?</em><br>
+                    <div style="margin-top: 10px;">
+                        Slim says: <span class="blank-line" style="min-width: 300px;">_____________________</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="points-card">
+                <h3>🎯 Game 2 Score:</h3>
+                <div class="star-rating">⭐⭐⭐</div>
+                <div style="margin-top: 10px; color: #d63031; font-size: 1.3em; font-weight: bold;">
+                    _____ / 45 points
+                </div>
+            </div>
+        </div>
+        
+        <!-- GAME 3: SPEED ROUND -->
+        <div class="game-section">
+            <h2 class="game-title">
+                <span class="game-icon">⚡</span>
+                GAME 3: Speed Round! (1 minute)
+            </h2>
+            
+            <div class="game-instructions">
+                <strong>📋 HOW TO PLAY:</strong><br>
+                Teacher gives the situation. Slim responds as FAST as possible!
+                Each correct answer = 5 points! ⏱️
+            </div>
+            
+            <div class="challenge-box">
+                <h4>⚡ Quick Responses:</h4>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> You meet someone in the morning → Say: <em>"___________"</em></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> Someone says "Hello!" → You say: <em>"___________"</em></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> Someone asks "What's your name?" → You say: <em>"___________"</em></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> You want to know someone's age → You ask: <em>"___________"</em></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> Someone says "Nice to meet you" → You say: <em>"___________"</em></label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox">
+                    <label><strong>Situation:</strong> You leave at the end of class → You say: <em>"___________"</em></label>
+                </div>
+            </div>
+            
+            <div class="points-card">
+                <h3>🎯 Game 3 Score:</h3>
+                <div class="star-rating">⭐⭐⭐⭐⭐⭐</div>
+                <div style="margin-top: 10px; color: #d63031; font-size: 1.3em; font-weight: bold;">
+                    _____ / 30 points
+                </div>
+            </div>
+        </div>
+        
+        <!-- FINAL SCORE TRACKER -->
+        <div class="score-tracker">
+            <h3>🏆 TODAY'S TOTAL SCORE 🏆</h3>
+            <div style="font-size: 3em; font-weight: bold; margin: 20px 0;">
+                _____ / 125 points
+            </div>
+            
+            <div class="score-grid">
+                <div class="score-item">
+                    <strong>🥇</strong>
+                    100-125<br>
+                    EXCELLENT!
+                </div>
+                <div class="score-item">
+                    <strong>🥈</strong>
+                    75-99<br>
+                    GREAT JOB!
+                </div>
+                <div class="score-item">
+                    <strong>🥉</strong>
+                    50-74<br>
+                    GOOD!
+                </div>
+                <div class="score-item">
+                    <strong>📚</strong>
+                    0-49<br>
+                    KEEP PRACTICING!
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 2px solid rgba(255,255,255,0.3);">
+                <strong style="font-size: 1.2em;">Teacher's Comments:</strong>
+                <div style="margin-top: 10px; background: rgba(255,255,255,0.2); padding: 15px; border-radius: 10px; min-height: 80px;">
+                    <!-- Teacher writes comments here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

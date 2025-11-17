@@ -29,7 +29,7 @@ const HomePage = () => {
           </motion.div>
         </div>
       </section>
-      
+
       {/* Skills Categories */}
       <section>
         <h2 className="text-3xl font-bold mb-8 text-center">Interactive Practice Areas</h2>
@@ -99,6 +99,143 @@ const HomePage = () => {
           </div>
         </div>
       </section>
+
+      {/* Featured Practice - Present Progressive */}
+      <section className="card overflow-hidden">
+        <div className="md:flex">
+          <div className="md:w-1/2 bg-gradient-to-br from-purple-50 to-blue-100 p-6 md:p-10">
+            <span className="inline-block bg-purple-200 text-purple-800 rounded-full px-3 py-1 text-sm font-medium mb-4">
+              🎯 Express Current Actions & Complaints
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Master the Present Progressive (A1)</h2>
+            <p className="text-gray-700 mb-6">Master the Present Progressive tense (am/is/are + -ing) to describe what's happening RIGHT NOW and express complaints using interactive lessons and real-world scenarios.</p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/quiz/vo_02-05" className="btn btn-primary bg-blue-600 hover:bg-blue-700">
+                📚 Vocabulary
+              </Link>
+              <Link to="/quiz/gr_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
+                📝 Grammar
+              </Link>
+              <Link to="/quiz/re_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
+                📖 Reading
+              </Link>
+              <Link to="/quiz/sp_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
+                🗣️ Speaking
+              </Link>
+              <Link to="/quiz/li_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
+                🎧 Listening
+              </Link>
+            </div>
+          </div>
+          <div className="md:w-1/2 bg-gradient-to-b from-purple-600 to-blue-600 p-6 md:p-10 text-white">
+            <h3 className="text-xl font-bold mb-4">✨ Key Learning Outcomes:</h3>
+            <ul className="space-y-3">
+              {presentProgressivePoints.map((point, index) => (
+                <li key={index} className="flex items-start">
+                  <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Practice - Unit 3: Transportation & All Tenses */}
+      <section className="card overflow-hidden">
+        <div className="md:flex">
+          <div className="md:w-1/2 bg-gradient-to-br from-teal-50 to-cyan-100 p-6 md:p-10">
+            <span className="inline-block bg-teal-200 text-teal-800 rounded-full px-3 py-1 text-sm font-medium mb-4">
+              ✨ Unit 3: Transportation & All Tenses (NEW)
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">Master Transportation & Tenses (A1)</h2>
+            <p className="text-gray-700 mb-6">Learn practical transportation vocabulary and master Present Progressive, Simple Past, and Going To Future tenses through real-world scenarios like asking directions, describing journeys, and planning trips.</p>
+            <div className="flex flex-wrap gap-3">
+              <Link to="/quiz/vo_03-01" className="btn btn-primary bg-teal-600 hover:bg-teal-700">
+                🚗 Vocabulary
+              </Link>
+              <Link to="/quiz/gr_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
+                📝 Grammar
+              </Link>
+              <Link to="/quiz/re_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
+                📖 Reading
+              </Link>
+              <Link to="/quiz/sp_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
+                🗣️ Speaking
+              </Link>
+              <Link to="/quiz/li_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
+                🎧 Listening
+              </Link>
+            </div>
+          </div>
+          <div className="md:w-1/2 bg-gradient-to-b from-teal-600 to-cyan-600 p-6 md:p-10 text-white">
+            <h3 className="text-xl font-bold mb-4">🌍 Topics Covered:</h3>
+            <ul className="space-y-3">
+              {unit3LessonPoints.map((point, index) => (
+                <li key={index} className="flex items-start">
+                  <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Unit 3 Complete Course with All 20 Activities */}
+      <section className="card overflow-hidden">
+        <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 md:p-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">🎓 Complete Unit 3 Learning Path</h2>
+          <p className="text-gray-700 text-center mb-8">Explore all 20 interactive activities across 5 language skills. Each skill has 4 lessons covering different transportation scenarios and verb tenses.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {unit3Skills.map((skill) => (
+              <div key={skill.title} className={`p-6 rounded-lg ${skill.bgColor}`}>
+                <h3 className="text-lg font-bold mb-3">{skill.title}</h3>
+                <ul className="space-y-2 mb-4">
+                  {skill.lessons.map((lesson, idx) => (
+                    <li key={idx} className="text-sm">
+                      <Link to={`/quiz/${lesson.id}`} className="text-blue-600 hover:underline flex items-center gap-2">
+                        <span>→</span> {lesson.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link to={skill.hubPath} className="btn btn-sm text-center w-full bg-white hover:bg-gray-100 text-gray-800">
+                  View All {skill.title}
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Review Section - Practice & Consolidation */}
+      <section className="card overflow-hidden">
+        <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-6 md:p-10">
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold mb-3 text-center">🎯 Review</h2>
+            <p className="text-gray-700 text-center">Consolidate your learning with speaking worksheets, conversation games, and immersive listening activities. Perfect for practice and retention!</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            {reviewActivities.map((activity) => (
+              <div key={activity.id} className={`p-6 rounded-lg ${activity.bgColor} shadow-md hover:shadow-lg transition-shadow`}>
+                <div className="text-4xl mb-3 text-center">{activity.icon}</div>
+                <h3 className="text-lg font-bold mb-3 text-center text-gray-800">{activity.title}</h3>
+                <p className="text-sm text-gray-600 text-center mb-4">{activity.description}</p>
+                <Link to={activity.path} className="btn btn-sm text-center w-full bg-white hover:bg-gray-100 text-gray-800 font-medium">
+                  Start Activity
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
@@ -155,6 +292,168 @@ const featuredLessonPoints = [
   "💬 Real-world dialogue practice",
   "🔊 Text-to-speech & pronunciation",
   "✅ Interactive quizzes & role plays"
+];
+
+const presentProgressivePoints = [
+  "✨ Master am/is/are + -ing verb forms",
+  "🎯 Describe actions happening RIGHT NOW",
+  "😤 Express complaints about current situations",
+  "🎵 Song-based learning from Bob Marley",
+  "✅ Interactive practice across all 5 skills"
+];
+
+const unit3LessonPoints = [
+  "🚗 Complete transportation vocabulary (vehicles, verbs, adjectives, phrases)",
+  "⏱️ Master all 3 tenses: Present Progressive, Simple Past, Going To Future",
+  "🗺️ Real-world scenarios: directions, journeys, travel planning",
+  "🎧 Enhanced audio with 5-second pauses for better comprehension",
+  "✅ 20 interactive activities across all 5 skills"
+];
+
+const unit3Skills = [
+  {
+    title: "Vocabulary",
+    icon: "📚",
+    bgColor: "bg-blue-50",
+    hubPath: "/vocabulary",
+    lessons: [
+      { id: "vo_03-01", name: "Vehicles" },
+      { id: "vo_03-02", name: "Action Verbs" },
+      { id: "vo_03-03", name: "Adjectives" },
+      { id: "vo_03-04", name: "Phrases" }
+    ]
+  },
+  {
+    title: "Grammar",
+    icon: "📝",
+    bgColor: "bg-green-50",
+    hubPath: "/grammar",
+    lessons: [
+      { id: "gr_03-01", name: "Present Progressive" },
+      { id: "gr_03-02", name: "Going To Future" },
+      { id: "gr_03-03", name: "Simple Past" },
+      { id: "gr_03-04", name: "Mixed Tenses" }
+    ]
+  },
+  {
+    title: "Reading",
+    icon: "📖",
+    bgColor: "bg-purple-50",
+    hubPath: "/reading",
+    lessons: [
+      { id: "re_03-01", name: "Present Progressive" },
+      { id: "re_03-02", name: "Simple Past" },
+      { id: "re_03-03", name: "Going To Future" },
+      { id: "re_03-04", name: "Comparatives" }
+    ]
+  },
+  {
+    title: "Speaking",
+    icon: "🗣️",
+    bgColor: "bg-yellow-50",
+    hubPath: "/speaking",
+    lessons: [
+      { id: "sp_03-01", name: "Ask Directions" },
+      { id: "sp_03-02", name: "Take Transport" },
+      { id: "sp_03-03", name: "Past Journey" },
+      { id: "sp_03-04", name: "Plan Trip" }
+    ]
+  },
+  {
+    title: "Listening",
+    icon: "🎧",
+    bgColor: "bg-pink-50",
+    hubPath: "/listening",
+    lessons: [
+      { id: "li_03-01", name: "Directions" },
+      { id: "li_03-02", name: "Past Travel" },
+      { id: "li_03-03", name: "Future Plans" },
+      { id: "li_03-04", name: "All Tenses" }
+    ]
+  }
+];
+
+const reviewActivities = [
+  {
+    id: 1,
+    icon: "📝",
+    title: "Speaking Worksheet 1",
+    description: "Greetings & Personal Info - Master introductions",
+    path: "/review/speaking-worksheet-01",
+    bgColor: "bg-indigo-50"
+  },
+  {
+    id: 2,
+    icon: "⏰",
+    title: "Speaking Worksheet 2",
+    description: "Daily Activities & Time - Describe your routine",
+    path: "/review/speaking-worksheet-02",
+    bgColor: "bg-cyan-50"
+  },
+  {
+    id: 3,
+    icon: "✅",
+    title: "Speaking Worksheet 3",
+    description: "Verb To Be & Present Simple - Practice basics",
+    path: "/review/speaking-worksheet-03",
+    bgColor: "bg-amber-50"
+  },
+  {
+    id: 4,
+    icon: "❓",
+    title: "Speaking Worksheet 4",
+    description: "Questions Master - Form & answer questions",
+    path: "/review/speaking-worksheet-04",
+    bgColor: "bg-rose-50"
+  },
+  {
+    id: 5,
+    icon: "✈️",
+    title: "Travel Stories",
+    description: "Conversation game - Share your travel experiences",
+    path: "/review/travel-stories",
+    bgColor: "bg-sky-50"
+  },
+  {
+    id: 6,
+    icon: "🚗",
+    title: "Car Driving",
+    description: "Narration game - Tell driving stories in past tense",
+    path: "/review/car-driving",
+    bgColor: "bg-orange-50"
+  },
+  {
+    id: 7,
+    icon: "🏎️",
+    title: "Car Comparison",
+    description: "Comparative game - Compare vehicles & features",
+    path: "/review/car-comparison",
+    bgColor: "bg-yellow-50"
+  },
+  {
+    id: 8,
+    icon: "🎧",
+    title: "Listening Activity",
+    description: "6-level progressive listening comprehension",
+    path: "/review/listening-activity",
+    bgColor: "bg-blue-50"
+  },
+  {
+    id: 9,
+    icon: "📖",
+    title: "School Memories",
+    description: "Share school experiences with mood indicators",
+    path: "/review/school-memories",
+    bgColor: "bg-purple-50"
+  },
+  {
+    id: 10,
+    icon: "🌟",
+    title: "School Life Mix",
+    description: "Mixed tenses - past, present, & future practice",
+    path: "/review/school-life-mix",
+    bgColor: "bg-green-50"
+  }
 ];
 
 export default HomePage;

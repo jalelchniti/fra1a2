@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { generateEvaluationPDF } from '@/lib/pdfGenerator';
 
 // Define interfaces for the question types
 interface McQuestion {

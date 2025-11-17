@@ -20,6 +20,11 @@ const ListeningPage = () => {
     { id: 'li_02-02', title: 'Shopping Conversations', level: 'A1', topic: 'Shopping' },
     { id: 'li_02-03', title: 'Landmarks & Locations', level: 'A1', topic: 'Directions' },
     { id: 'li_02-04', title: 'Prices & Numbers', level: 'A1', topic: 'Shopping' },
+    // Unit 3
+    { id: 'li_03-01', title: 'Understanding Directions', level: 'A1', topic: 'Transportation' },
+    { id: 'li_03-02', title: 'Past Travel Conversation', level: 'A1', topic: 'Transportation' },
+    { id: 'li_03-03', title: 'Future Travel Plans', level: 'A1', topic: 'Transportation' },
+    { id: 'li_03-04', title: 'Transportation Story (All Tenses)', level: 'A1', topic: 'Transportation' },
   ];
 
   const filteredListening = selectedTopic === 'All Topics'
@@ -69,7 +74,7 @@ const ListeningPage = () => {
             >
               <h3 className="text-xl font-bold text-indigo-700 mb-2">{item.title}</h3>
               <div className="flex justify-between items-center">
-                {(item.id.startsWith('li_01-') || item.id.startsWith('li_02-')) ? (
+                {(item.id.startsWith('li_01-') || item.id.startsWith('li_02-') || item.id.startsWith('li_03-')) ? (
                   <Link
                     to={`/quiz/${item.id}`}
                     className="text-sm text-blue-500 hover:underline"

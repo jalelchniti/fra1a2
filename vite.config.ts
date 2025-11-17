@@ -27,6 +27,13 @@ export default defineConfig({
           'u2-reading': ['src/store/u2/Reading/re_02-01.tsx', 'src/store/u2/Reading/re_02-02.tsx', 'src/store/u2/Reading/re_02-03.tsx', 'src/store/u2/Reading/re_02-04.tsx'],
           'u2-speaking': ['src/store/u2/Speaking/sp_02-01.tsx', 'src/store/u2/Speaking/sp_02-02.tsx', 'src/store/u2/Speaking/sp_02-03.tsx', 'src/store/u2/Speaking/sp_02-04.tsx'],
           'u2-listening': ['src/store/u2/Listening/li_02-01.tsx', 'src/store/u2/Listening/li_02-02.tsx', 'src/store/u2/Listening/li_02-03.tsx', 'src/store/u2/Listening/li_02-04.tsx'],
+
+          // Unit 3 Quizzes - Each skill in its own chunk
+          'u3-vocabulary': ['src/store/u3/Vocabulary/vo_03-01.tsx', 'src/store/u3/Vocabulary/vo_03-02.tsx', 'src/store/u3/Vocabulary/vo_03-03.tsx', 'src/store/u3/Vocabulary/vo_03-04.tsx'],
+          'u3-grammar': ['src/store/u3/Grammar/gr_03-01.tsx', 'src/store/u3/Grammar/gr_03-02.tsx', 'src/store/u3/Grammar/gr_03-03.tsx', 'src/store/u3/Grammar/gr_03-04.tsx'],
+          'u3-reading': ['src/store/u3/Reading/re_03-01.tsx', 'src/store/u3/Reading/re_03-02.tsx', 'src/store/u3/Reading/re_03-03.tsx', 'src/store/u3/Reading/re_03-04.tsx'],
+          'u3-speaking': ['src/store/u3/Speaking/sp_03-01.tsx', 'src/store/u3/Speaking/sp_03-02.tsx', 'src/store/u3/Speaking/sp_03-03.tsx', 'src/store/u3/Speaking/sp_03-04.tsx'],
+          'u3-listening': ['src/store/u3/Listening/li_03-01.tsx', 'src/store/u3/Listening/li_03-02.tsx', 'src/store/u3/Listening/li_03-03.tsx', 'src/store/u3/Listening/li_03-04.tsx'],
         },
       },
     },

@@ -82,6 +82,39 @@ const VocabularyPage = () => {
       topic: 'Shopping',
       quizId: 'vo_02-04',
     },
+    // Unit 3
+    {
+      id: 'vo_03-01',
+      title: 'Transportation Vehicles',
+      content: 'Learn vocabulary for trains, buses, cars, taxis, and other means of transport.',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 'vo_03-01',
+    },
+    {
+      id: 'vo_03-02',
+      title: 'Transport Action Verbs',
+      content: 'Practice action verbs related to transportation: drive, take, travel, wait, ride, arrive, leave.',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 'vo_03-02',
+    },
+    {
+      id: 'vo_03-03',
+      title: 'Transport Adjectives',
+      content: 'Learn adjectives to describe transportation: fast, slow, cheap, expensive, comfortable, safe.',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 'vo_03-03',
+    },
+    {
+      id: 'vo_03-04',
+      title: 'Transport Phrases & Prepositions',
+      content: 'Practice phrases: "by train", "by bus", "by car", "in the car", "on the bus".',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 'vo_03-04',
+    },
   ];
 
   const filteredVocabulary = selectedTopic === 'All Topics'

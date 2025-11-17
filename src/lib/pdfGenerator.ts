@@ -1,0 +1,452 @@
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+
+interface EvaluationResults {
+  scores: {
+    [key: string]: number;
+  };
+  recommendations: string;
+  studentName?: string;
+  totalScore: number;
+  totalQuestions: number;
+  sectionDetails: {
+    [section: string]: {
+      score: number;
+      total: number;
+      feedback: string;
+    };
+  };
+}
+
+interface TestResults {
+  score: number;
+  totalQuestions: number;
+  correctAnswers: number;
+  testTitle: string;
+  testDate?: string;
+  questionBreakdown?: Array<{
+    questionNum: number;
+    userAnswer: string;
+    correctAnswer: string;
+    isCorrect: boolean;
+    difficulty: string;
+  }>;
+}
+
+/**
+ * Generate PDF for Evaluation (A1 Placement Test) Results
+ */
+export const generateEvaluationPDF = (data: EvaluationResults) => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - 2 * margin;
+  let yPosition = margin;
+
+  // Header
+  doc.setFillColor(30, 58, 138); // SmartHub blue
+  doc.rect(0, 0, pageWidth, 30, 'F');
+
+  // Title
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(24);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SMARTHUB TUNIS', margin, 15);
+  doc.text('A1 Placement Test - Results Report', margin, 23);
+
+  yPosition = 40;
+
+  // Student Information Section
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('STUDENT INFORMATION', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Name: ${data.studentName || 'Anonymous'}`, margin, yPosition);
+  yPosition += 6;
+  doc.text(`Test Date: ${new Date().toLocaleDateString()}`, margin, yPosition);
+  yPosition += 6;
+  doc.text(`Test Type: A1 English Placement Test`, margin, yPosition);
+  yPosition += 12;
+
+  // Score Summary Section
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('OVERALL SCORE', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+
+  const percentage = Math.round((data.totalScore / data.totalQuestions) * 100);
+  doc.text(
+    `Total Score: ${data.totalScore} / ${data.totalQuestions} (${percentage}%)`,
+    margin,
+    yPosition
+  );
+  yPosition += 10;
+
+  // Section Breakdown
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SECTION BREAKDOWN', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+
+  Object.entries(data.sectionDetails).forEach(([section, details]) => {
+    const sectionPercentage = Math.round((details.score / details.total) * 100);
+    doc.text(
+      `${section.charAt(0).toUpperCase() + section.slice(1)}: ${details.score}/${details.total} (${sectionPercentage}%)`,
+      margin + 5,
+      yPosition
+    );
+    yPosition += 6;
+  });
+
+  yPosition += 6;
+
+  // Recommended Level Section
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('RECOMMENDED LEVEL', margin, yPosition);
+  yPosition += 8;
+
+  // Level box with background
+  doc.setFillColor(230, 240, 255);
+  doc.rect(margin, yPosition - 5, contentWidth, 12, 'F');
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'bold');
+  doc.text(data.recommendations, margin + 3, yPosition + 2);
+  yPosition += 18;
+
+  // Feedback Section
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('DETAILED FEEDBACK', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+
+  Object.entries(data.sectionDetails).forEach(([section, details]) => {
+    // Check if we need a new page
+    if (yPosition > pageHeight - 30) {
+      doc.addPage();
+      yPosition = margin;
+    }
+
+    doc.setTextColor(30, 58, 138);
+    doc.setFont('helvetica', 'bold');
+    doc.text(`${section.charAt(0).toUpperCase() + section.slice(1)}:`, margin + 3, yPosition);
+    yPosition += 5;
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+    const feedbackLines = doc.splitTextToSize(details.feedback, contentWidth - 6);
+    feedbackLines.forEach((line: string) => {
+      if (yPosition > pageHeight - 20) {
+        doc.addPage();
+        yPosition = margin;
+      }
+      doc.text(line, margin + 3, yPosition);
+      yPosition += 5;
+    });
+    yPosition += 3;
+  });
+
+  // Footer
+  doc.setTextColor(150, 150, 150);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    `Generated by SmartHub Tunis - ${new Date().toLocaleString()}`,
+    margin,
+    pageHeight - 10
+  );
+
+  // Download
+  const fileName = `SmartHub_A1_Test_${new Date().getTime()}.pdf`;
+  doc.save(fileName);
+};
+
+/**
+ * Generate PDF for Test (Listening Comprehension) Results
+ */
+export const generateTestPDF = (data: TestResults) => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - 2 * margin;
+  let yPosition = margin;
+
+  // Header
+  doc.setFillColor(30, 58, 138); // SmartHub blue
+  doc.rect(0, 0, pageWidth, 30, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(24);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SMARTHUB TUNIS', margin, 15);
+  doc.text('Test Results Report', margin, 23);
+
+  yPosition = 40;
+
+  // Test Information
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('TEST INFORMATION', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Test: ${data.testTitle}`, margin, yPosition);
+  yPosition += 6;
+  doc.text(`Date: ${data.testDate || new Date().toLocaleDateString()}`, margin, yPosition);
+  yPosition += 6;
+  doc.text(`Total Questions: ${data.totalQuestions}`, margin, yPosition);
+  yPosition += 12;
+
+  // Score Summary
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SCORE SUMMARY', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(10);
+  doc.setFont('helvetica', 'normal');
+  doc.text(`Score: ${data.score}%`, margin, yPosition);
+  yPosition += 6;
+  doc.text(`Correct Answers: ${data.correctAnswers} / ${data.totalQuestions}`, margin, yPosition);
+  yPosition += 10;
+
+  // Score bar
+  doc.setFillColor(200, 200, 200);
+  doc.rect(margin, yPosition, contentWidth, 8, 'F');
+
+  // Color based on score
+  let barColor: [number, number, number] = [220, 50, 50]; // Red
+  if (data.score >= 70) {
+    barColor = [50, 180, 50]; // Green
+  } else if (data.score >= 50) {
+    barColor = [255, 165, 0]; // Orange
+  }
+  doc.setFillColor(...barColor);
+  const barWidth = (contentWidth * data.score) / 100;
+  doc.rect(margin, yPosition, barWidth, 8, 'F');
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'bold');
+  doc.text(`${data.score}%`, margin + barWidth / 2 - 3, yPosition + 5);
+
+  yPosition += 14;
+
+  // Question Breakdown (if available)
+  if (data.questionBreakdown && data.questionBreakdown.length > 0) {
+    doc.setTextColor(30, 58, 138);
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'bold');
+    doc.text('QUESTION BREAKDOWN', margin, yPosition);
+    yPosition += 8;
+
+    doc.setFontSize(9);
+
+    data.questionBreakdown.forEach((q, index) => {
+      // Check if we need a new page
+      if (yPosition > pageHeight - 30) {
+        doc.addPage();
+        yPosition = margin;
+      }
+
+      const questionNumber = index + 1;
+      const status = q.isCorrect ? '✓ CORRECT' : '✗ INCORRECT';
+      const statusColor = q.isCorrect ? [50, 180, 50] : [220, 50, 50];
+
+      // Question number and status
+      doc.setTextColor(30, 58, 138);
+      doc.setFont('helvetica', 'bold');
+      doc.text(`Question ${questionNumber} (${q.difficulty}) - ${status}`, margin + 3, yPosition);
+      yPosition += 5;
+
+      doc.setTextColor(0, 0, 0);
+      doc.setFont('helvetica', 'normal');
+      doc.text(`Your answer: ${q.userAnswer}`, margin + 5, yPosition);
+      yPosition += 4;
+
+      if (!q.isCorrect) {
+        doc.text(`Correct answer: ${q.correctAnswer}`, margin + 5, yPosition);
+        yPosition += 4;
+      }
+
+      yPosition += 3;
+    });
+
+    yPosition += 5;
+  }
+
+  // Performance Summary
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(12);
+  doc.setFont('helvetica', 'bold');
+  doc.text('PERFORMANCE SUMMARY', margin, yPosition);
+  yPosition += 8;
+
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(9);
+  doc.setFont('helvetica', 'normal');
+
+  let performanceText = '';
+  if (data.score >= 90) {
+    performanceText = 'Excellent performance! You have mastered this material.';
+  } else if (data.score >= 80) {
+    performanceText = 'Very good performance. Keep practicing to improve further.';
+  } else if (data.score >= 70) {
+    performanceText = 'Good performance. Continue studying to strengthen weak areas.';
+  } else if (data.score >= 50) {
+    performanceText = 'Needs improvement. Review the material and practice regularly.';
+  } else {
+    performanceText = 'Please review the material thoroughly and try again.';
+  }
+
+  const performanceLines = doc.splitTextToSize(performanceText, contentWidth - 6);
+  performanceLines.forEach((line: string) => {
+    doc.text(line, margin + 3, yPosition);
+    yPosition += 5;
+  });
+
+  // Footer
+  doc.setTextColor(150, 150, 150);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    `Generated by SmartHub Tunis - ${new Date().toLocaleString()}`,
+    margin,
+    pageHeight - 10
+  );
+
+  // Download
+  const fileName = `SmartHub_Test_Results_${new Date().getTime()}.pdf`;
+  doc.save(fileName);
+};
+
+/**
+ * Generic PDF generator for quiz results
+ */
+export const generateQuizReportPDF = (
+  title: string,
+  score: number,
+  totalQuestions: number,
+  details: Record<string, any>
+) => {
+  const doc = new jsPDF({
+    orientation: 'portrait',
+    unit: 'mm',
+    format: 'a4',
+  });
+
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
+  const margin = 15;
+  const contentWidth = pageWidth - 2 * margin;
+  let yPosition = margin;
+
+  // Header
+  doc.setFillColor(30, 58, 138);
+  doc.rect(0, 0, pageWidth, 30, 'F');
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(24);
+  doc.setFont('helvetica', 'bold');
+  doc.text('SMARTHUB TUNIS', margin, 15);
+  doc.text('Quiz Results Report', margin, 23);
+
+  yPosition = 40;
+
+  // Quiz Title
+  doc.setTextColor(30, 58, 138);
+  doc.setFontSize(14);
+  doc.setFont('helvetica', 'bold');
+  const titleLines = doc.splitTextToSize(title, contentWidth);
+  titleLines.forEach((line: string, index: number) => {
+    doc.text(line, margin, yPosition + index * 6);
+  });
+  yPosition += titleLines.length * 6 + 8;
+
+  // Score
+  doc.setTextColor(0, 0, 0);
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    `Score: ${score} / ${totalQuestions} (${Math.round((score / totalQuestions) * 100)}%)`,
+    margin,
+    yPosition
+  );
+  yPosition += 10;
+
+  // Details
+  Object.entries(details).forEach(([key, value]) => {
+    if (yPosition > pageHeight - 20) {
+      doc.addPage();
+      yPosition = margin;
+    }
+
+    doc.setTextColor(30, 58, 138);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.text(`${key}:`, margin, yPosition);
+    yPosition += 5;
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(9);
+    const valueLines = doc.splitTextToSize(String(value), contentWidth - 6);
+    valueLines.forEach((line: string) => {
+      doc.text(line, margin + 3, yPosition);
+      yPosition += 4;
+    });
+    yPosition += 3;
+  });
+
+  // Footer
+  doc.setTextColor(150, 150, 150);
+  doc.setFontSize(8);
+  doc.setFont('helvetica', 'normal');
+  doc.text(
+    `Generated by SmartHub Tunis - ${new Date().toLocaleString()}`,
+    margin,
+    pageHeight - 10
+  );
+
+  const fileName = `SmartHub_Quiz_Results_${new Date().getTime()}.pdf`;
+  doc.save(fileName);
+};

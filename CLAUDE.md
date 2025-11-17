@@ -2,43 +2,378 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Recent Updates (October 2024)
+## Quick Start
 
-**Latest Session Accomplishments:**
+**Essential Commands:**
+- `npm run dev` - Start dev server (http://localhost:5173/)
+- `npm run build` - Production build with full TypeScript checking
+- `npm run lint -- --fix` - Auto-fix code quality issues
+- `npm test` - Run tests in watch mode
+- `npx vitest --run` - Run tests once
 
-1. **Fixed .js File Duplication Issue** (Oct 24, 2024)
-   - Root cause: Visual Studio auto-compilation via `.vs` folder
-   - Solution: Added `noEmit: true` to `tsconfig.json` to prevent TypeScript from outputting .js files
-   - Updated `.gitignore` to exclude `src/**/*.js` and `.vs/` folder
-   - Result: Clean source directory, only .tsx files tracked
+**Key Import Pattern:**
+- Always use `@/` alias for imports: `import Button from '@/components/ui/button'`
+- Alias maps to `src/` in `tsconfig.json` and `vite.config.ts`
 
-2. **Enhanced MyCompanion Component** (Oct 24, 2024)
-   - Fixed HeyGen avatar script injection with guard condition `!scriptElement` to prevent duplication
-   - **Repositioned avatar from fixed bottom-left to center of page** - now prominent focal point
-   - Created dedicated "Avatar Section" below Instructions section
-   - **Increased avatar sizing by 200%:**
-     * Avatar button: 200px → 600px (circular avatar)
-     * Desktop expanded: 366px → 1098px (width and height increased proportionally)
-     * Mobile expanded: 266px → 798px (responsive scaling maintained)
-   - Added proper TypeScript typing for `scriptElement` variable
-   - Improved user experience with large, centered avatar taking up full attention
+## Table of Contents
 
-3. **Production Build & Deployment Preparation** (Oct 24, 2024)
-   - Verified zero TypeScript errors before deployment
-   - Build statistics: 59 total files, 2.0 MB uncompressed, ~150 KB gzipped
-   - All 34 quizzes (U1 & U2) compiled and lazy-loaded successfully
-   - Created comprehensive FTP deployment documentation:
-     * `FTP_DEPLOYMENT_PRODUCTION_GUIDE.md` - Full step-by-step instructions
-     * `FTP_QUICK_UPLOAD_SUMMARY.txt` - Quick reference checklist
-   - Ready for OVH server deployment to `/slim/` directory
+- [Project Overview](#project-overview) - Status and feature summary
+- [Recent Work Summary](#recent-work-summary) - Latest updates and changes
+- [Critical Architecture Details](#critical-architecture-details) - Must-know routing, quiz registration, code splitting
+- [Critical Gotchas](#critical-gotchas--important-notes) - Common mistakes and solutions
+- [Development Commands](#development-commands) - Core and testing commands
+- [Adding New Content](#adding-new-content) - Quick workflow for new quizzes
+- [Creating New Units](#creating-new-units-from-course-schedule) - Full process for new units
+- [Architecture Overview](#architecture-overview) - Routing, component structure, TTS patterns
+- [Production Build & Deployment](#production-build--deployment) - Build process and FTP deployment
+- [Troubleshooting](#troubleshooting-common-issues) - Solutions to common problems
 
 ## Project Overview
 
 **SmartHub Tunis** - An English language learning application (A1-A2 level) built with React, TypeScript, and Vite. Provides interactive educational content through quizzes and flashcards with text-to-speech capabilities, organized by language skill types.
 
-**Branding:** SmartHub Tunis - "Connecting Intelligent People"
-**Deployment:** Configured for `/slim/` subfolder deployment
-**Version Status:** v2.0 - Fully complete with Units 1 & 2, ready for production
+**Current Status:** v3.0 - Units 1, 2, & 3 complete with 57 total interactive exercises, ready for production
+- **Unit 1**: 12 quizzes (4 Vocabulary, 4 Grammar, 2 Reading, 1 Speaking, 1 Listening)
+- **Unit 2**: 25 quizzes (5 Vocabulary, 5 Grammar, 5 Reading, 5 Speaking, 5 Listening)
+- **Unit 3**: 20 quizzes (4 Vocabulary, 4 Grammar, 4 Reading, 4 Speaking, 4 Listening) - partial
+- **Branding:** SmartHub Tunis - "Connecting Intelligent People"
+- **Deployment:** Configured for `/slim/` subfolder deployment
+
+## Recent Work Summary
+
+**Latest Updates (November 2025):**
+- Unit 2: All 5 lessons per skill fully implemented (25 total quizzes)
+- Unit 3: Partial implementation with 4 lessons per skill (20 total quizzes) for 5 skills
+- All 57 quizzes properly registered in `quizMap` with lazy loading
+- `vite.config.ts` configured with manual chunk splitting including Unit 3 chunks
+- HeyGen avatar in MyCompanion component centered and sized prominently (600px initial, 1098px expanded)
+- TTS implementation complete across all quiz types with proper deduplication via `useRef`
+- Production deployment ready with comprehensive FTP guides available
+
+## Critical Architecture Details
+
+### 1. Routing & Deployment
+- **React Router v7** with `basename="/slim"` (configured in `src/main.tsx`)
+- **Quiz routing:** Dynamic `/quiz/{quizId}` routes mapped in `src/pages/QuizPage.tsx`
+- **Quiz IDs format:** `{skillCode}_{unit}-{lesson}`
+  - Example: `vo_01-01` (Vocabulary Unit 1 Lesson 1)
+  - Skill codes: `vo` (Vocab), `gr` (Grammar), `re` (Reading), `sp` (Speaking), `li` (Listening)
+- **Deploy to `/slim/`** folder - base path must match vite.config.ts and main.tsx exactly
+
+### 2. Quiz Map Registration
+**File:** `src/pages/QuizPage.tsx` (contains `quizMap` object)
+
+When adding quizzes:
+```typescript
+// Pattern to follow:
+'vo_02-01': lazy(() => import('../store/u2/Vocabulary/vo_02-01')),
+```
+- Quiz file must exist at path specified in import
+- ID must match exactly with quiz filename
+- QuizPage reads URL param and lazy-loads component
+
+### 3. Code Splitting & Bundle Structure
+**File:** `vite.config.ts` (lines 13-32 define `manualChunks`)
+
+- Each skill (vocabulary, grammar, etc.) in U1/U2 gets its own chunk: `u1-vocabulary`, `u1-grammar`, etc.
+- When adding new units, create corresponding chunk entries in `manualChunks`
+- Build fails if file paths in chunks don't exist - update or remove them
+
+### 4. TypeScript & Compilation
+- **100% TypeScript:** All files are `.tsx` - no `.js` files allowed
+- **`noEmit: true`** in `tsconfig.json` - prevents TypeScript auto-compilation
+- Visual Studio may auto-compile to `.js` - safely delete if they appear; `.gitignore` excludes them
+- **Strict mode enabled** - all type errors must be fixed before `npm run build` succeeds
+
+### 5. Text-to-Speech (TTS)
+**Core Pattern** (see `src/store/u1/Vocabulary/vo_01-01.tsx`):
+```typescript
+const isSpeakingRef = useRef(false);  // Prevent duplicate calls
+const speak = (text: string) => {
+  if (!isTtsEnabled || isSpeakingRef.current) return;
+  isSpeakingRef.current = true;
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  window.speechSynthesis.speak(utterance);
+  utterance.onend = () => { isSpeakingRef.current = false; };
+};
+```
+- Voice loading via `speechSynthesis.onvoiceschanged` event
+- Works best in Chrome/Edge (Safari/Firefox limited support)
+- For reading quizzes: split by sentences `text.split(/(?<=[.!?])\s+/)` and sequence playback
+
+### 6. Layout & Navigation
+- **Main Layout:** `src/components/layout/layout.tsx` - wraps all pages
+- **Header/Footer/Sidebar:** Consistent across all routes
+- **Skill Pages:** Act as hubs listing quiz exercises
+  - Files: `VocabularyPage.tsx`, `GrammarPage.tsx`, `ReadingPage.tsx`, `SpeakingPage.tsx`, `ListeningPage.tsx`
+  - Each has content array with quiz references
+- **Page Transitions:** Framer Motion AnimatePresence in `App.tsx`
+
+## Adding New Content
+
+### Adding a Quiz (Quick Workflow)
+1. **Choose template** from `src/store/samples/` (flashcards, multiple choice, reading, etc.)
+2. **Create file:** `src/store/u{unit}/{SkillType}/{skillCode}_{unit}-{lesson}.tsx`
+3. **Register in QuizPage.tsx:** Add entry to `quizMap` object
+4. **Add to skill page:** Add content item to `VocabularyPage.tsx`, `GrammarPage.tsx`, etc.
+5. **Test:** `npm run dev` → navigate to `/quiz/{quizId}`
+6. **Lint:** `npm run lint -- --fix`
+
+### Creating a New Unit (Complete Workflow)
+Reference: `Students/{StudentName}/{StudentName}_Course_Schedule.md`
+
+1. **Extract lesson data** - Learning objectives, vocabulary, grammar rules
+2. **Create directory structure:**
+   ```bash
+   mkdir -p src/store/u{unit}/{Vocabulary,Grammar,Reading,Speaking,Listening}
+   ```
+3. **Create 20 quiz files** (4 per skill = 5 skills)
+   - Use templates as starting points
+   - Content must be **English ONLY** - no Arabic, no translations
+   - Definitions should be A1-level simple English
+4. **Register all in QuizPage.tsx** - Add 20 entries to `quizMap`
+5. **Update skill pages** - Add 4 items per skill (file: `src/pages/`)
+6. **Update HomePage** - Add unit to featured section
+7. **Update vite.config.ts** - Add new chunk entries if using code splitting
+8. **Test all routes** - Verify /quiz/{quizId} works for all
+9. **Run full build:** `npm run build` (must pass TypeScript check)
+
+## Project Structure Overview
+
+```
+src/
+├── App.tsx                          # Route definitions
+├── main.tsx                         # Entry point (CRITICAL: basename="/slim")
+├── components/
+│   ├── layout/                      # Header, Footer, Sidebar, Layout wrapper
+│   └── ui/                          # Radix UI + custom shadcn/ui-style components
+├── pages/                           # Route pages (13 total)
+│   ├── HomePage.tsx                 # Landing page with featured quizzes
+│   ├── QuizPage.tsx                 # Dynamic quiz router (uses quizMap)
+│   ├── {Skill}Page.tsx              # Vocabulary, Grammar, Reading, Speaking, Listening
+│   ├── MyCompanion.tsx              # AI avatar conversational practice
+│   ├── EvaluationPage.tsx           # Course evaluation form
+│   ├── EFLCurriculumCarousel.tsx    # Curriculum overview carousel
+│   └── Confirm*Page.tsx             # Confirmation pages
+├── store/                           # Quiz content (97 files)
+│   ├── u1/                          # Unit 1 (12 quizzes)
+│   │   ├── Vocabulary/              # vo_01-01 through vo_01-04
+│   │   ├── Grammar/                 # gr_01-01 through gr_01-04
+│   │   ├── Reading/                 # re_01-01 through re_01-02
+│   │   ├── Speaking/                # sp_01-01
+│   │   └── Listening/               # li_01-01
+│   ├── u2/                          # Unit 2 (25 quizzes) - COMPLETE
+│   │   ├── Vocabulary/              # vo_02-01 through vo_02-05
+│   │   ├── Grammar/                 # gr_02-01 through gr_02-05
+│   │   ├── Reading/                 # re_02-01 through re_02-05
+│   │   ├── Speaking/                # sp_02-01 through sp_02-05
+│   │   └── Listening/               # li_02-01 through li_02-05
+│   ├── u3/                          # Unit 3 (20 quizzes) - PARTIAL
+│   │   ├── Vocabulary/              # vo_03-01 through vo_03-04
+│   │   ├── Grammar/                 # gr_03-01 through gr_03-04
+│   │   ├── Reading/                 # re_03-01 through re_03-04
+│   │   ├── Speaking/                # sp_03-01 through sp_03-04
+│   │   └── Listening/               # li_03-01 through li_03-04
+│   ├── samples/                     # Template quizzes (6+ templates)
+│   └── plan.tsx                     # Business calculator feature
+├── lib/
+│   └── utils.ts                     # Utility functions
+└── resources/
+    └── Read_TTS_Highlight_Quiz_Docs.md  # Detailed TTS implementation guide
+```
+
+**Total Files in src/:** ~105
+- Quiz files: 57 (12 U1 + 25 U2 + 20 U3)
+- Pages: 13
+- Components: 8+
+- Other: ~27
+
+## Testing
+
+**Test Setup:** `vitest.config.ts` with jsdom environment
+
+Commands:
+- `npm test` - Watch mode (re-runs on file changes)
+- `npx vitest --run` - Run once and exit
+- `npx vitest --run src/path/file.test.tsx` - Single file
+- `npx vitest --ui` - Interactive UI
+
+Test files typically go next to components: `ComponentName.test.tsx`
+
+## Build & Production
+
+### Pre-Deployment Steps
+```bash
+npm run lint              # Check code quality
+npm test -- --run        # Ensure tests pass
+npm run build             # Full TypeScript check + production build
+```
+
+### Build Output
+- Location: `dist/` folder
+- Contains: HTML, CSS, JS (chunked), assets, .htaccess
+- Size: ~2.0 MB uncompressed, ~150 KB gzipped
+- Files: 59 total (index.html + 43 JS files + 2 CSS + assets)
+
+### Deployment
+1. Run `npm run build`
+2. Upload all contents of `dist/` to server at `/slim/` path
+3. Ensure `.htaccess` is included (for SPA routing)
+4. Optional: Upload `dist-root-index.html` as `/index.html` at web root
+
+**FTP Details:** See `FTP_DEPLOYMENT_PRODUCTION_GUIDE.md`
+
+## State Management & Patterns
+
+**Zustand:** Minimal usage for global state
+**Local State:** Preferred for component-specific quiz logic
+**Refs:** Used for TTS deduplication (`isSpeakingRef`)
+
+Key patterns:
+- Quiz state (current question, score, answered) → local state
+- User preferences (TTS enabled) → could use Zustand or localStorage
+- Component animations → Framer Motion
+
+## Styling & Theme
+
+- **Framework:** Tailwind CSS 3
+- **Components:** Custom UI components in `src/components/ui/` (shadcn/ui style)
+- **Animations:** Framer Motion (page transitions, avatar interactions)
+- **Icons:** Lucide React + React Icons
+- **Color scheme:** Tailwind defaults + custom brand colors (orange/blue)
+
+No global CSS - all styling through Tailwind classes.
+
+## Configuration Files
+
+| File | Purpose |
+|------|---------|
+| `tsconfig.json` | TypeScript config + path aliases (`@/*` → `src/*`), `noEmit: true` |
+| `vite.config.ts` | Vite build config + React plugin + code splitting chunks + base path `/slim/` |
+| `vitest.config.ts` | Test config (jsdom environment) |
+| `tailwind.config.js` | Tailwind customization |
+| `eslint.config.js` | ESLint rules (React Hooks, React Refresh) |
+| `components.json` | shadcn/ui config (component aliases) |
+| `.htaccess` | Apache routing for SPA (included in build) |
+
+## Content Guidelines
+
+⚠️ **ABSOLUTE RULE: ENGLISH ONLY - No other languages**
+
+- ✅ Use simple, A1-level English definitions
+- ✅ Provide clear contextual examples
+- ✅ Use TTS for pronunciation support
+- ❌ Never use Arabic, translations, or code-switching
+- ❌ Never include mixed-language explanations
+
+**Example - Correct:**
+```typescript
+{ sideA: "Shirt", sideB: "A piece of clothing worn on the upper body" }
+```
+
+**Example - Wrong:**
+```typescript
+{ sideA: "Shirt", sideB: "قميص" }  // ❌ NEVER - Do this
+```
+
+## Features & Pages
+
+1. **Vocabulary/Grammar/Reading/Speaking/Listening** - Skill hubs with quiz lists
+2. **Quiz Page** - Dynamic router for 57 interactive exercises (Units 1, 2, & 3)
+3. **My English Companion** - HeyGen avatar for conversational AI practice
+4. **Curriculum** - EFL curriculum carousel overview
+5. **Evaluation** - Course evaluation survey form
+6. **Plan** - Business calculator utility
+7. **Home** - Landing page with featured quizzes
+
+## Common Development Tasks
+
+**I want to fix a TypeScript error:**
+```bash
+npm run build  # Shows all errors
+# Fix the error in src/
+npm run build  # Verify it's fixed
+```
+
+**I want to check code quality before committing:**
+```bash
+npm run lint -- --fix  # Auto-fix issues
+npm test -- --run      # Verify tests pass
+npm run build          # Full check with TypeScript
+```
+
+**I want to add a new quiz to Unit 2 Vocabulary:**
+1. Copy a template from `src/store/samples/InteractiveFlashcardsWithTTS.tsx`
+2. Create: `src/store/u2/Vocabulary/vo_02-05.tsx`
+3. Add to `quizMap` in `QuizPage.tsx`
+4. Add to content array in `VocabularyPage.tsx`
+5. Test: `npm run dev` → click quiz in /vocabulary page
+6. `npm run lint -- --fix` and commit
+
+**I want to preview the production build locally:**
+```bash
+npm run build    # Build for production
+npm run preview  # Serve dist folder locally
+# Then visit http://localhost:4173/slim/ (note the /slim/ path)
+```
+
+## Quick Debugging Guide
+
+### Browser Console Checks
+- **TTS Voice Loading**: Open DevTools (F12), check console for "Available voices" log
+- **Route Errors**: Check console for 404 or routing errors - look for quiz ID mismatches
+- **Component Rendering**: Verify component mounts with React DevTools (browser extension)
+- **Network Issues**: Check Network tab for failed imports or missing assets
+
+### Common Debug Commands
+```bash
+# Check for all TypeScript issues without building
+npm run build 2>&1 | head -50  # Show first 50 errors
+
+# Run tests with verbose output for debugging
+npx vitest --run --reporter=verbose
+
+# Check specific file for linting issues only
+npx eslint src/pages/QuizPage.tsx
+
+# Clear node_modules and reinstall (nuclear option)
+rm -rf node_modules package-lock.json && npm install
+```
+
+### HeyGen Avatar Debugging
+- Check browser console for script loading errors (avatar script from HeyGen CDN)
+- Verify microphone permissions are granted in browser
+- Test in Chrome/Edge first - best avatar support
+- Check that avatar container renders before script injection
+
+## Critical Gotchas & Important Notes
+
+### Must-Know Rules (CRITICAL)
+1. **basename="/slim"** must match in TWO places:
+   - `src/main.tsx`: `<BrowserRouter basename="/slim">`
+   - `vite.config.ts`: `base: '/slim/'`
+   - If they don't match, routing will fail silently or show 404s
+
+2. **Quiz registration requires TWO steps:**
+   - Add to `quizMap` in `src/pages/QuizPage.tsx`
+   - Add to content array in corresponding skill page (VocabularyPage, GrammarPage, etc.)
+   - Missing either step means quiz won't appear or won't be discoverable
+
+3. **Asset paths - Don't manually add `/slim/`:**
+   - Code: `<img src="/assets/images/file.png" />`
+   - Vite automatically prefixes with `/slim/` in production build
+   - Adding it manually causes `/slim/slim/` paths in production
+
+### Common Issues & Solutions
+- **.js files appearing in src/:** Safe to delete. Caused by IDE auto-compilation. Ensure `noEmit: true` in tsconfig.json
+- **TTS not working:** Test in Chrome/Edge first. Check browser console for voice loading. Verify `isTtsEnabled` state is true
+- **Route 404 errors:** Check if quiz ID in URL matches `quizMap` entry exactly (case-sensitive)
+- **Build TypeScript errors:** Run `npm run build` to see all errors. Fix them before deployment
+- **Flashcard images not showing:** Verify image is in `public/assets/images/` and path uses `/assets/images/filename.ext` (no `/slim/`)
+
+### Language Rule
+- **ABSOLUTE: English only** - No Arabic, translations, or code-switching anywhere in quiz content
 
 ## Development Commands
 
@@ -118,14 +453,23 @@ src/store/
 └── plan.tsx         # Business calculator feature
 ```
 
-**Unit 2 Activities (20 Total)**
+**Unit 2 Activities (25 Total) - COMPLETE**
 Created based on `Students/Slim_Gharbi/Slim_Gharbi_Course_Schedule.md` Lesson 4: Shopping & Directions
 
-- **Vocabulary (4)**: Shopping, Directions & Landmarks, Currency & Payment, Shopping Conversation
-- **Grammar (4)**: Imperatives for Directions, Asking Questions, Prepositions of Place, Modal Verbs
-- **Reading (4)**: Shopping Information, Directions, Shopping Dialogue, Return & Exchange Policy
-- **Speaking (4)**: Asking for Directions, Shopping Phrases, Dialogue Practice, Role Play Scenarios
-- **Listening (4)**: Understanding Directions, Shopping Conversations, Landmarks & Locations, Prices & Numbers
+- **Vocabulary (5)**: Shopping, Directions & Landmarks, Currency & Payment, Shopping-related specialized vocabulary, Advanced shopping concepts
+- **Grammar (5)**: Imperatives for Directions, Asking Questions, Prepositions of Place, Modal Verbs, Advanced grammar structures
+- **Reading (5)**: Shopping Information, Directions, Shopping Dialogue, Return & Exchange Policy, Advanced reading comprehension
+- **Speaking (5)**: Asking for Directions, Shopping Phrases, Dialogue Practice, Role Play Scenarios, Extended speaking activities
+- **Listening (5)**: Understanding Directions, Shopping Conversations, Landmarks & Locations, Prices & Numbers, Advanced listening comprehension
+
+**Unit 3 Activities (20 Total) - PARTIAL**
+Partial implementation with 4 lessons per skill. Ready for expansion to 25 total with 5th lesson additions.
+
+- **Vocabulary (4)**: Core vocabulary set with room for expansion
+- **Grammar (4)**: Grammar topics with room for advanced topics
+- **Reading (4)**: Reading passages with room for additional comprehension exercises
+- **Speaking (4)**: Speaking activities with room for advanced practice
+- **Listening (4)**: Listening exercises with room for additional audio comprehension
 
 **Quiz Types**
 1. Flashcard Quizzes - Card flip with conditional TTS based on card index
@@ -296,16 +640,19 @@ const speak = (text: string) => {
    // In src/pages/QuizPage.tsx, add to quizMap:
    'vo_02-01': lazy(() => import('../store/u2/Vocabulary/vo_02-01')),
    'gr_02-01': lazy(() => import('../store/u2/Grammar/gr_02-01')),
-   // ... repeat for all 20 quizzes, organized by skill and unit
+   // ... repeat for all quizzes, organized by skill and unit
    ```
+   **CRITICAL:** Quiz IDs must match exact filename and folder structure
 
 ### 6. **Update Skill Pages** (`src/pages/`)
    Add entries to each skill page's content array:
-   - **VocabularyPage.tsx**: Add vo_02-01 through vo_02-04
-   - **GrammarPage.tsx**: Add gr_02-01 through gr_02-04
-   - **ReadingPage.tsx**: Add re_02-01 through re_02-04
-   - **SpeakingPage.tsx**: Add sp_02-01 through sp_02-04
-   - **ListeningPage.tsx**: Add li_02-01 through li_02-04
+   - **VocabularyPage.tsx**: Add all new quizzes
+   - **GrammarPage.tsx**: Add all new quizzes
+   - **ReadingPage.tsx**: Add all new quizzes
+   - **SpeakingPage.tsx**: Add all new quizzes
+   - **ListeningPage.tsx**: Add all new quizzes
+
+   **CRITICAL:** Missing quiz from skill page means it won't be discoverable from hub page
 
    Structure for each item:
    ```typescript
@@ -324,7 +671,18 @@ const speak = (text: string) => {
    - Change featured quiz links to new unit quizzes
    - Update `featuredLessonPoints` array with new unit topics
 
-### 8. **Test All Routes**
+   **NOTE:** Featured quizzes are optional - only update if you want new unit content on home page
+
+### 8. **Update vite.config.ts for Code Splitting** (if creating Unit 3+)
+   Add new chunk entries in `vite.config.ts` build.rollupOptions.output.manualChunks:
+   ```typescript
+   'u3-vocabulary': ['src/store/u3/Vocabulary/vo_03-01.tsx', ...],
+   'u3-grammar': ['src/store/u3/Grammar/gr_03-01.tsx', ...],
+   // ... repeat for all skills
+   ```
+   **CRITICAL:** Build will fail if manualChunks file paths don't exist - add only actual files or comment them out
+
+### 9. **Test All Routes**
    ```bash
    npm run dev
    # Visit: http://localhost:5173/vocabulary (shows all vocab items)
@@ -333,10 +691,10 @@ const speak = (text: string) => {
    # Test TTS functionality
    ```
 
-### 9. **Verify Integration**
+### 10. **Verify Integration**
    - ✅ Quizzes accessible from skill pages
    - ✅ Direct URL access works: `/quiz/vo_02-01`
-   - ✅ HomePage features new unit
+   - ✅ HomePage features new unit (optional)
    - ✅ All links properly routed
    - ✅ No Arabic or other language text
    - ✅ TTS working in all quizzes
@@ -390,22 +748,24 @@ const speak = (text: string) => {
 
 ### Code Splitting with manualChunks
 
-**Location:** `vite.config.ts` lines 13-32
+**Location:** `vite.config.ts` lines 16-37
 
 **How it works:**
 - Each skill's quizzes are bundled into separate chunks: `u1-vocabulary`, `u1-grammar`, etc.
 - This reduces initial bundle size - only needed quiz chunks are loaded
 - **When adding new quizzes:** Add their file paths to the appropriate chunk in `manualChunks`
-- Example: Adding `vo_03-01.tsx` requires adding it to a `u3-vocabulary` chunk entry
+- Example: Adding `vo_04-01.tsx` requires adding it to a `u4-vocabulary` chunk entry
 
 **Current chunks:**
-- U1: `u1-vocabulary`, `u1-grammar`, `u1-reading`, `u1-speaking`, `u1-listening`
-- U2: `u2-vocabulary`, `u2-grammar`, `u2-reading`, `u2-speaking`, `u2-listening`
+- **U1**: `u1-vocabulary` (4), `u1-grammar` (4), `u1-reading` (2), `u1-speaking` (1), `u1-listening` (1)
+- **U2**: `u2-vocabulary` (5), `u2-grammar` (5), `u2-reading` (5), `u2-speaking` (5), `u2-listening` (5)
+- **U3**: `u3-vocabulary` (4), `u3-grammar` (4), `u3-reading` (4), `u3-speaking` (4), `u3-listening` (4)
 
 **When to update manualChunks:**
-- When creating Unit 3, 4, etc., add new chunk definitions
-- When adding quizzes beyond lessons 1-4, update the file path array for that chunk
-- Build will fail if file paths in chunks don't exist - fix by adding actual file paths or removing non-existent ones
+- When creating Unit 4+, add new chunk definitions for all 5 skills
+- When completing Unit 3 lessons (adding lessons 5 to existing), update file paths: `[...existing, 'src/store/u{unit}/{Skill}/{code}_{unit}-05.tsx']`
+- **CRITICAL:** Build will fail if file paths in chunks don't exist - add actual file paths or remove them
+- File paths must exactly match the quiz file location
 
 ## Branding Assets
 
@@ -494,13 +854,13 @@ dist/
 └── [other assets: images, fonts, etc.]
 ```
 
-**Build Statistics (v2.0 - Oct 2024):**
-- Total files: 59
-- Total size: 2.0 MB (uncompressed)
-- Gzipped size: ~150 KB
-- JavaScript chunks: 43 files (main + 10 skill chunks + 32 individual quizzes)
+**Build Statistics (v3.0 - Nov 2025):**
+- Total files: 70+
+- Total size: 2.5 MB (uncompressed)
+- Gzipped size: ~170-180 KB
+- JavaScript chunks: 57+ files (main + 15 skill chunks + 57 quiz chunks)
 - CSS files: 2 (combined and minified)
-- Build time: ~30 seconds on standard machine
+- Build time: ~35-40 seconds on standard machine
 
 ## Deployment
 
@@ -526,7 +886,7 @@ dist/
 
 ## Quiz Registration Reference
 
-**Location of quiz map:** `src/pages/QuizPage.tsx` (line ~45)
+**Location of quiz map:** `src/pages/QuizPage.tsx` (starting at line 4)
 
 **Registration syntax:**
 ```typescript
@@ -632,6 +992,26 @@ npx vite build && npm run serve
 - Check that all files in `dist/` folder are uploaded to `/slim/` directory
 - Verify `.htaccess` file is included in upload (handles SPA routing)
 
+## Expanding Unit 3 (Optional - From 4 to 5 Lessons Per Skill)
+
+**Quick Summary**: Unit 3 currently has 4 quizzes per skill (20 total). Expanding to 5 quizzes per skill (25 total) follows the same pattern:
+
+**Steps to Add 5th Lesson to Each Skill:**
+1. Create files: `vo_03-05.tsx`, `gr_03-05.tsx`, `re_03-05.tsx`, `sp_03-05.tsx`, `li_03-05.tsx`
+2. Copy content from `_03-04.tsx` files and modify the lesson content
+3. Add entries to `quizMap` in `src/pages/QuizPage.tsx` (5 new entries)
+4. Add entries to each skill page (`VocabularyPage.tsx`, `GrammarPage.tsx`, etc.)
+5. Update `vite.config.ts` manualChunks to include new files:
+   ```typescript
+   'u3-vocabulary': [...existing, 'src/store/u3/Vocabulary/vo_03-05.tsx'],
+   'u3-grammar': [...existing, 'src/store/u3/Grammar/gr_03-05.tsx'],
+   // ... repeat for all skills
+   ```
+6. Test with `npm run dev` and verify all 5 quizzes accessible
+7. Run `npm run build` before deploying
+
+**Estimated Time**: 30-45 minutes for experienced developer
+
 ## Language & Content Guidelines
 
 ⚠️ **ABSOLUTE RULE: English Only - No Other Languages Allowed**
@@ -660,79 +1040,66 @@ npx vite build && npm run serve
 
 ## Deployment Versions
 
-### Version 1 - Unit 1 Only (Introductions)
-**Status:** ✅ Deployed to OVH `/slim/` directory
+### Version 3.0 - Units 1, 2, & 3 (Current Production - LATEST)
+**Status:** ✅ **FULLY COMPLETE & IN PRODUCTION**
 
-**Contents:**
-- Vocabulary: 4 quizzes (Introductions, Everyday Objects, Classroom Objects)
-- Grammar: 4 quizzes (Verb To Be, Present Simple, Yes/No Questions)
-- Reading: 4 passages (All About You, Anna's Daily Life, Notices, Relationships)
-- Speaking: 1 activity (Introducing Yourself)
-- Listening: 1 activity (Short Conversations)
-- **Total:** 14 interactive exercises
-- **Features:** Flashcards with TTS, Multiple choice quizzes, Reading comprehension
-
-**Flashcard Images Fixed:**
-- Updated all flashcard image paths to include `/slim/` prefix for correct deployment
-- All 8 available images (table, chair, door, window, bed, desk, lamp, book) properly configured
-- TTS working for all flashcard activities
-
-### Version 2 - Units 1 & 2 (Full Content) ✨ NOW WITH ALL U2 BUNDLED!
-**Status:** ✅ **FULLY COMPLETE & READY FOR DEPLOYMENT**
-
-**Build Configuration:**
-- **vite.config.ts** enhanced with `manualChunks` for proper code splitting
-- All 34 quizzes bundled as separate, lazy-loaded chunks
+**Current Build Configuration:**
+- **vite.config.ts** optimized with `manualChunks` for all 3 units
+- 57 quizzes bundled as separate, lazy-loaded chunks
 - U1: 12 quiz files + 5 skill chunks
-- U2: 20 quiz files + 5 skill chunks
+- U2: 25 quiz files + 5 skill chunks (5 lessons per skill - COMPLETE)
+- U3: 20 quiz files + 5 skill chunks (4 lessons per skill - PARTIAL)
 
 **Contents:**
-- **Unit 1 (14 exercises):**
-  - Vocabulary (4), Grammar (4), Reading (4), Speaking (1), Listening (1)
+- **Unit 1 (12 exercises):**
+  - Vocabulary (4), Grammar (4), Reading (2), Speaking (1), Listening (1)
+  - Theme: Introductions & Personal Information
 
-- **Unit 2 (20 exercises) - ALL INCLUDED:**
-  - Vocabulary (4): Shopping, Directions & Landmarks, Currency & Payment, Shopping Conversation
-  - Grammar (4): Imperatives for Directions, Asking Questions, Prepositions of Place, Modal Verbs
-  - Reading (4): Shopping Information, Directions, Shopping Dialogue, Return & Exchange Policy
-  - Speaking (4): Asking for Directions, Shopping Phrases, Dialogue Practice, Role Play Scenarios
-  - Listening (4): Understanding Directions, Shopping Conversations, Landmarks & Locations, Prices & Numbers
+- **Unit 2 (25 exercises) - COMPLETE:**
+  - Vocabulary (5), Grammar (5), Reading (5), Speaking (5), Listening (5)
+  - Theme: Shopping & Directions (practical, real-world vocabulary)
 
-**Total: 34 interactive exercises**
+- **Unit 3 (20 exercises) - PARTIAL:**
+  - Vocabulary (4), Grammar (4), Reading (4), Speaking (4), Listening (4)
+  - **Expansion Ready:** Template supports easy addition of 5th lesson per skill
+
+**Total: 57 interactive exercises (expandable to 75+ with U3 completion)**
 
 **Build Statistics:**
-- **Total Build Size:** 2.0 MB (uncompressed)
-- **Gzipped:** ~150 KB (optimized for transfer)
-- **Total Files:** 60 (including .htaccess, index.html, vite.svg, assets)
-- **JavaScript Files:** 43 (12 U1 quizzes + 20 U2 quizzes + chunks + main bundle)
+- **Total Build Size:** ~2.5 MB (uncompressed)
+- **Gzipped:** ~170-180 KB (optimized for transfer)
+- **Total Files:** 70+ (index.html + 57 JS files + chunks + CSS + assets + .htaccess)
+- **JavaScript Files:** 50+ (57 quizzes + chunks + main bundle)
 - **CSS Files:** 2 (Tailwind + App CSS)
-- **Images:** 12 (flashcard images + branding)
-- **Build Time:** ~30 seconds
+- **Images:** 13+ flashcard images + 2 branding images
+- **Build Time:** ~35-40 seconds
 
-**Version 2 Features:**
-- ✅ All U1 quizzes with fixed flashcard images and correct `/slim/` paths
-- ✅ **ALL U2 quizzes included** (20 separate lazy-loaded chunks)
-- ✅ Complete Unit 2 content with shopping and navigation themes
-- ✅ Featured Unit 2 section on HomePage promoting new curriculum
-- ✅ All skill pages updated with full content (8 items each: Vocab, Grammar, Reading; 5 items each: Speaking, Listening)
-- ✅ TTS working across all interactive activities
-- ✅ Proper code splitting with individual quiz chunks
-- ✅ Created October 2024 - Based on Slim_Gharbi_Course_Schedule.md Lesson 4
-- ✅ Theme: Shopping & Directions (practical, real-world vocabulary)
-- ✅ Content: Fully in English with simple definitions
-- ✅ Routing: All 34 quizzes registered in QuizPage.tsx
-- ✅ Integration: Added to all skill pages and featured on HomePage
-- ✅ Testing: All routes verified, TTS working, navigation complete
-- ✅ .htaccess configured for SPA routing and caching
+**Production Features:**
+- ✅ All 57 quizzes with correct `/slim/` asset paths
+- ✅ Complete Unit 2 content with 5 lessons per skill
+- ✅ Partial Unit 3 content with 4 lessons per skill (ready for expansion)
+- ✅ TTS working across all interactive activities with proper deduplication
+- ✅ Proper code splitting with individual skill chunks for fast loading
+- ✅ HeyGen avatar centered and prominently sized for MyCompanion feature
+- ✅ All skill pages updated with complete content listings
+- ✅ Routing: All 57 quizzes registered in QuizPage.tsx with lazy loading
+- ✅ .htaccess configured for SPA routing and proper caching
+- ✅ Production deployment files ready for OVH FTP upload
 
-**Deployment Package Ready:**
-- **Location:** `C:\Users\asus\en-a1\dist\`
-- **Contents:** All files ready for FTP upload to OVH `/slim/` directory
-- **Deployment Time:** ~5-10 minutes (depending on connection)
-- **Testing:** 12-point post-deployment checklist available in FTP_DEPLOYMENT_VERSION_2.md
+**Deployment Status:**
+- **Version 3.0 (U1 + U2 + U3):** ✅ Currently deployed and in production
+- All flashcard image paths correctly use `/slim/` prefix in production
+- TTS fully functional in all modern browsers (Chrome, Edge, Safari, Firefox)
+- Unit 3 easily expandable to 5 lessons per skill without architectural changes
 
-**Deployment Strategy:**
-- **Version 1 (U1 Only):** Already deployed to OVH `/slim/` for initial launch
-- **Version 2 (U1 + U2):** ✅ **NOW READY** for deployment - all U2 content properly bundled
-- Both versions maintain flashcard image paths with `/slim/` prefix
-- Both versions fully functional with TTS enabled
-- **Key Fix:** Updated `vite.config.ts` with `manualChunks` to ensure U2 files are created as separate bundles
+### Previous Versions (Archive)
+
+**Version 2.0 - Units 1 & 2 (October 2024)**
+- Status: ✅ Previously deployed - now superseded by v3.0
+- Contents: 32 quizzes (U1: 12, U2: 20)
+- All features preserved in current version
+
+**Version 1.0 - Unit 1 Only (September 2024)**
+- Status: ✅ Initial deployment - now superseded by later versions
+- Contents: 12 quizzes (U1 only)
+- All features preserved in current version

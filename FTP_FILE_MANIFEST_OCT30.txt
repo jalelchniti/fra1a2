@@ -1,0 +1,135 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║           FTP DEPLOYMENT FILE MANIFEST - OCTOBER 30, 2025                  ║
+║              SmartHub Tunis - English Learning Platform v2.0.1             ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+📁 DIRECTORY STRUCTURE TO CREATE/UPLOAD
+
+/slim/                                    (Main application directory)
+├── index.html                             (857 bytes) - SPA entry point
+├── .htaccess                              (1,564 bytes) - Apache routing
+├── vite.svg                               (1,539 bytes) - Favicon
+│
+└── assets/                                (54 items, ~2 MB total)
+    ├── index-CUQkS9pY.css                 (59.30 KB) - Main stylesheet
+    ├── index-oAZguot9.js                  (Main app bundle)
+    ├── u1-vocabulary-B-dTKfJR.js          (Skill chunk)
+    ├── u1-grammar-B-dTKfJR.js             (Skill chunk)
+    ├── u1-reading-B-dTKfJR.js             (Skill chunk)
+    ├── u1-speaking-B-dTKfJR.js            (Skill chunk)
+    ├── u1-listening-B-dTKfJR.js           (Skill chunk)
+    ├── u2-vocabulary-B-dTKfJR.js          (Skill chunk)
+    ├── u2-grammar-B-dTKfJR.js             (Skill chunk)
+    ├── u2-reading-B-dTKfJR.js             (Skill chunk)
+    ├── u2-speaking-B-dTKfJR.js            (Skill chunk)
+    ├── u2-listening-B-dTKfJR.js           (Skill chunk)
+    ├── [35+ QUIZ BUNDLES]                 (Individual quiz files)
+    ├── images/                            (13 image files)
+    │   ├── lnkd_profile_picture-01.jpg
+    │   ├── fb_cover-01.png
+    │   └── [flashcard images]
+    └── audios/                            (Audio files for listening exercises)
+
+
+═════════════════════════════════════════════════════════════════════════════
+                              UPLOAD INSTRUCTIONS
+═════════════════════════════════════════════════════════════════════════════
+
+1. CONNECT TO FTP SERVER
+   Server:        ftp.smarthub.com.tn
+   Port:          21 (FTP) or 22 (SFTP - recommended)
+   Username:      [Your FTP username from OVH]
+   Password:      [Your FTP password from OVH]
+
+2. CREATE BACKUP
+   Rename: /slim/ → /slim-backup-oct27/
+   (Keep previous version for rollback)
+
+3. CREATE NEW /slim/ DIRECTORY
+   Create: /slim/ with permissions 755
+
+4. UPLOAD ROOT FILES TO /slim/
+   dist/index.html      → /slim/index.html       (857 bytes)
+   dist/.htaccess       → /slim/.htaccess       (1.5 KB) ⚠️ CRITICAL
+   dist/vite.svg        → /slim/vite.svg        (1.5 KB)
+
+   Transfer Mode: BINARY
+
+5. CREATE /slim/assets/ DIRECTORY
+   Permissions: 755
+
+6. UPLOAD ALL ASSET FILES
+   Upload entire dist/assets/ folder to /slim/assets/
+
+   Includes:
+   - CSS files (2)
+   - JavaScript bundles (48+)
+   - images/ subdirectory (13)
+   - audios/ subdirectory (multiple)
+
+   Transfer Mode: BINARY
+   File Permissions: 644
+   Directory Permissions: 755
+
+7. VERIFY UPLOAD
+   Check these files exist:
+   ✓ /slim/index.html
+   ✓ /slim/.htaccess (CRITICAL)
+   ✓ /slim/assets/index-CUQkS9pY.css
+   ✓ /slim/assets/index-oAZguot9.js
+   ✓ /slim/assets/images/
+   ✓ /slim/assets/audios/
+
+   Total: 65+ files, ~2.0 MB
+
+
+═════════════════════════════════════════════════════════════════════════════
+                            CRITICAL REQUIREMENTS
+═════════════════════════════════════════════════════════════════════════════
+
+⚠️  MUST INCLUDE:
+  ✓ /slim/index.html        - Main entry point
+  ✓ /slim/.htaccess         - URL routing (MUST HAVE)
+  ✓ /slim/assets/           - All 54 files
+  ✓ /slim/assets/images/    - Flashcard images
+  ✓ /slim/assets/audios/    - Audio files
+
+⚠️  COMMON MISTAKES:
+  ✗ Uploading /slim/dist/ instead of /slim/
+  ✗ Forgetting .htaccess file
+  ✗ Using ASCII mode (corrupts files)
+  ✗ Wrong permissions
+  ✗ Incomplete asset directories
+
+
+═════════════════════════════════════════════════════════════════════════════
+                          POST-UPLOAD VERIFICATION
+═════════════════════════════════════════════════════════════════════════════
+
+TEST THESE URLS:
+
+https://www.smarthub.com.tn/slim/
+  → Should show: Home page
+
+https://www.smarthub.com.tn/slim/vocabulary
+  → Should show: Vocabulary page
+
+https://www.smarthub.com.tn/slim/quiz/vo_01-01
+  → Should show: Quiz loads correctly
+
+https://www.smarthub.com.tn/slim/companion
+  → Should show: MyCompanion with avatar
+
+Browser Console (F12):
+  ✓ No 404 errors
+  ✓ No CORS warnings
+  ✓ Assets load from /slim/assets/
+
+
+═════════════════════════════════════════════════════════════════════════════
+
+GENERATED:  October 30, 2025
+VERSION:    2.0.1
+STATUS:     ✅ READY FOR FTP DEPLOYMENT
+
+═════════════════════════════════════════════════════════════════════════════

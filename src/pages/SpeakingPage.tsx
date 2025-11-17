@@ -51,6 +51,42 @@ const SpeakingPage = () => {
       level: 'A1',
       topic: 'Role Play'
     },
+    {
+      id: 'sp_02-05',
+      title: 'Advanced Speaking Practice',
+      content: 'Advanced conversational practice with complex scenarios.',
+      level: 'A1',
+      topic: 'Conversations'
+    },
+    // Unit 3
+    {
+      id: 'sp_03-01',
+      title: 'Asking for Directions',
+      content: 'Learn how to ask for and understand directions in English.',
+      level: 'A1',
+      topic: 'Transportation'
+    },
+    {
+      id: 'sp_03-02',
+      title: 'Taking a Taxi or Bus',
+      content: 'Practice conversations when taking taxi or bus journeys.',
+      level: 'A1',
+      topic: 'Transportation'
+    },
+    {
+      id: 'sp_03-03',
+      title: 'Talking About Your Journey (Past)',
+      content: 'Describe past trips and experiences using simple past tense.',
+      level: 'A1',
+      topic: 'Transportation'
+    },
+    {
+      id: 'sp_03-04',
+      title: 'Planning a Trip (Future Plans)',
+      content: 'Talk about your future travel plans using "going to".',
+      level: 'A1',
+      topic: 'Transportation'
+    },
   ];
 
   const filteredSpeaking = selectedTopic === 'All Topics'
@@ -101,7 +137,7 @@ const SpeakingPage = () => {
               <h3 className="text-xl font-bold text-indigo-700 mb-2">{item.title}</h3>
               <p className="text-gray-700 mb-4">{item.content}</p>
               <div className="flex justify-between items-center">
-                {(item.id.startsWith('sp_01-') || item.id.startsWith('sp_02-')) ? (
+                {(item.id.startsWith('sp_01-') || item.id.startsWith('sp_02-') || item.id.startsWith('sp_03-')) ? (
                   <Link
                     to={`/quiz/${item.id}`}
                     className="text-sm text-indigo-600 hover:underline"

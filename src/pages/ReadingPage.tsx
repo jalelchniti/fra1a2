@@ -67,6 +67,39 @@ const ReadingPage = () => {
       topic: 'Notices',
       quizId: 're_02-04'
     },
+    // Unit 3
+    {
+      id: 're_03-01',
+      title: 'On the Train Right Now',
+      content: 'Read about Ali on a train. Practice understanding present progressive actions.',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 're_03-01'
+    },
+    {
+      id: 're_03-02',
+      title: "Yesterday's Bus Trip",
+      content: "Read about Layla's past bus trip to the mall. Practice simple past tense comprehension.",
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 're_03-02'
+    },
+    {
+      id: 're_03-03',
+      title: "Tomorrow's Travel Plans",
+      content: "Read about Omar's future travel plans. Practice understanding 'going to' future plans.",
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 're_03-03'
+    },
+    {
+      id: 're_03-04',
+      title: 'Comparing Transportation',
+      content: 'Compare trains, buses, and cars. Practice understanding comparative adjectives: faster, cheaper, more comfortable.',
+      level: 'A1',
+      topic: 'Transportation',
+      quizId: 're_03-04'
+    },
   ];
 
   const filteredReading = selectedTopic === 'All Topics'
