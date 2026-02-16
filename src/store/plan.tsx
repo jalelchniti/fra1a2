@@ -262,12 +262,12 @@ const PremiumPlanCalculator: FC = () => {
   );
 
   const tabs = [
-    { id: 'basic', name: 'Basic Settings', icon: Settings },
-    { id: 'rooms', name: 'Room Config', icon: Building },
-    { id: 'services', name: 'Services', icon: BookOpen },
-    { id: 'projections', name: 'Projections', icon: Calendar },
-    { id: 'costs', name: 'Operating Costs', icon: DollarSign },
-    { id: 'advanced', name: 'Advanced', icon: TrendingUp }
+    { id: 'basic', name: fr.basic_settings, icon: Settings },
+    { id: 'rooms', name: fr.room_config_tab, icon: Building },
+    { id: 'services', name: fr.services, icon: BookOpen },
+    { id: 'projections', name: fr.projections, icon: Calendar },
+    { id: 'costs', name: fr.operating_costs, icon: DollarSign },
+    { id: 'advanced', name: fr.advanced, icon: TrendingUp }
   ];
 
   return (
@@ -279,13 +279,13 @@ const PremiumPlanCalculator: FC = () => {
             <div>
               <h1 className="text-3xl font-bold flex items-center gap-3">
                 <Calculator className="w-8 h-8" />
-                ELMAOUIA ET.CO - Advanced Premium Calculator
+                {fr.elmaouia_calculator_title}
               </h1>
-              <p className="text-blue-100 mt-2">Complete Financial Projection: September - December 2025</p>
+              <p className="text-blue-100 mt-2">{fr.financial_projection_period}</p>
             </div>
             <div className="text-right">
-              <p className="text-blue-200 text-sm">Total Capacity</p>
-              <p className="text-2xl font-bold">{totalCapacity} Students</p>
+              <p className="text-blue-200 text-sm">{fr.total_capacity}</p>
+              <p className="text-2xl font-bold">{totalCapacity} {fr.students_unit}</p>
             </div>
           </div>
         </div>
@@ -317,26 +317,26 @@ const PremiumPlanCalculator: FC = () => {
           {/* Basic Settings Tab */}
           {activeTab === 'basic' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Investment & Basic Settings</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{fr.investment_basic_settings}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <NumberInput
-                  label="Total Investment"
+                  label={fr.total_investment_label}
                   value={variables.totalInvestment}
                   onChange={(value) => updateVariable('totalInvestment', value)}
-                  tooltip="Initial capital available for the business"
+                  tooltip={fr.total_investment_tooltip}
                 />
                 <NumberInput
-                  label="Setup Costs"
+                  label={fr.setup_costs_label}
                   value={variables.setupCosts}
                   onChange={(value) => updateVariable('setupCosts', value)}
-                  tooltip="One-time costs for relocation and setup"
+                  tooltip={fr.setup_costs_tooltip}
                 />
                 <NumberInput
-                  label="Students Per Group"
+                  label={fr.students_per_group_label}
                   value={variables.studentsPerGroup}
                   onChange={(value) => updateVariable('studentsPerGroup', value)}
-                  unit="students"
-                  tooltip="Average number of students per teaching group"
+                  unit={fr.students_unit.toLowerCase()}
+                  tooltip={fr.students_per_group_tooltip}
                 />
               </div>
             </div>
@@ -345,13 +345,13 @@ const PremiumPlanCalculator: FC = () => {
           {/* Room Configuration Tab */}
           {activeTab === 'rooms' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Room Configuration</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{fr.room_configuration_title}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {Object.entries(roomConfig).map(([key, room]) => (
                   <div key={key} className="bg-gray-50 p-4 rounded-lg">
                     <div className="space-y-3">
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-1">Room Name</label>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">{fr.room_name_label}</label>
                         <input
                           type="text"
                           value={room.name}
@@ -360,11 +360,11 @@ const PremiumPlanCalculator: FC = () => {
                         />
                       </div>
                       <NumberInput
-                        label="Capacity"
+                        label={fr.capacity_label}
                         value={room.capacity}
                         onChange={(value) => updateRoomCapacity(key, value)}
-                        unit="students"
-                        tooltip={`Maximum number of students for ${room.name}`}
+                        unit={fr.students_unit.toLowerCase()}
+                        tooltip={fr.capacity_tooltip.replace('{roomName}', room.name)}
                       />
                     </div>
                   </div>
@@ -379,45 +379,45 @@ const PremiumPlanCalculator: FC = () => {
               <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-green-800 mb-4 flex items-center gap-2">
                   <BookOpen className="w-5 h-5" />
-                  Direct Tutoring Service
+                  {fr.direct_tutoring_service}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <NumberInput
-                    label="Student Fee per Month"
+                    label={fr.student_fee_per_month_label}
                     value={variables.studentFeePerMonth}
                     onChange={(value) => updateVariable('studentFeePerMonth', value)}
-                    tooltip="Base monthly fee per student"
+                    tooltip={fr.student_fee_per_month_tooltip}
                   />
                   <NumberInput
-                    label="Teacher Cost per Hour per Group"
+                    label={fr.teacher_cost_per_hour_per_group_label}
                     value={variables.teacherCostPerHourPerGroup}
                     onChange={(value) => updateVariable('teacherCostPerHourPerGroup', value)}
-                    tooltip="Cost to pay teacher per hour per group"
+                    tooltip={fr.teacher_cost_per_hour_per_group_tooltip}
                   />
                   <NumberInput
-                    label="Hours per Group per Month"
+                    label={fr.hours_per_group_per_month_label}
                     value={variables.hoursPerGroupPerMonth}
                     onChange={(value) => updateVariable('hoursPerGroupPerMonth', value)}
                     unit="hours"
-                    tooltip="Total teaching hours per group monthly"
+                    tooltip={fr.hours_per_group_per_month_tooltip}
                   />
                   <NumberInput
-                    label="Materials Fee per Student"
+                    label={fr.materials_fee_per_student_label}
                     value={variables.materialsFeePerStudent}
                     onChange={(value) => updateVariable('materialsFeePerStudent', value)}
-                    tooltip="Additional materials fee per student"
+                    tooltip={fr.materials_fee_per_student_tooltip}
                   />
                   <NumberInput
-                    label="Registration Fee per Student"
+                    label={fr.registration_fee_per_student_label}
                     value={variables.registrationFeePerStudent}
                     onChange={(value) => updateVariable('registrationFeePerStudent', value)}
-                    tooltip="One-time registration fee (spread over 4 months)"
+                    tooltip={fr.registration_fee_per_student_tooltip}
                   />
                   <NumberInput
-                    label="Exam Prep Bonus per Student"
+                    label={fr.exam_prep_bonus_per_student_label}
                     value={variables.examPrepBonusPerStudent}
                     onChange={(value) => updateVariable('examPrepBonusPerStudent', value)}
-                    tooltip="Additional fee for exam preparation (50% participation assumed)"
+                    tooltip={fr.exam_prep_bonus_per_student_tooltip}
                   />
                 </div>
               </div>
@@ -425,21 +425,21 @@ const PremiumPlanCalculator: FC = () => {
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
                 <h3 className="text-lg font-semibold text-blue-800 mb-4 flex items-center gap-2">
                   <Clock className="w-5 h-5" />
-                  Room Rental Service
+                  {fr.room_rental_service}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <NumberInput
-                    label="Room Rental Rate per Hour"
+                    label={fr.room_rental_rate_per_hour_label}
                     value={variables.roomRentalRatePerHour}
                     onChange={(value) => updateVariable('roomRentalRatePerHour', value)}
-                    tooltip="Hourly rate for independent teachers"
+                    tooltip={fr.room_rental_rate_per_hour_tooltip}
                   />
                   <NumberInput
-                    label="Room Utilization Rate"
+                    label={fr.room_utilization_rate_label}
                     value={variables.roomUtilizationRate}
                     onChange={(value) => updateVariable('roomUtilizationRate', value)}
                     unit="%"
-                    tooltip="Expected utilization percentage of available hours"
+                    tooltip={fr.room_utilization_rate_tooltip}
                   />
                 </div>
               </div>
@@ -449,25 +449,25 @@ const PremiumPlanCalculator: FC = () => {
           {/* Projections Tab */}
           {activeTab === 'projections' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Monthly Growth Projections</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{fr.monthly_growth_projections}</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {[
-                  { month: 'September', studentsKey: 'sept2025Students', hoursKey: 'sept2025RentalHours' },
-                  { month: 'October', studentsKey: 'oct2025Students', hoursKey: 'oct2025RentalHours' },
-                  { month: 'November', studentsKey: 'nov2025Students', hoursKey: 'nov2025RentalHours' },
-                  { month: 'December', studentsKey: 'dec2025Students', hoursKey: 'dec2025RentalHours' }
+                  { month: fr.september_2025, studentsKey: 'sept2025Students', hoursKey: 'sept2025RentalHours' },
+                  { month: fr.october_2025, studentsKey: 'oct2025Students', hoursKey: 'oct2025RentalHours' },
+                  { month: fr.november_2025, studentsKey: 'nov2025Students', hoursKey: 'nov2025RentalHours' },
+                  { month: fr.december_2025, studentsKey: 'dec2025Students', hoursKey: 'dec2025RentalHours' }
                 ].map(({ month, studentsKey, hoursKey }) => (
                   <div key={month} className="bg-purple-50 border border-purple-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-purple-800 mb-3">{month} 2025</h4>
+                    <h4 className="font-semibold text-purple-800 mb-3">{month}</h4>
                     <div className="space-y-3">
                       <NumberInput
-                        label="Students"
+                        label={fr.students_label}
                         value={variables[studentsKey]}
                         onChange={(value) => updateVariable(studentsKey, value)}
-                        unit="students"
+                        unit={fr.students_unit.toLowerCase()}
                       />
                       <NumberInput
-                        label="Rental Hours"
+                        label={fr.rental_hours_label}
                         value={variables[hoursKey]}
                         onChange={(value) => updateVariable(hoursKey, value)}
                         unit="hours"
@@ -482,55 +482,55 @@ const PremiumPlanCalculator: FC = () => {
           {/* Operating Costs Tab */}
           {activeTab === 'costs' && (
             <div className="space-y-6">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4">Monthly Operating Costs</h3>
+              <h3 className="text-xl font-semibold text-gray-800 mb-4">{fr.monthly_operating_costs_title}</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <NumberInput
-                  label="Monthly Rent"
+                  label={fr.monthly_rent_label}
                   value={variables.monthlyRent}
                   onChange={(value) => updateVariable('monthlyRent', value)}
-                  tooltip="Monthly facility rent"
+                  tooltip={fr.monthly_rent_tooltip}
                 />
                 <NumberInput
-                  label="Director Salary"
+                  label={fr.director_salary_label}
                   value={variables.directorSalary}
                   onChange={(value) => updateVariable('directorSalary', value)}
-                  tooltip="Monthly salary for director"
+                  tooltip={fr.director_salary_tooltip}
                 />
                 <NumberInput
-                  label="Utilities"
+                  label={fr.utilities_label}
                   value={variables.utilities}
                   onChange={(value) => updateVariable('utilities', value)}
-                  tooltip="Electricity, water, internet"
+                  tooltip={fr.utilities_tooltip}
                 />
                 <NumberInput
-                  label="Insurance"
+                  label={fr.insurance_label}
                   value={variables.insurance}
                   onChange={(value) => updateVariable('insurance', value)}
-                  tooltip="Monthly insurance costs"
+                  tooltip={fr.insurance_tooltip}
                 />
                 <NumberInput
-                  label="Marketing"
+                  label={fr.marketing_label}
                   value={variables.marketing}
                   onChange={(value) => updateVariable('marketing', value)}
-                  tooltip="Monthly marketing budget"
+                  tooltip={fr.marketing_tooltip}
                 />
                 <NumberInput
-                  label="Maintenance"
+                  label={fr.maintenance_label}
                   value={variables.maintenance}
                   onChange={(value) => updateVariable('maintenance', value)}
-                  tooltip="Facility maintenance and repairs"
+                  tooltip={fr.maintenance_tooltip}
                 />
                 <NumberInput
-                  label="Miscellaneous Costs"
+                  label={fr.miscellaneous_costs_label}
                   value={variables.miscCosts}
                   onChange={(value) => updateVariable('miscCosts', value)}
-                  tooltip="Other operational expenses"
+                  tooltip={fr.miscellaneous_costs_tooltip}
                 />
                 <NumberInput
-                  label="Staff Productivity Bonus"
+                  label={fr.staff_productivity_bonus_label}
                   value={variables.staffProductivityBonus}
                   onChange={(value) => updateVariable('staffProductivityBonus', value)}
-                  tooltip="Performance-based bonus for staff"
+                  tooltip={fr.staff_productivity_bonus_tooltip}
                 />
               </div>
             </div>
@@ -540,63 +540,63 @@ const PremiumPlanCalculator: FC = () => {
           {activeTab === 'advanced' && (
             <div className="space-y-8">
               <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-yellow-800 mb-4">Pricing Strategy</h3>
+                <h3 className="text-lg font-semibold text-yellow-800 mb-4">{fr.pricing_strategy}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <NumberInput
-                    label="Premium Service Multiplier"
+                    label={fr.premium_service_multiplier_label}
                     value={variables.premiumServiceMultiplier}
                     onChange={(value) => updateVariable('premiumServiceMultiplier', value)}
                     unit="x"
                     step="0.1"
-                    tooltip="Multiply base prices for premium positioning"
+                    tooltip={fr.premium_service_multiplier_tooltip}
                   />
                   <NumberInput
-                    label="Large Group Discount"
+                    label={fr.large_group_discount_label}
                     value={variables.discountForLargeGroups}
                     onChange={(value) => updateVariable('discountForLargeGroups', value)}
                     unit="%"
-                    tooltip="Discount percentage for larger groups"
+                    tooltip={fr.large_group_discount_tooltip}
                   />
                   <NumberInput
-                    label="Seasonal Pricing Bonus"
+                    label={fr.seasonal_pricing_bonus_label}
                     value={variables.seasonalPricingBonus}
                     onChange={(value) => updateVariable('seasonalPricingBonus', value)}
                     unit="%"
-                    tooltip="Seasonal price increase percentage"
+                    tooltip={fr.seasonal_pricing_bonus_tooltip}
                   />
                 </div>
               </div>
 
               <div className="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
-                <h3 className="text-lg font-semibold text-indigo-800 mb-4">Operational Efficiency</h3>
+                <h3 className="text-lg font-semibold text-indigo-800 mb-4">{fr.operational_efficiency}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <NumberInput
-                    label="Teacher Utilization Rate"
+                    label={fr.teacher_utilization_rate_label}
                     value={variables.teacherUtilizationRate}
                     onChange={(value) => updateVariable('teacherUtilizationRate', value)}
                     unit="%"
-                    tooltip="Percentage of scheduled teaching hours actually delivered"
+                    tooltip={fr.teacher_utilization_rate_tooltip}
                   />
                   <NumberInput
-                    label="Administrative Efficiency Rate"
+                    label={fr.administrative_efficiency_rate_label}
                     value={variables.administrativeEfficiencyRate}
                     onChange={(value) => updateVariable('administrativeEfficiencyRate', value)}
                     unit="%"
-                    tooltip="Administrative efficiency affecting productivity bonus"
+                    tooltip={fr.administrative_efficiency_rate_tooltip}
                   />
                   <NumberInput
-                    label="Energy Efficiency Discount"
+                    label={fr.energy_efficiency_discount_label}
                     value={variables.energyEfficiencyDiscount}
                     onChange={(value) => updateVariable('energyEfficiencyDiscount', value)}
                     unit="%"
-                    tooltip="Percentage reduction in utility costs from efficiency measures"
+                    tooltip={fr.energy_efficiency_discount_tooltip}
                   />
                   <NumberInput
-                    label="Bulk Discount on Supplies"
+                    label={fr.bulk_discount_on_supplies_label}
                     value={variables.bulkDiscountOnSupplies}
                     onChange={(value) => updateVariable('bulkDiscountOnSupplies', value)}
                     unit="%"
-                    tooltip="Discount percentage from bulk purchasing"
+                    tooltip={fr.bulk_discount_on_supplies_tooltip}
                   />
                 </div>
               </div>
@@ -609,24 +609,24 @@ const PremiumPlanCalculator: FC = () => {
               {/* Summary Cards */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <div className="bg-green-500 text-white p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Total Revenue</h3>
+                  <h3 className="text-lg font-semibold mb-2">{fr.total_revenue}</h3>
                   <p className="text-3xl font-bold">{results.summary?.totalRevenue?.toLocaleString()} TND</p>
-                  <p className="text-green-100 text-sm">Sept - Dec 2025</p>
+                  <p className="text-green-100 text-sm">{fr.sept_dec_2025}</p>
                 </div>
                 <div className="bg-red-500 text-white p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Total Costs</h3>
+                  <h3 className="text-lg font-semibold mb-2">{fr.total_costs}</h3>
                   <p className="text-3xl font-bold">{results.summary?.totalCosts?.toLocaleString()} TND</p>
-                  <p className="text-red-100 text-sm">4 months operation</p>
+                  <p className="text-red-100 text-sm">{fr.months_operation}</p>
                 </div>
                 <div className="bg-blue-500 text-white p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">Net Profit</h3>
+                  <h3 className="text-lg font-semibold mb-2">{fr.net_profit}</h3>
                   <p className="text-3xl font-bold">{results.summary?.totalProfit?.toLocaleString()} TND</p>
-                  <p className="text-blue-100 text-sm">Profit Margin: {results.summary?.profitMargin?.toFixed(1)}%</p>
+                  <p className="text-blue-100 text-sm">{fr.profit_margin} {results.summary?.profitMargin?.toFixed(1)}%</p>
                 </div>
                 <div className="bg-purple-500 text-white p-6 rounded-lg">
-                  <h3 className="text-lg font-semibold mb-2">ROI</h3>
+                  <h3 className="text-lg font-semibold mb-2">{fr.roi}</h3>
                   <p className="text-3xl font-bold">{results.summary?.roi?.toFixed(1)}%</p>
-                  <p className="text-purple-100 text-sm">Break-even: Month {results.summary?.breakEvenMonth}</p>
+                  <p className="text-purple-100 text-sm">{fr.break_even}: {typeof results.summary?.breakEvenMonth === 'number' ? `${fr.month_unit} ${results.summary.breakEvenMonth}` : fr.not_within_4_months}</p>
                 </div>
               </div>
 
@@ -635,21 +635,21 @@ const PremiumPlanCalculator: FC = () => {
                 <div className="bg-gray-50 px-6 py-3 border-b">
                   <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
                     <TrendingUp className="w-5 h-5" />
-                    Monthly Financial Breakdown (Sept - Dec 2025)
+                    {fr.monthly_financial_breakdown}
                   </h3>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full">
                     <thead className="bg-gray-100">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Month</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Students</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rental Hours</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tutoring Revenue</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rental Revenue</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Revenue</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Costs</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Net Profit</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_month}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_students}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_rental_hours}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_tutoring_revenue}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_rental_revenue}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_total_revenue}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_total_costs}</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">{fr.table_header_net_profit}</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">

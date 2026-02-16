@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { fr } from '../locales/fr';
 
 interface SpeakingItem {
   id: string;
@@ -11,85 +12,85 @@ interface SpeakingItem {
 }
 
 const SpeakingPage = () => {
-  const [selectedTopic, setSelectedTopic] = useState<string>('All Topics');
+  const [selectedTopic, setSelectedTopic] = useState<string>(fr.all_topics);
 
   const speakingContent: SpeakingItem[] = [
     // Unit 1
     {
       id: 'sp_01-01',
-      title: 'Introducing Yourself',
-      content: 'Saying hello/goodbye, telling your name, age, nationality, occupation',
+      title: fr.introducing_yourself,
+      content: fr.saying_hello_goodbye_telling_name_age_nationality_occupation,
       level: 'A1',
-      topic: 'Introductions'
+      topic: fr.introductions_speaking
     },
     // Unit 2
     {
       id: 'sp_02-01',
-      title: 'Asking for Directions',
-      content: 'Learn key phrases for asking directions and understanding responses.',
+      title: fr.asking_for_directions,
+      content: fr.learn_key_phrases_asking_directions_understanding_responses,
       level: 'A1',
-      topic: 'Directions'
+      topic: fr.directions_speaking
     },
     {
       id: 'sp_02-02',
-      title: 'Shopping Phrases',
-      content: 'Practice essential phrases used in shopping conversations.',
+      title: fr.shopping_phrases,
+      content: fr.practice_essential_phrases_shopping_conversations,
       level: 'A1',
-      topic: 'Shopping'
+      topic: fr.shopping_speaking
     },
     {
       id: 'sp_02-03',
-      title: 'Dialogue Practice',
-      content: 'Engage in practical dialogue scenarios about directions and shopping.',
+      title: fr.dialogue_practice,
+      content: fr.engage_practical_dialogue_scenarios_directions_shopping,
       level: 'A1',
-      topic: 'Conversations'
+      topic: fr.conversations
     },
     {
       id: 'sp_02-04',
-      title: 'Role Play Scenarios',
-      content: 'Practice real-world role-play situations for shopping and navigation.',
+      title: fr.role_play_scenarios,
+      content: fr.practice_real_world_role_play_situations_shopping_navigation,
       level: 'A1',
-      topic: 'Role Play'
+      topic: fr.role_play
     },
     {
       id: 'sp_02-05',
-      title: 'Advanced Speaking Practice',
-      content: 'Advanced conversational practice with complex scenarios.',
+      title: fr.advanced_speaking_practice,
+      content: fr.advanced_conversational_practice_complex_scenarios,
       level: 'A1',
-      topic: 'Conversations'
+      topic: fr.conversations
     },
     // Unit 3
     {
       id: 'sp_03-01',
-      title: 'Asking for Directions',
-      content: 'Learn how to ask for and understand directions in English.',
+      title: fr.asking_for_directions,
+      content: fr.learn_how_to_ask_for_understand_directions_english,
       level: 'A1',
-      topic: 'Transportation'
+      topic: fr.transportation_speaking
     },
     {
       id: 'sp_03-02',
-      title: 'Taking a Taxi or Bus',
-      content: 'Practice conversations when taking taxi or bus journeys.',
+      title: fr.taking_a_taxi_or_bus,
+      content: fr.practice_conversations_taking_taxi_bus_journeys,
       level: 'A1',
-      topic: 'Transportation'
+      topic: fr.transportation_speaking
     },
     {
       id: 'sp_03-03',
-      title: 'Talking About Your Journey (Past)',
-      content: 'Describe past trips and experiences using simple past tense.',
+      title: fr.talking_about_your_journey_past,
+      content: fr.describe_past_trips_experiences_simple_past_tense,
       level: 'A1',
-      topic: 'Transportation'
+      topic: fr.transportation_speaking
     },
     {
       id: 'sp_03-04',
-      title: 'Planning a Trip (Future Plans)',
-      content: 'Talk about your future travel plans using "going to".',
+      title: fr.planning_a_trip_future_plans,
+      content: fr.talk_about_future_travel_plans_going_to,
       level: 'A1',
-      topic: 'Transportation'
+      topic: fr.transportation_speaking
     },
   ];
 
-  const filteredSpeaking = selectedTopic === 'All Topics'
+  const filteredSpeaking = selectedTopic === fr.all_topics
     ? speakingContent
     : speakingContent.filter((item) => item.topic === selectedTopic);
 
@@ -103,14 +104,14 @@ const SpeakingPage = () => {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center w-full max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl"
     >
-      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">Speaking Practice</h1>
+      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">{fr.speaking_practice}</h1>
       <p className="text-gray-700 text-lg leading-relaxed mb-8 text-center">
-        Improve your beginner English speaking skills with interactive practice and explanations.
+        {fr.improve_beginner_english_speaking}
       </p>
 
       <div className="w-full sm:w-auto mb-8">
         <label htmlFor="topic-select" className="block text-sm font-medium text-gray-700 mb-2 text-center sm:text-left">
-          Sort by Topic
+          {fr.sort_by_topic}
         </label>
         <select
           id="topic-select"
@@ -118,7 +119,7 @@ const SpeakingPage = () => {
           onChange={(e) => setSelectedTopic(e.target.value)}
           className="px-5 py-2.5 rounded-full bg-white text-gray-800 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 hover:shadow-md w-full sm:w-auto"
         >
-          <option value="All Topics">All Topics</option>
+          <option value={fr.all_topics}>{fr.all_topics}</option>
           {allTopics.map((topic) => (
             <option key={topic} value={topic}>
               {topic}
@@ -142,10 +143,10 @@ const SpeakingPage = () => {
                     to={`/quiz/${item.id}`}
                     className="text-sm text-indigo-600 hover:underline"
                   >
-                    Start Practice
+                    {fr.start_practice}
                   </Link>
                 ) : (
-                  <span className="text-sm text-gray-500">Practice Coming Soon</span>
+                  <span className="text-sm text-gray-500">{fr.practice_coming_soon}</span>
                 )}
                 <span className="bg-indigo-50 text-indigo-600 text-sm font-medium px-2.5 py-0.5 rounded">
                   {item.level} | {item.topic}
@@ -154,7 +155,7 @@ const SpeakingPage = () => {
             </div>
           ))
         ) : (
-          <div className="text-gray-700 text-center">No speaking content available for this selection.</div>
+          <div className="text-gray-700 text-center">{fr.no_speaking_content_available}</div>
         )}
       </div>
     </motion.div>

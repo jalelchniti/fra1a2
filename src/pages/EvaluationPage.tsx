@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { generateEvaluationPDF } from '@/lib/pdfGenerator';
+import { fr } from '../locales/fr';
 
 // Define interfaces for the question types
 interface McQuestion {
@@ -32,34 +33,34 @@ const sections = ['grammar', 'vocabulary', 'listening', 'reading'];
 const questions: { A1: { [key: string]: Question[] } } = {
   A1: {
     grammar: [
-      { type: 'mc', question: 'I ___ happy.', options: ['am', 'is', 'are'], answer: 'am', sublevel: 'A1-1', curriculumUnit: 1 },
-      { type: 'fill', question: 'She ___ (to be) a teacher.', answer: 'is', sublevel: 'A1-1', curriculumUnit: 1 },
-      { type: 'mc', question: 'They ___ students.', options: ['is', 'are', 'am'], answer: 'are', sublevel: 'A1-1', curriculumUnit: 3 },
-      { type: 'fill', question: 'He ___ (not/play) tennis.', answer: "doesn't play", sublevel: 'A1-2', curriculumUnit: 5 },
-      { type: 'mc', question: '___ you live in a house?', options: ['Do', 'Does', 'Is'], answer: 'Do', sublevel: 'A1-2', curriculumUnit: 5 },
-      { type: 'fill', question: 'We ___ (always/go) to the park.', answer: 'always go', sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.verb_to_be_question, options: ['am', 'is', 'are'], answer: 'am', sublevel: 'A1-1', curriculumUnit: 1 },
+      { type: 'fill', question: fr.verb_to_be_fill_question, answer: 'is', sublevel: 'A1-1', curriculumUnit: 1 },
+      { type: 'mc', question: fr.students_question, options: ['is', 'are', 'am'], answer: 'are', sublevel: 'A1-1', curriculumUnit: 3 },
+      { type: 'fill', question: fr.play_tennis_fill_question, answer: "doesn't play", sublevel: 'A1-2', curriculumUnit: 5 },
+      { type: 'mc', question: fr.live_in_house_question, options: ['Do', 'Does', 'Is'], answer: 'Do', sublevel: 'A1-2', curriculumUnit: 5 },
+      { type: 'fill', question: fr.always_go_park_fill_question, answer: 'always go', sublevel: 'A1-3', curriculumUnit: 6 },
     ],
     vocabulary: [
-      { type: 'mc', question: 'I read a ___.', options: ['book', 'car', 'house'], answer: 'book', sublevel: 'A1-1', curriculumUnit: 1 },
-      { type: 'fill', question: 'My ___ is a doctor.', answer: 'father', sublevel: 'A1-1', curriculumUnit: 4 },
-      { type: 'mc', question: 'The tree is ___ in summer.', options: ['green', 'red', 'blue'], answer: 'green', sublevel: 'A1-2', curriculumUnit: 4 },
-      { type: 'fill', question: 'The sun is ___.', answer: 'yellow', sublevel: 'A1-2', curriculumUnit: 2 },
-      { type: 'mc', question: 'I drink ___ in the morning.', options: ['tea', 'lunch', 'dinner'], answer: 'tea', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'fill', question: 'We buy food at a ___.', answer: 'shop', sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.read_book_question, options: ['book', 'car', 'house'], answer: 'book', sublevel: 'A1-1', curriculumUnit: 1 },
+      { type: 'fill', question: fr.father_is_doctor_fill_question, answer: 'father', sublevel: 'A1-1', curriculumUnit: 4 },
+      { type: 'mc', question: fr.tree_is_green_question, options: ['green', 'red', 'blue'], answer: 'green', sublevel: 'A1-2', curriculumUnit: 4 },
+      { type: 'fill', question: fr.sun_is_yellow_fill_question, answer: 'yellow', sublevel: 'A1-2', curriculumUnit: 2 },
+      { type: 'mc', question: fr.drink_morning_question, options: ['tea', 'lunch', 'dinner'], answer: 'tea', sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'fill', question: fr.buy_food_shop_fill_question, answer: 'shop', sublevel: 'A1-3', curriculumUnit: 8 },
     ],
     listening: [
-      { type: 'mc', question: "What is Tom's job?", options: ['Teacher', 'Student', 'Cook'], answer: 'Teacher', hiddenText: 'My name is Tom. I am a teacher.', sublevel: 'A1-1', curriculumUnit: 3 },
-      { type: 'mc', question: 'Where is Anna?', options: ['House', 'School', 'Park'], answer: 'House', hiddenText: 'My name is Anna. I am at my house. It is big.', sublevel: 'A1-1', curriculumUnit: 2 },
-      { type: 'mc', question: 'What does Maria like?', options: ['Cats', 'Books', 'Cars'], answer: 'Cats', hiddenText: 'My name is Maria. I like cats. They are white.', sublevel: 'A1-2', curriculumUnit: 4 },
-      { type: 'mc', question: "What is Lisa's school like?", options: ['Big', 'Small', 'Old'], answer: 'Big', hiddenText: 'My name is Lisa. I go to school. My school is big. I have a friend.', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'mc', question: 'What does John do?', options: ['Plays', 'Sleeps', 'Reads'], answer: 'Plays', hiddenText: 'My name is John. I play in the park. It is fun.', sublevel: 'A1-3', curriculumUnit: 5 },
+      { type: 'mc', question: fr.toms_job_question, options: [fr.toms_job_options_1, fr.toms_job_options_2, fr.toms_job_options_3], answer: 'Teacher', hiddenText: fr.toms_job_hidden_text, sublevel: 'A1-1', curriculumUnit: 3 },
+      { type: 'mc', question: fr.where_is_anna_question, options: [fr.where_is_anna_options_1, fr.where_is_anna_options_2, fr.where_is_anna_options_3], answer: 'House', hiddenText: fr.where_is_anna_hidden_text, sublevel: 'A1-1', curriculumUnit: 2 },
+      { type: 'mc', question: fr.what_does_maria_like_question, options: [fr.what_does_maria_like_options_1, fr.what_does_maria_like_options_2, fr.what_does_maria_like_options_3], answer: 'Cats', hiddenText: fr.what_does_maria_like_hidden_text, sublevel: 'A1-2', curriculumUnit: 4 },
+      { type: 'mc', question: fr.what_is_lisas_school_like_question, options: [fr.what_is_lisas_school_like_options_1, fr.what_is_lisas_school_like_options_2, fr.what_is_lisas_school_like_options_3], answer: 'Big', hiddenText: fr.what_is_lisas_school_like_hidden_text, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.what_does_john_do_question, options: [fr.what_does_john_do_options_1, fr.what_does_john_do_options_2, fr.what_does_john_do_options_3], answer: 'Plays', hiddenText: fr.what_does_john_do_hidden_text, sublevel: 'A1-3', curriculumUnit: 5 },
     ],
     reading: [
-      { type: 'mc', question: 'Where is John from?', options: ['Spain', 'Brazil', 'Japan'], answer: 'Spain', text: 'My name is John. I am from Spain. I am a student.', sublevel: 'A1-1', curriculumUnit: 2 },
-      { type: 'mc', question: 'What does Anna have?', options: ['Cat', 'Dog', 'Bird'], answer: 'Cat', text: 'My name is Anna. I have a cat. My cat is small.', sublevel: 'A1-2', curriculumUnit: 4 },
-      { type: 'mc', question: 'What does Maria do?', options: ['Plays', 'Reads', 'Sleeps'], answer: 'Plays', text: 'My name is Maria. I play with my friends. We go to the park.', sublevel: 'A1-2', curriculumUnit: 5 },
-      { type: 'mc', question: "What is Tom's house like?", options: ['Big', 'Small', 'Old'], answer: 'Big', text: 'My name is Tom. I live in a house. My house is big. I have a dog. My dog is black. I go to the park.', sublevel: 'A1-3', curriculumUnit: 8 },
-      { type: 'mc', question: 'What does Lisa like?', options: ['School', 'Park', 'Shop'], answer: 'Park', text: 'My name is Lisa. I go to the park on weekends. I play with my dog. My dog is small. The park is green. I like the park.', sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.where_is_john_from_question, options: [fr.where_is_john_from_options_1, fr.where_is_john_from_options_2, fr.where_is_john_from_options_3], answer: 'Spain', text: fr.where_is_john_from_text, sublevel: 'A1-1', curriculumUnit: 2 },
+      { type: 'mc', question: fr.what_does_anna_have_question, options: [fr.what_does_anna_have_options_1, fr.what_does_anna_have_options_2, fr.what_does_anna_have_options_3], answer: 'Cat', text: fr.what_does_anna_have_text, sublevel: 'A1-2', curriculumUnit: 4 },
+      { type: 'mc', question: fr.what_does_maria_do_question, options: [fr.what_does_maria_do_options_1, fr.what_does_maria_do_options_2, fr.what_does_maria_do_options_3], answer: 'Plays', text: fr.what_does_maria_do_text, sublevel: 'A1-2', curriculumUnit: 5 },
+      { type: 'mc', question: fr.what_is_toms_house_like_question, options: [fr.what_is_toms_house_like_options_1, fr.what_is_toms_house_like_options_2, fr.what_is_toms_house_like_options_3], answer: 'Big', text: fr.what_is_toms_house_like_text, sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.what_does_lisa_like_question, options: [fr.what_does_lisa_like_options_1, fr.what_does_lisa_like_options_2, fr.what_does_lisa_like_options_3], answer: 'Park', text: fr.what_does_lisa_like_text, sublevel: 'A1-3', curriculumUnit: 6 },
     ],
   },
 };
@@ -124,7 +125,7 @@ const A1PlacementEvaluationPage = () => {
               onClick={() => playTTS(q.hiddenText!)}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              Play Audio
+              {fr.play_audio}
             </button>
             <span className="sr-only">{q.hiddenText}</span>
           </div>
@@ -153,7 +154,7 @@ const A1PlacementEvaluationPage = () => {
             value={answers[key] || ''}
             onChange={(e) => handleAnswer(section, index, e.target.value)}
             className="border p-2 w-full rounded"
-            placeholder="Type your answer"
+            placeholder={fr.type_your_answer}
           />
         )}
       </div>
@@ -165,39 +166,39 @@ const A1PlacementEvaluationPage = () => {
     const level = totalScore >= 16 ? 'A1-3' : totalScore >= 10 ? 'A1-2' : 'A1-1';
     const confirmPath = level === 'A1-2' ? '/confirm-a1-2' : '/confirm-a1-3';
     const feedback = {
-      grammar: scores['A1-grammar'] < 4 ? 'Review present simple (am/is/are) and basic questions.' : 'Good grammar skills!',
-      vocabulary: scores['A1-vocabulary'] < 4 ? 'Practice basic nouns (book, shop) and adjectives (green, yellow).' : 'Strong vocabulary!',
-      listening: scores['A1-listening'] < 3 ? 'Practice understanding short spoken sentences.' : 'Great listening skills!',
-      reading: scores['A1-reading'] < 3 ? 'Practice reading short texts (notices, emails).' : 'Excellent reading comprehension!',
+      grammar: scores['A1-grammar'] < 4 ? fr.review_present_simple_basic_questions : fr.good_grammar_skills,
+      vocabulary: scores['A1-vocabulary'] < 4 ? fr.practice_basic_nouns_adjectives : fr.strong_vocabulary,
+      listening: scores['A1-listening'] < 3 ? fr.practice_understanding_short_spoken_sentences : fr.great_listening_skills,
+      reading: scores['A1-reading'] < 3 ? fr.practice_reading_short_texts : fr.excellent_reading_comprehension,
     };
 
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">A1 Placement Test Results</h2>
-        <p className="text-base mb-2">Grammar: {scores['A1-grammar'] || 0}/{sectionLengths.grammar} - {feedback.grammar}</p>
-        <p className="text-base mb-2">Vocabulary: {scores['A1-vocabulary'] || 0}/{sectionLengths.vocabulary} - {feedback.vocabulary}</p>
-        <p className="text-base mb-2">Listening: {scores['A1-listening'] || 0}/{sectionLengths.listening} - {feedback.listening}</p>
-        <p className="text-base mb-2">Reading: {scores['A1-reading'] || 0}/{sectionLengths.reading} - {feedback.reading}</p>
-        <p className="text-base mb-2">Total Score: {totalScore}/22</p>
-        <p className="text-base font-medium mb-4">Recommended Level: {level}</p>
+        <h2 className="text-2xl font-bold mb-4">{fr.a1_placement_test_results}</h2>
+        <p className="text-base mb-2">{fr.grammar_score} {scores['A1-grammar'] || 0}/{sectionLengths.grammar} - {feedback.grammar}</p>
+        <p className="text-base mb-2">{fr.vocabulary_score} {scores['A1-vocabulary'] || 0}/{sectionLengths.vocabulary} - {feedback.vocabulary}</p>
+        <p className="text-base mb-2">{fr.listening_score} {scores['A1-listening'] || 0}/{sectionLengths.listening} - {feedback.listening}</p>
+        <p className="text-base mb-2">{fr.reading_score} {scores['A1-reading'] || 0}/{sectionLengths.reading} - {feedback.reading}</p>
+        <p className="text-base mb-2">{fr.total_score} {totalScore}/22</p>
+        <p className="text-base font-medium mb-4">{fr.recommended_level} {level}</p>
         <p className="text-sm text-gray-600 mb-4">
-          {level === 'A1-1' && 'Start with Units 1-2 in the curriculum to build basic skills.'}
-          {level === 'A1-2' && 'Continue with Units 3-5 to strengthen beginner skills.'}
-          {level === 'A1-3' && 'Advance with Units 6-8 to improve upper beginner skills.'}
+          {level === 'A1-1' && fr.start_with_units_1_2_curriculum}
+          {level === 'A1-2' && fr.continue_with_units_3_5_strengthen_beginner}
+          {level === 'A1-3' && fr.advance_with_units_6_8_improve_upper_beginner}
         </p>
         {level === 'A1-1' ? (
           <Link
             to="/curriculum"
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
-            Start A1-1 Lessons
+            {fr.start_a1_1_lessons}
           </Link>
         ) : (
           <Link
             to={confirmPath}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
-            Confirm your level
+            {fr.confirm_your_level}
           </Link>
         )}
       </div>
@@ -206,11 +207,11 @@ const A1PlacementEvaluationPage = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-4">A1 Level Placement Test</h1>
-      <p className="text-center mb-4">This test helps find the best A1 course level for you (A1-1, A1-2, or A1-3).</p>
+      <h1 className="text-3xl font-bold text-center mb-4">{fr.a1_level_placement_test}</h1>
+      <p className="text-center mb-4">{fr.test_helps_find_best_a1_course_level}</p>
       {step < sections.length ? (
         <div>
-          <h2 className="text-xl font-medium mb-4">{currentSection.charAt(0).toUpperCase() + currentSection.slice(1)}</h2>
+          <h2 className="text-xl font-medium mb-4">{fr[currentSection as keyof typeof fr]}</h2>
           {questions.A1[currentSection].map((q: Question, i: number) => (
             <div key={i}>{renderQuestion(currentSection, q, i)}</div>
           ))}
@@ -220,13 +221,13 @@ const A1PlacementEvaluationPage = () => {
               disabled={step === 0}
               className={`bg-gray-500 text-white px-4 py-2 rounded ${step === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'}`}
             >
-              Previous
+              {fr.previous}
             </button>
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              {step === sections.length - 1 ? 'Finish' : 'Next'}
+              {step === sections.length - 1 ? fr.finish : fr.next}
             </button>
           </div>
         </div>

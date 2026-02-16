@@ -13,8 +13,9 @@ import ConfirmPageA1_2 from './pages/ConfirmPageA1-2';
 import ConfirmPageA1_3 from './pages/ConfirmPageA1-3';
 import EFLCurriculumCarousel from './pages/EFLCurriculumCarousel';
 import PlanPage from './pages/PlanPage';
-import MyCompanion from './pages/MyCompanion';
 import { AnimatePresence } from 'framer-motion';
+
+import { fr } from './locales/fr';
 
 // Review Components
 const SpeakingWorksheet01 = lazy(() => import('./store/Review/SpeakingWorksheet01'));
@@ -35,7 +36,7 @@ function App() {
   return (
     <AnimatePresence mode="wait">
       <Layout>
-        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><span className="text-lg font-semibold">Loading...</span></div>}>
+        <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><span className="text-lg font-semibold">{fr.loading}</span></div>}>
           <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/vocabulary" element={<VocabularyPage />} />
@@ -49,7 +50,6 @@ function App() {
           <Route path="/confirm-a1-3" element={<ConfirmPageA1_3 />} />
           <Route path="/curriculum" element={<EFLCurriculumCarousel />} />
           <Route path="/plan" element={<PlanPage />} />
-          <Route path="/companion" element={<MyCompanion />} />
 
           {/* Review Routes */}
           <Route path="/review/speaking-worksheet-01" element={<SpeakingWorksheet01 />} />

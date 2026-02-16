@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { fr } from '../locales/fr';
 
 interface ReadingItem {
   id: string;
@@ -12,97 +13,97 @@ interface ReadingItem {
 }
 
 const ReadingPage = () => {
-  const [selectedTopic, setSelectedTopic] = useState<string>('All Topics');
+  const [selectedTopic, setSelectedTopic] = useState<string>(fr.all_topics);
 
   const readingContent: ReadingItem[] = [
     // Unit 1
     {
       id: 're_01-01',
-      title: 'All About You',
-      content: 'Read about jobs and personal information.',
+      title: fr.all_about_you,
+      content: fr.read_about_jobs_personal_information,
       level: 'A1',
-      topic: 'Personal Information',
+      topic: fr.personal_information,
       quizId: 're_01-01'
     },
     {
       id: 're_01-02',
-      title: "Anna's Daily Life",
-      content: "Read about Anna's house and daily routine.",
+      title: fr.annas_daily_life,
+      content: fr.read_about_annas_house_daily_routine,
       level: 'A1',
-      topic: 'Short Texts',
+      topic: fr.short_texts,
       quizId: 're_01-02'
     },
-    { id: 're_01-03', title: 'Basic Notices', content: 'Read signs, notices, and short texts.', level: 'A1', topic: 'Notices' },
-    { id: 're_01-04', title: 'Family and Friends', content: 'Understand texts about family and friends.', level: 'A1', topic: 'Relationships' },
+    { id: 're_01-03', title: fr.basic_notices, content: fr.read_signs_notices_short_texts, level: 'A1', topic: fr.notices_topic },
+    { id: 're_01-04', title: fr.family_and_friends, content: fr.understand_texts_about_family_friends, level: 'A1', topic: fr.relationships },
     // Unit 2
     {
       id: 're_02-01',
-      title: 'Shopping Information',
-      content: 'Read store information, hours, and special offers.',
+      title: fr.shopping_information,
+      content: fr.read_store_information_hours_special_offers,
       level: 'A1',
-      topic: 'Shopping',
+      topic: fr.shopping,
       quizId: 're_02-01'
     },
     {
       id: 're_02-02',
-      title: 'Directions',
-      content: 'Read and understand step-by-step navigation instructions.',
+      title: fr.directions,
+      content: fr.read_understand_step_by_step_navigation_instructions,
       level: 'A1',
-      topic: 'Directions',
+      topic: fr.directions_speaking,
       quizId: 're_02-02'
     },
     {
       id: 're_02-03',
-      title: 'Shopping Dialogue',
-      content: 'Read and understand conversations between customers and cashiers.',
+      title: fr.shopping_dialogue,
+      content: fr.read_understand_conversations_customers_cashiers,
       level: 'A1',
-      topic: 'Conversations',
+      topic: fr.conversations,
       quizId: 're_02-03'
     },
     {
       id: 're_02-04',
-      title: 'Return & Exchange Policy',
-      content: 'Read and understand store policies and procedures.',
+      title: fr.return_exchange_policy,
+      content: fr.read_understand_store_policies_procedures,
       level: 'A1',
-      topic: 'Notices',
+      topic: fr.notices_topic,
       quizId: 're_02-04'
     },
     // Unit 3
     {
       id: 're_03-01',
-      title: 'On the Train Right Now',
-      content: 'Read about Ali on a train. Practice understanding present progressive actions.',
+      title: fr.on_the_train_right_now,
+      content: fr.read_about_ali_on_train_practice_present_progressive_actions,
       level: 'A1',
-      topic: 'Transportation',
+      topic: fr.transportation_speaking,
       quizId: 're_03-01'
     },
     {
       id: 're_03-02',
-      title: "Yesterday's Bus Trip",
-      content: "Read about Layla's past bus trip to the mall. Practice simple past tense comprehension.",
+      title: fr.yesterdays_bus_trip,
+      content: fr.read_about_laylas_past_bus_trip_practice_simple_past_tense_comprehension,
       level: 'A1',
-      topic: 'Transportation',
+      topic: fr.transportation_speaking,
       quizId: 're_03-02'
     },
     {
       id: 're_03-03',
-      title: "Tomorrow's Travel Plans",
-      content: "Read about Omar's future travel plans. Practice understanding 'going to' future plans.",
+      title: fr.tomorrows_travel_plans,
+      content: fr.read_about_omars_future_travel_plans_practice_going_to_future_plans,
       level: 'A1',
-      topic: 'Transportation',
+      topic: fr.transportation_speaking,
       quizId: 're_03-03'
     },
     {
       id: 're_03-04',
-      title: 'Comparing Transportation',
-      content: 'Compare trains, buses, and cars. Practice understanding comparative adjectives: faster, cheaper, more comfortable.',
+      title: fr.comparing_transportation,
+      content: fr.compare_trains_buses_cars_practice_comparative_adjectives,
       level: 'A1',
-      topic: 'Transportation',
+      topic: fr.transportation_speaking,
       quizId: 're_03-04'
     },
   ];
 
-  const filteredReading = selectedTopic === 'All Topics'
+  const filteredReading = selectedTopic === fr.all_topics
     ? readingContent
     : readingContent.filter((item) => item.topic === selectedTopic);
 
@@ -116,14 +117,14 @@ const ReadingPage = () => {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center w-full max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl"
     >
-      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">Reading Practice</h1>
+      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">{fr.reading_practice}</h1>
       <p className="text-gray-700 text-lg leading-relaxed mb-8 text-center">
-        Improve your beginner English reading skills with interactive practice and explanations.
+        {fr.improve_beginner_english_reading}
       </p>
 
       <div className="w-full sm:w-auto mb-8">
         <label htmlFor="topic-select" className="block text-sm font-medium text-gray-700 mb-2 text-center sm:text-left">
-          Sort by Topic
+          {fr.sort_by_topic}
         </label>
         <select
           id="topic-select"
@@ -131,7 +132,7 @@ const ReadingPage = () => {
           onChange={(e) => setSelectedTopic(e.target.value)}
           className="px-5 py-2.5 rounded-full bg-white text-gray-800 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 hover:shadow-md w-full sm:w-auto"
         >
-          <option value="All Topics">All Topics</option>
+          <option value={fr.all_topics}>{fr.all_topics}</option>
           {allTopics.map((topic) => (
             <option key={topic} value={topic}>
               {topic}
@@ -163,11 +164,11 @@ const ReadingPage = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
-                      Take Quiz
+                      {fr.take_quiz}
                     </motion.button>
                   </Link>
                 ) : (
-                  <span className="text-sm text-gray-500">Practice Coming Soon</span>
+                  <span className="text-sm text-gray-500">{fr.practice_coming_soon}</span>
                 )}
                 <span className="bg-indigo-50 text-indigo-600 text-sm font-medium px-2.5 py-0.5 rounded">
                   {item.level} | {item.topic}
@@ -176,7 +177,7 @@ const ReadingPage = () => {
             </motion.div>
           ))
         ) : (
-          <div className="text-gray-700 text-center">No reading content available for this selection.</div>
+          <div className="text-gray-700 text-center">{fr.no_reading_content_available}</div>
         )}
       </div>
     </motion.div>

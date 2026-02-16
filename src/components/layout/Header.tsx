@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { fr } from '../../locales/fr';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -14,7 +15,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
             <button
               className="md:hidden mr-2 p-2 rounded-md text-gray-600 hover:bg-gray-100"
               onClick={toggleSidebar}
-              aria-label="Toggle sidebar"
+              aria-label={fr.toggle_sidebar}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +35,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img
                 src="/slim/assets/images/lnkd_profile_picture-01.jpg"
-                alt="SmartHub Tunis Logo"
+                alt={fr.smarthub_tunis_logo}
                 className="h-12 w-12 rounded-full object-cover shadow-md border-2 border-orange-400"
               />
               <span className="text-primary-600 text-2xl font-bold font-serif">
@@ -49,49 +50,43 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
               to="/"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Home
+              {fr.home}
             </Link>
             <Link
               to="/vocabulary"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Vocabulary
+              {fr.vocabulary}
             </Link>
             <Link
               to="/grammar"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Grammar
+              {fr.grammar}
             </Link>
             <Link
               to="/speaking"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Speaking
+              {fr.speaking}
             </Link>
             <Link
               to="/reading"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Reading
+              {fr.reading}
             </Link>
             <Link
               to="/listening"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Listening
-            </Link>
-            <Link
-              to="/companion"
-              className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
-            >
-              Companion
+              {fr.listening}
             </Link>
             <Link
               to="/evaluation"
               className="text-gray-700 hover:text-primary-600 px-3 py-2 font-medium"
             >
-              Evaluation
+              {fr.evaluation}
             </Link>
           </nav>
 
@@ -101,7 +96,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
               to="/curriculum"
               className="bg-primary-50 text-primary-700 hover:bg-primary-100 px-4 py-2 rounded-md font-medium"
             >
-              Curriculum
+              {fr.curriculum}
             </Link>
           </div>
         </div>

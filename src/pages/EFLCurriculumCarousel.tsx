@@ -7,156 +7,156 @@ import { FaSearch, FaChevronLeft, FaChevronRight, FaCalendar, FaClock } from 're
 
 const courseSchedule = [
   {
-    week: 'Week 1',
-    theme: 'Foundation & Self-Introduction',
-    duration: 'October 14-20, 2025',
+    week: fr.week_1,
+    theme: fr.theme_foundation_self_introduction,
+    duration: fr.duration_oct_14_20,
     sessions: [
       {
-        session: 'Lesson 1',
-        date: 'Monday, October 14, 2025',
-        time: '11:00-12:30',
-        objective: 'Build rapport & assess level',
-        content: 'Ice-breaking activities, assessing current English level through guided conversation, introducing survival phrases for daily interactions (greetings, basic questions, expressing needs), pronunciation fundamentals, setting personal learning goals. Grammar: Verb "to be" in all forms (am/is/are), Do/does introduced.',
-        status: '✅ Completed',
+        session: fr.lesson_1,
+        date: fr.monday_oct_14,
+        time: fr.time_11_12_30,
+        objective: fr.objective_build_rapport_assess_level,
+        content: fr.content_lesson_1,
+        status: fr.status_completed,
       },
       {
-        session: 'Lesson 2',
-        date: 'Wednesday, October 16, 2025',
-        time: '11:00-12:30',
-        objective: 'Self-presentation skills',
-        content: 'Talking about yourself (name, age, background, interests, hobbies). Vocabulary: Clothes, colors, frequency adverbs (always, usually, sometimes, never). Time-telling with analog and digital clocks. Pronunciation practice.',
-        status: '✅ Completed',
+        session: fr.lesson_2,
+        date: fr.wednesday_oct_16,
+        time: fr.time_11_12_30,
+        objective: fr.objective_self_presentation_skills,
+        content: fr.content_lesson_2,
+        status: fr.status_completed,
       },
       {
-        session: 'Lesson 3',
-        date: 'Friday, October 18, 2025',
-        time: '11:00-12:30',
-        objective: 'Forming questions & time expressions',
-        content: 'Yes/No questions with "to be". Short answer practice. Contractions (I\'m, she\'s, they\'re, etc.). Days of the week, months, cardinal numbers with ordinals (1st, 2nd, 3rd). Basic directional vocabulary (left, right, straight, corner). Phone conversation basics.',
-        status: '✅ Completed',
+        session: fr.lesson_3,
+        date: fr.friday_oct_18,
+        time: fr.time_11_12_30,
+        objective: fr.objective_forming_questions_time_expressions,
+        content: fr.content_lesson_3,
+        status: fr.status_completed,
       },
       {
-        session: 'Lesson 4',
-        date: 'Sunday, October 20, 2025',
-        time: '11:00-12:30',
-        objective: 'Shopping & Directions',
-        content: 'Detailed directional language with landmarks and street names. Asking for and giving precise directions. Shopping vocabulary: items, sizes, colors, prices, currency. Returns and exchanges. Cashier interactions. Real-world application of all previous grammar foundations.',
-        status: '✅ Completed',
+        session: fr.lesson_4,
+        date: fr.sunday_oct_20,
+        time: fr.time_11_12_30,
+        objective: fr.objective_shopping_directions,
+        content: fr.content_lesson_4,
+        status: fr.status_completed,
       },
     ],
   },
   {
-    week: 'Week 2',
-    theme: 'Speaking Fluency & Natural Rhythm (Music-Based Learning)',
-    duration: 'October 23-27, 2025',
+    week: fr.week_2,
+    theme: fr.theme_speaking_fluency_rhythm,
+    duration: fr.duration_oct_23_27,
     sessions: [
       {
-        session: 'Song Practice Session',
-        date: 'Wednesday, October 23, 2025',
-        time: '11:00-12:30',
-        objective: 'Review & Speaking Enhancement through music',
-        content: '🎵 Song-based speaking practice: Bob Marley\'s "Redemption Song". Activities: Listen and identify familiar vocabulary, practice pronunciation with the song\'s rhythm, discuss the song\'s meaning and message, identify grammar structures in the lyrics. Develop natural speech patterns and authentic pronunciation. Homework: Learn full lyrics while maintaining the song\'s rhythm throughout the week.',
-        status: '🎵 In Progress',
+        session: fr.song_practice_session,
+        date: fr.wednesday_oct_23,
+        time: fr.time_11_12_30,
+        objective: fr.objective_review_speaking_music,
+        content: fr.content_song_practice_session,
+        status: fr.status_in_progress,
       },
       {
-        session: 'Lesson 4 Extended',
-        date: 'Sunday, October 27, 2025',
-        time: '11:00-12:30',
-        objective: 'Song Review + Present Progressive Introduction',
-        content: '🔄 Review "Redemption Song" learned over the week; develop fluency through repeated practice. NEW GRAMMAR: Present Progressive (am/is/are + -ing) to describe actions happening right now. Examples: "I am studying English," "She is singing the song," "They are learning together." Contrast with simple present. Real-life conversation practice using new tense to describe current classroom and real-time situations.',
-        status: '🔄 Today\'s Session',
+        session: fr.lesson_4_extended,
+        date: fr.sunday_oct_27,
+        time: fr.time_11_12_30,
+        objective: fr.objective_song_review_present_progressive,
+        content: fr.content_lesson_4_extended,
+        status: fr.status_todays_session,
       },
     ],
   },
   {
-    week: 'Week 3',
-    theme: 'Housing & Neighborhood Navigation (Slower Pace Begins)',
-    duration: 'October 29 - October 31, 2025',
+    week: fr.week_3,
+    theme: fr.theme_housing_neighborhood_navigation,
+    duration: fr.duration_oct_29_31,
     sessions: [
       {
-        session: 'Lesson 5',
-        date: 'Wednesday, October 29, 2025',
-        time: '11:00-12:30',
-        objective: 'Housing & Neighborhood Navigation (Part 1)',
-        content: 'Advanced directional instructions using Present Progressive. Describing location and neighborhood features. Apartment hunting conversations. Talking with landlords about rent, lease agreements, and move-in details. Introducing yourself to neighbors. Grammar: Present Progressive for describing ongoing situations, questions about housing, prepositions of place.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_5,
+        date: fr.wednesday_oct_29,
+        time: fr.time_11_12_30,
+        objective: fr.objective_housing_neighborhood_navigation_part_1,
+        content: fr.content_lesson_5,
+        status: fr.status_upcoming,
       },
       {
-        session: 'Lesson 6',
-        date: 'Friday, October 31, 2025',
-        time: '11:00-12:30',
-        objective: 'Housing Practice & Consolidation',
-        content: 'Continued application of Lesson 5 concepts through real-world dialogues. Scenarios: describing housing problems and requesting repairs, negotiating with landlords, asking about utilities and amenities. Role-plays with native-like interactions. Consolidation of housing vocabulary and phrases.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_6,
+        date: fr.friday_oct_31,
+        time: fr.time_11_12_30,
+        objective: fr.objective_housing_practice_consolidation,
+        content: fr.content_lesson_6,
+        status: fr.status_upcoming,
       },
     ],
   },
   {
-    week: 'Week 4',
-    theme: 'Transportation & Services (Building Practical Skills)',
-    duration: 'November 5 - November 7, 2025',
+    week: fr.week_4,
+    theme: fr.theme_transportation_services,
+    duration: fr.duration_nov_5_7,
     sessions: [
       {
-        session: 'Lesson 7',
-        date: 'Wednesday, November 5, 2025',
-        time: '11:00-12:30',
-        objective: 'Transportation & Services (Part 1)',
-        content: 'Public transport vocabulary: bus, train, taxi, subway. Asking for directions using transportation. Using maps and schedules. Doctor\'s office conversations: describing symptoms, making appointments, understanding prescriptions. Banking basics: opening accounts, understanding services, asking about fees.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_7,
+        date: fr.wednesday_nov_5,
+        time: fr.time_11_12_30,
+        objective: fr.objective_transportation_services_part_1,
+        content: fr.content_lesson_7,
+        status: fr.status_upcoming,
       },
       {
-        session: 'Lesson 8',
-        date: 'Friday, November 7, 2025',
-        time: '11:00-12:30',
-        objective: 'Transportation & Services Practice',
-        content: 'Dialogues and role-plays: buying tickets, asking for help on public transport, directions to destinations. At the doctor: explaining medical issues, understanding instructions, pharmacy interactions. At the bank: conducting transactions, asking about account options. Emergency situations vocabulary: calling 911, describing emergencies, getting help.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_8,
+        date: fr.friday_nov_7,
+        time: fr.time_11_12_30,
+        objective: fr.objective_transportation_services_practice,
+        content: fr.content_lesson_8,
+        status: fr.status_upcoming,
       },
     ],
   },
   {
-    week: 'Week 5',
-    theme: 'Social & Professional Connections',
-    duration: 'November 12 - November 14, 2025',
+    week: fr.week_5,
+    theme: fr.theme_social_professional_connections,
+    duration: fr.duration_nov_12_14,
     sessions: [
       {
-        session: 'Lesson 9',
-        date: 'Wednesday, November 12, 2025',
-        time: '11:00-12:30',
-        objective: 'Social Connections (Building Confidence)',
-        content: 'Making small talk: weather, current events, hobbies, interests. Expressing opinions and preferences politely. Accepting and declining invitations appropriately. Sharing about Tunisian culture with Americans. Understanding American social cues and conversation norms. Building friendships through natural conversation.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_9,
+        date: fr.wednesday_nov_12,
+        time: fr.time_11_12_30,
+        objective: fr.objective_social_connections,
+        content: fr.content_lesson_9,
+        status: fr.status_upcoming,
       },
       {
-        session: 'Lesson 10',
-        date: 'Friday, November 14, 2025',
-        time: '11:00-12:30',
-        objective: 'Education & Work (Professional Contexts)',
-        content: 'Discussing educational options (GED, community college, vocational training). Job interview basics: talking about work experience, skills, and career goals. Understanding workplace conversation and professional introductions. Networking basics. Workplace scenarios: asking for help, understanding instructions, communicating with colleagues.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_10,
+        date: fr.friday_nov_14,
+        time: fr.time_11_12_30,
+        objective: fr.objective_education_work_professional,
+        content: fr.content_lesson_10,
+        status: fr.status_upcoming,
       },
     ],
   },
   {
-    week: 'Week 6',
-    theme: 'Advanced Communication & Course Consolidation',
-    duration: 'November 19 - November 21, 2025',
+    week: fr.week_6,
+    theme: fr.theme_advanced_communication_consolidation,
+    duration: fr.duration_nov_19_21,
     sessions: [
       {
-        session: 'Lesson 11',
-        date: 'Wednesday, November 19, 2025',
-        time: '11:00-12:30',
-        objective: 'Communication Strategies & Independence',
-        content: 'Using technology and apps in English: ordering Uber, using GPS, online shopping, social media. Understanding different American accents and speaking speeds. Idiomatic expressions for everyday situations. Slang awareness (what to use and what to avoid). Listening to native speakers: podcasts, movies, news. Building independent learning strategies.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_11,
+        date: fr.wednesday_nov_19,
+        time: fr.time_11_12_30,
+        objective: fr.objective_communication_strategies_independence,
+        content: fr.content_lesson_11,
+        status: fr.status_upcoming,
       },
       {
-        session: 'Lesson 12 - Final Consolidation',
-        date: 'Friday, November 21, 2025',
-        time: '11:00-12:30',
-        objective: 'Final Consolidation & Course Completion',
-        content: '🎉 Comprehensive role-play scenarios combining ALL learned skills. Troubleshooting common communication breakdowns. Building confidence through simulated real-life situations. Creating personal action plan for continued English improvement. Conflict management: making complaints appropriately, disagreeing politely, negotiating solutions. Celebration of progress and final assessment.',
-        status: '⏳ Upcoming',
+        session: fr.lesson_12_final_consolidation,
+        date: fr.friday_nov_21,
+        time: fr.time_11_12_30,
+        objective: fr.objective_final_consolidation_completion,
+        content: fr.content_lesson_12_final_consolidation,
+        status: fr.status_upcoming,
       },
     ],
   },
@@ -164,7 +164,7 @@ const courseSchedule = [
 
 const EFLCurriculumCarousel = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState('All');
+  const [selectedFilter, setSelectedFilter] = useState(fr.all_filter);
 
   // Flatten sessions for filtering
   const allSessions = useMemo(() => {
@@ -202,7 +202,7 @@ const EFLCurriculumCarousel = () => {
 
   // Options for filter dropdown
   const filterOptions = [
-    'All',
+    fr.all_filter,
     ...courseSchedule.map(week => week.week),
   ];
 
@@ -214,11 +214,11 @@ const EFLCurriculumCarousel = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-indigo-800 mb-2">Conversational English Course</h1>
-          <h2 className="text-2xl font-semibold text-indigo-600 mb-2">Student: Slim Gharbi</h2>
-          <p className="text-lg text-gray-700">Duration: 12 Lessons | October 14 - November 21, 2025</p>
-          <p className="text-md text-gray-600 mt-2">Schedule: Monday - Wednesday - Friday | Mon/Wed/Fri Sessions</p>
-          <p className="text-md text-gray-600">🎵 Enhanced with Song-Based Learning & Present Progressive Grammar</p>
+          <h1 className="text-4xl font-bold text-indigo-800 mb-2">{fr.conversational_english_course}</h1>
+          <h2 className="text-2xl font-semibold text-indigo-600 mb-2">{fr.student_name}</h2>
+          <p className="text-lg text-gray-700">{fr.duration_lessons_dates}</p>
+          <p className="text-md text-gray-600 mt-2">{fr.schedule_mon_wed_fri}</p>
+          <p className="text-md text-gray-600">{fr.enhanced_song_based_grammar}</p>
         </div>
 
         {/* Search Bar and Filter */}
@@ -226,7 +226,7 @@ const EFLCurriculumCarousel = () => {
           <div className="relative flex-grow">
             <input
               type="text"
-              placeholder="Search lessons, objectives, content..."
+              placeholder={fr.search_lessons_objectives_content}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full p-4 pl-12 rounded-lg shadow-lg border-2 border-indigo-200 focus:outline-none focus:border-indigo-500"
@@ -251,7 +251,7 @@ const EFLCurriculumCarousel = () => {
         {/* Display message if no results */}
         {filteredSessions.length === 0 ? (
           <div className="text-center text-gray-600 text-lg">
-            No results found for "{searchQuery}". Try a different search term or filter.
+            {fr.no_results_found_for} "{searchQuery}". {fr.try_different_search_filter}
           </div>
         ) : (
           <Carousel
@@ -334,7 +334,7 @@ const EFLCurriculumCarousel = () => {
                   <div className="bg-indigo-50 p-6 rounded-lg">
                     <h4 className="text-lg font-bold text-indigo-700 mb-3 flex items-center gap-2">
                       <span className="text-2xl">🎯</span>
-                      Lesson Objective
+                      {fr.lesson_objective}
                     </h4>
                     <p className="text-gray-800 text-lg leading-relaxed">
                       {session.objective}
@@ -344,7 +344,7 @@ const EFLCurriculumCarousel = () => {
                   <div className="bg-blue-50 p-6 rounded-lg">
                     <h4 className="text-lg font-bold text-blue-700 mb-3 flex items-center gap-2">
                       <span className="text-2xl">📋</span>
-                      Content & Activities
+                      {fr.content_activities}
                     </h4>
                     <p className="text-gray-800 leading-relaxed">
                       {session.content}
@@ -355,12 +355,12 @@ const EFLCurriculumCarousel = () => {
                 {/* Session Methodology Note */}
                 {index === 0 && (
                   <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-                    <h5 className="font-semibold text-yellow-800 mb-2">📝 Session Structure (90 minutes)</h5>
+                    <h5 className="font-semibold text-yellow-800 mb-2">{fr.session_structure_90_minutes}</h5>
                     <ul className="text-sm text-yellow-900 space-y-1">
-                      <li>• Warm-up (10 min): Review & conversational practice</li>
-                      <li>• Core Learning (50 min): Interactive activities & role-plays</li>
-                      <li>• Real-World Application (20 min): Practical conversation scenarios</li>
-                      <li>• Wrap-up (10 min): Self-assessment & homework preview</li>
+                      <li>{fr.warm_up_review_conversational}</li>
+                      <li>{fr.core_learning_interactive_role_plays}</li>
+                      <li>{fr.real_world_application_scenarios}</li>
+                      <li>{fr.wrap_up_self_assessment_homework}</li>
                     </ul>
                   </div>
                 )}
@@ -368,12 +368,12 @@ const EFLCurriculumCarousel = () => {
                 {/* Song-Based Learning Note */}
                 {session.session.includes('Song') && (
                   <div className="mt-6 p-4 bg-purple-50 border-l-4 border-purple-400 rounded">
-                    <h5 className="font-semibold text-purple-800 mb-2">🎵 Music-Based Learning Benefits</h5>
+                    <h5 className="font-semibold text-purple-800 mb-2">{fr.music_based_learning_benefits}</h5>
                     <ul className="text-sm text-purple-900 space-y-1">
-                      <li>• Natural rhythm and pronunciation development</li>
-                      <li>• Memory retention through music</li>
-                      <li>• Authentic stress and intonation patterns</li>
-                      <li>• Confidence building through familiar songs</li>
+                      <li>{fr.natural_rhythm_pronunciation}</li>
+                      <li>{fr.memory_retention_through_music}</li>
+                      <li>{fr.authentic_stress_intonation}</li>
+                      <li>{fr.confidence_building_familiar_songs}</li>
                     </ul>
                   </div>
                 )}

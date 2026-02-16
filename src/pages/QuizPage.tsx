@@ -88,13 +88,13 @@ const QuizPage: FC = () => {
   const { quizId } = useParams<{ quizId: QuizId }>();
 
   if (!quizId || !(quizId in quizMap)) {
-    return <div className="text-center p-4">Quiz not found!</div>;
+    return <div className="text-center p-4">{fr.quiz_not_found}</div>;
   }
 
   const QuizComponent = quizMap[quizId];
 
   return (
-    <Suspense fallback={<div className="text-center p-4">Loading...</div>}>
+    <Suspense fallback={<div className="text-center p-4">{fr.loading}</div>}>
       <QuizComponent />
     </Suspense>
   );

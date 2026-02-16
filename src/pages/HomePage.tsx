@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { fr } from '../locales/fr';
 
 const HomePage = () => {
   return (
@@ -21,10 +22,10 @@ const HomePage = () => {
             className="flex gap-4"
           >
             <Link to="/vocabulary" className="btn bg-orange-500 hover:bg-orange-600 text-white shadow-lg">
-              Start Learning
+              {fr.start_learning}
             </Link>
             <Link to="/curriculum" className="btn bg-white/90 hover:bg-white text-gray-800 shadow-lg">
-              View Curriculum
+              {fr.view_curriculum}
             </Link>
           </motion.div>
         </div>
@@ -32,7 +33,7 @@ const HomePage = () => {
 
       {/* Skills Categories */}
       <section>
-        <h2 className="text-3xl font-bold mb-8 text-center">Interactive Practice Areas</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">{fr.interactive_practice_areas}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((category, index) => (
             <motion.div
@@ -44,17 +45,17 @@ const HomePage = () => {
               <div className="card p-6 h-full flex flex-col relative">
                 {category.badge && (
                   <span className="absolute top-4 right-4 bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded-full">
-                    {category.badge}
+                    {fr.new}
                   </span>
                 )}
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${category.iconBg}`}>
                   <span className={category.iconColor}>{category.icon}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2">{category.title}</h3>
-                <p className="text-gray-600 mb-4">{category.description}</p>
+                <h3 className="text-xl font-bold mb-2">{fr[category.title.toLowerCase() as keyof typeof fr]}</h3>
+                <p className="text-gray-600 mb-4">{fr[category.descriptionKey as keyof typeof fr]}</p>
                 <div className="mt-auto pt-4">
                   <Link to={category.path} className="text-primary-600 font-medium flex items-center hover:underline">
-                    Start Practice
+                    {fr.start_practice}
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
                       <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                     </svg>
@@ -71,30 +72,52 @@ const HomePage = () => {
         <div className="md:flex">
           <div className="md:w-1/2 bg-gradient-to-br from-orange-50 to-orange-100 p-6 md:p-10">
             <span className="inline-block bg-orange-200 text-orange-800 rounded-full px-3 py-1 text-sm font-medium mb-4">
-              🆕 Unit 2: Shopping & Directions
+              {fr.unit2_shopping_directions}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Master Shopping & Navigation (A1)</h2>
-            <p className="text-gray-700 mb-6">Learn practical vocabulary and phrases for shopping, asking directions, and understanding locations with interactive quizzes and flashcards.</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">{fr.master_shopping_navigation_a1}</h2>
+            <p className="text-gray-700 mb-6">{fr.learn_practical_vocab_phrases}</p>
             <div className="flex gap-4">
               <Link to="/quiz/vo_02-01" className="btn btn-primary">
-                Shopping Vocabulary
+                {fr.shopping_vocabulary}
               </Link>
               <Link to="/quiz/gr_02-01" className="btn bg-orange-100 text-orange-800 hover:bg-orange-200">
-                Imperatives Quiz
+                {fr.imperatives_quiz}
               </Link>
             </div>
           </div>
           <div className="md:w-1/2 bg-gradient-to-b from-orange-600 to-orange-700 p-6 md:p-10 text-white">
-            <h3 className="text-xl font-bold mb-4">📚 Topics Covered:</h3>
+            <h3 className="text-xl font-bold mb-4">{fr.topics_covered}</h3>
             <ul className="space-y-3">
-              {featuredLessonPoints.map((point, index) => (
-                <li key={index} className="flex items-start">
+              <li className="flex items-start">
                   <svg className="h-6 w-6 text-orange-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>{point}</span>
+                  <span>{fr.shopping_vocab_transactions}</span>
                 </li>
-              ))}
+              <li className="flex items-start">
+                  <svg className="h-6 w-6 text-orange-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.asking_giving_directions}</span>
+                </li>
+              <li className="flex items-start">
+                  <svg className="h-6 w-6 text-orange-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.real_world_dialogue_practice}</span>
+                </li>
+              <li className="flex items-start">
+                  <svg className="h-6 w-6 text-orange-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.text_to_speech_pronunciation}</span>
+                </li>
+              <li className="flex items-start">
+                  <svg className="h-6 w-6 text-orange-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.interactive_quizzes_role_plays}</span>
+                </li>
             </ul>
           </div>
         </div>
@@ -105,39 +128,61 @@ const HomePage = () => {
         <div className="md:flex">
           <div className="md:w-1/2 bg-gradient-to-br from-purple-50 to-blue-100 p-6 md:p-10">
             <span className="inline-block bg-purple-200 text-purple-800 rounded-full px-3 py-1 text-sm font-medium mb-4">
-              🎯 Express Current Actions & Complaints
+              {fr.express_current_actions_complaints}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Master the Present Progressive (A1)</h2>
-            <p className="text-gray-700 mb-6">Master the Present Progressive tense (am/is/are + -ing) to describe what's happening RIGHT NOW and express complaints using interactive lessons and real-world scenarios.</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">{fr.master_present_progressive_a1}</h2>
+            <p className="text-gray-700 mb-6">{fr.master_present_progressive_tense}</p>
             <div className="flex flex-wrap gap-3">
               <Link to="/quiz/vo_02-05" className="btn btn-primary bg-blue-600 hover:bg-blue-700">
-                📚 Vocabulary
+                📚 {fr.vocabulary}
               </Link>
               <Link to="/quiz/gr_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
-                📝 Grammar
+                📝 {fr.grammar}
               </Link>
               <Link to="/quiz/re_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
-                📖 Reading
+                📖 {fr.reading}
               </Link>
               <Link to="/quiz/sp_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
-                🗣️ Speaking
+                🗣️ {fr.speaking}
               </Link>
               <Link to="/quiz/li_02-05" className="btn bg-purple-100 text-purple-800 hover:bg-purple-200">
-                🎧 Listening
+                🎧 {fr.listening}
               </Link>
             </div>
           </div>
           <div className="md:w-1/2 bg-gradient-to-b from-purple-600 to-blue-600 p-6 md:p-10 text-white">
-            <h3 className="text-xl font-bold mb-4">✨ Key Learning Outcomes:</h3>
+            <h3 className="text-xl font-bold mb-4">{fr.key_learning_outcomes}</h3>
             <ul className="space-y-3">
-              {presentProgressivePoints.map((point, index) => (
-                <li key={index} className="flex items-start">
+              <li key="master_aming_verb_forms" className="flex items-start">
                   <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>{point}</span>
+                  <span>{fr.master_aming_verb_forms}</span>
                 </li>
-              ))}
+              <li key="describe_actions_happening_now" className="flex items-start">
+                  <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.describe_actions_happening_now}</span>
+                </li>
+              <li key="express_complaints_current_situations" className="flex items-start">
+                  <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.express_complaints_current_situations}</span>
+                </li>
+              <li key="song_based_learning_bob_marley" className="flex items-start">
+                  <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.song_based_learning_bob_marley}</span>
+                </li>
+              <li key="interactive_practice_all_5_skills" className="flex items-start">
+                  <svg className="h-6 w-6 text-purple-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.interactive_practice_all_5_skills}</span>
+                </li>
             </ul>
           </div>
         </div>
@@ -148,39 +193,61 @@ const HomePage = () => {
         <div className="md:flex">
           <div className="md:w-1/2 bg-gradient-to-br from-teal-50 to-cyan-100 p-6 md:p-10">
             <span className="inline-block bg-teal-200 text-teal-800 rounded-full px-3 py-1 text-sm font-medium mb-4">
-              ✨ Unit 3: Transportation & All Tenses (NEW)
+              {fr.unit3_transportation_all_tenses_new}
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Master Transportation & Tenses (A1)</h2>
-            <p className="text-gray-700 mb-6">Learn practical transportation vocabulary and master Present Progressive, Simple Past, and Going To Future tenses through real-world scenarios like asking directions, describing journeys, and planning trips.</p>
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">{fr.master_transportation_tenses_a1}</h2>
+            <p className="text-gray-700 mb-6">{fr.learn_practical_transport_vocab}</p>
             <div className="flex flex-wrap gap-3">
               <Link to="/quiz/vo_03-01" className="btn btn-primary bg-teal-600 hover:bg-teal-700">
-                🚗 Vocabulary
+                🚗 {fr.vocabulary}
               </Link>
               <Link to="/quiz/gr_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
-                📝 Grammar
+                📝 {fr.grammar}
               </Link>
               <Link to="/quiz/re_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
-                📖 Reading
+                📖 {fr.reading}
               </Link>
               <Link to="/quiz/sp_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
-                🗣️ Speaking
+                🗣️ {fr.speaking}
               </Link>
               <Link to="/quiz/li_03-01" className="btn bg-teal-100 text-teal-800 hover:bg-teal-200">
-                🎧 Listening
+                🎧 {fr.listening}
               </Link>
             </div>
           </div>
           <div className="md:w-1/2 bg-gradient-to-b from-teal-600 to-cyan-600 p-6 md:p-10 text-white">
-            <h3 className="text-xl font-bold mb-4">🌍 Topics Covered:</h3>
+            <h3 className="text-xl font-bold mb-4">{fr.topics_covered}</h3>
             <ul className="space-y-3">
-              {unit3LessonPoints.map((point, index) => (
-                <li key={index} className="flex items-start">
+                <li className="flex items-start">
                   <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>{point}</span>
+                  <span>{fr.complete_transportation_vocabulary}</span>
                 </li>
-              ))}
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.master_all_3_tenses}</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.real_world_scenarios_directions}</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.enhanced_audio_5_second_pauses}</span>
+                </li>
+                <li className="flex items-start">
+                  <svg className="h-6 w-6 text-teal-300 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>{fr.interactive_activities_all_5_skills}</span>
+                </li>
             </ul>
           </div>
         </div>
@@ -189,24 +256,24 @@ const HomePage = () => {
       {/* Unit 3 Complete Course with All 20 Activities */}
       <section className="card overflow-hidden">
         <div className="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 md:p-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">🎓 Complete Unit 3 Learning Path</h2>
-          <p className="text-gray-700 text-center mb-8">Explore all 20 interactive activities across 5 language skills. Each skill has 4 lessons covering different transportation scenarios and verb tenses.</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">{fr.complete_unit3_learning_path}</h2>
+          <p className="text-gray-700 text-center mb-8">{fr.explore_20_interactive_activities}</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {unit3Skills.map((skill) => (
               <div key={skill.title} className={`p-6 rounded-lg ${skill.bgColor}`}>
-                <h3 className="text-lg font-bold mb-3">{skill.title}</h3>
+                <h3 className="text-lg font-bold mb-3">{fr[skill.titleKey as keyof typeof fr]}</h3>
                 <ul className="space-y-2 mb-4">
                   {skill.lessons.map((lesson, idx) => (
                     <li key={idx} className="text-sm">
                       <Link to={`/quiz/${lesson.id}`} className="text-blue-600 hover:underline flex items-center gap-2">
-                        <span>→</span> {lesson.name}
+                        <span>→</span> {fr[lesson.nameKey as keyof typeof fr]}
                       </Link>
                     </li>
                   ))}
                 </ul>
                 <Link to={skill.hubPath} className="btn btn-sm text-center w-full bg-white hover:bg-gray-100 text-gray-800">
-                  View All {skill.title}
+                  {fr.view_all} {fr[skill.titleKey as keyof typeof fr]}
                 </Link>
               </div>
             ))}
@@ -218,18 +285,18 @@ const HomePage = () => {
       <section className="card overflow-hidden">
         <div className="bg-gradient-to-r from-rose-50 to-pink-50 p-6 md:p-10">
           <div className="mb-8">
-            <h2 className="text-3xl font-bold mb-3 text-center">🎯 Review</h2>
-            <p className="text-gray-700 text-center">Consolidate your learning with speaking worksheets, conversation games, and immersive listening activities. Perfect for practice and retention!</p>
+            <h2 className="text-3xl font-bold mb-3 text-center">{fr.review}</h2>
+            <p className="text-gray-700 text-center">{fr.consolidate_learning_speaking_worksheets}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
             {reviewActivities.map((activity) => (
               <div key={activity.id} className={`p-6 rounded-lg ${activity.bgColor} shadow-md hover:shadow-lg transition-shadow`}>
                 <div className="text-4xl mb-3 text-center">{activity.icon}</div>
-                <h3 className="text-lg font-bold mb-3 text-center text-gray-800">{activity.title}</h3>
-                <p className="text-sm text-gray-600 text-center mb-4">{activity.description}</p>
+                <h3 className="text-lg font-bold mb-3 text-center text-gray-800">{fr[activity.titleKey as keyof typeof fr]}</h3>
+                <p className="text-sm text-gray-600 text-center mb-4">{fr[activity.descriptionKey as keyof typeof fr]}</p>
                 <Link to={activity.path} className="btn btn-sm text-center w-full bg-white hover:bg-gray-100 text-gray-800 font-medium">
-                  Start Activity
+                  {fr.start_activity}
                 </Link>
               </div>
             ))}
@@ -243,42 +310,42 @@ const HomePage = () => {
 // Updated Data
 const categories = [
   {
-    title: "Vocabulary",
-    description: "Practice everyday words with interactive quizzes & flashcards",
+    title: fr.vocabulary,
+    description: fr.practice_everyday_words,
     path: "/vocabulary",
     icon: "📚",
     iconBg: "bg-blue-100",
     iconColor: "text-blue-600",
-    badge: "New"
+    badge: fr.new
   },
   {
-    title: "Grammar",
-    description: "Master verb forms with guided exercises & flip cards",
+    title: fr.grammar,
+    description: fr.master_verb_forms,
     path: "/grammar",
     icon: "📝",
     iconBg: "bg-green-100",
     iconColor: "text-green-600",
-    badge: "New"
+    badge: fr.new
   },
   {
-    title: "Speaking",
-    description: "Improve pronunciation with conversation activities",
+    title: fr.speaking,
+    description: fr.improve_pronunciation,
     path: "/speaking",
     icon: "🗣️",
     iconBg: "bg-yellow-100",
     iconColor: "text-yellow-600"
   },
   {
-    title: "Reading",
-    description: "Develop skills with beginner-friendly texts",
+    title: fr.reading,
+    description: fr.develop_skills_beginner_texts,
     path: "/reading",
     icon: "📖",
     iconBg: "bg-purple-100",
     iconColor: "text-purple-600"
   },
   {
-    title: "Listening",
-    description: "Enhance comprehension with audio exercises",
+    title: fr.listening,
+    description: fr.enhance_comprehension_audio,
     path: "/listening",
     icon: "🎧",
     iconBg: "bg-pink-100",
@@ -286,89 +353,67 @@ const categories = [
   }
 ];
 
-const featuredLessonPoints = [
-  "🛍️ Shopping vocabulary & transactions",
-  "🗺️ Asking for and giving directions",
-  "💬 Real-world dialogue practice",
-  "🔊 Text-to-speech & pronunciation",
-  "✅ Interactive quizzes & role plays"
-];
 
-const presentProgressivePoints = [
-  "✨ Master am/is/are + -ing verb forms",
-  "🎯 Describe actions happening RIGHT NOW",
-  "😤 Express complaints about current situations",
-  "🎵 Song-based learning from Bob Marley",
-  "✅ Interactive practice across all 5 skills"
-];
-
-const unit3LessonPoints = [
-  "🚗 Complete transportation vocabulary (vehicles, verbs, adjectives, phrases)",
-  "⏱️ Master all 3 tenses: Present Progressive, Simple Past, Going To Future",
-  "🗺️ Real-world scenarios: directions, journeys, travel planning",
-  "🎧 Enhanced audio with 5-second pauses for better comprehension",
-  "✅ 20 interactive activities across all 5 skills"
-];
 
 const unit3Skills = [
   {
-    title: "Vocabulary",
+    title: fr.vocabulary,
     icon: "📚",
     bgColor: "bg-blue-50",
     hubPath: "/vocabulary",
     lessons: [
-      { id: "vo_03-01", name: "Vehicles" },
-      { id: "vo_03-02", name: "Action Verbs" },
-      { id: "vo_03-03", name: "Adjectives" },
-      { id: "vo_03-04", name: "Phrases" }
+      { id: "vo_03-01", name: fr.vehicles },
+      { id: "vo_03-02", name: fr.action_verbs },
+      { id: "vo_03-03", name: fr.adjectives },
+      { id: "vo_03-04", name: fr.phrases }
     ]
   },
   {
-    title: "Grammar",
+    title: fr.grammar,
     icon: "📝",
     bgColor: "bg-green-50",
     hubPath: "/grammar",
     lessons: [
-      { id: "gr_03-01", name: "Present Progressive" },
-      { id: "gr_03-02", name: "Going To Future" },
-      { id: "gr_03-03", name: "Simple Past" },
-      { id: "gr_03-04", name: "Mixed Tenses" }
+      { id: "gr_03-01", name: fr.present_progressive },
+      { id: "gr_03-02", name: fr.going_to_future },
+      { id: "gr_03-03", name: fr.simple_past },
+      { id: "gr_03-04", name: fr.mixed_tenses }
     ]
   },
   {
-    title: "Reading",
+    title: fr.reading,
     icon: "📖",
     bgColor: "bg-purple-50",
     hubPath: "/reading",
     lessons: [
-      { id: "re_03-01", name: "Present Progressive" },
-      { id: "re_03-02", name: "Simple Past" },
-      { id: "re_03-03", name: "Going To Future" },
-      { id: "re_03-04", name: "Comparatives" }
+      { id: "re_03-01", name: fr.present_progressive },
+      { id: "re_03-02", name: fr.simple_past },
+      { id: "re_03-03", name: fr.going_to_future },
+      { id: "re_03-04", name: fr.comparatives }
     ]
   },
   {
-    title: "Speaking",
+    title: fr.speaking,
     icon: "🗣️",
     bgColor: "bg-yellow-50",
     hubPath: "/speaking",
     lessons: [
-      { id: "sp_03-01", name: "Ask Directions" },
-      { id: "sp_03-02", name: "Take Transport" },
-      { id: "sp_03-03", name: "Past Journey" },
-      { id: "sp_03-04", name: "Plan Trip" }
+      { id: "sp_03-01", name: fr.ask_directions },
+      { id: "sp_03-02", name: fr.take_transport },
+      { id: "sp_03-03", name: fr.past_journey },
+      { id: "sp_03-04", name: fr.plan_trip }
     ]
   },
   {
-    title: "Listening",
+    title: fr.listening,
     icon: "🎧",
     bgColor: "bg-pink-50",
     hubPath: "/listening",
     lessons: [
-      { id: "li_03-01", name: "Directions" },
-      { id: "li_03-02", name: "Past Travel" },
-      { id: "li_03-03", name: "Future Plans" },
-      { id: "li_03-04", name: "All Tenses" }
+      { id: "li_03-01", name: fr.directions },
+      { id: "li_03-02", name: fr.past_travel },
+      { id: "li_03-03", name: fr.future_plans },
+      { id: "li_03-04", name: fr.all_tenses }
     ]
   }
 ];
@@ -377,80 +422,80 @@ const reviewActivities = [
   {
     id: 1,
     icon: "📝",
-    title: "Speaking Worksheet 1",
-    description: "Greetings & Personal Info - Master introductions",
+    title: fr.speaking_worksheet_1,
+    description: fr.greetings_personal_info_master_introductions,
     path: "/review/speaking-worksheet-01",
     bgColor: "bg-indigo-50"
   },
   {
     id: 2,
     icon: "⏰",
-    title: "Speaking Worksheet 2",
-    description: "Daily Activities & Time - Describe your routine",
+    title: fr.speaking_worksheet_2,
+    description: fr.daily_activities_time_describe_routine,
     path: "/review/speaking-worksheet-02",
     bgColor: "bg-cyan-50"
   },
   {
     id: 3,
     icon: "✅",
-    title: "Speaking Worksheet 3",
-    description: "Verb To Be & Present Simple - Practice basics",
+    title: fr.speaking_worksheet_3,
+    description: fr.verb_to_be_present_simple_practice_basics,
     path: "/review/speaking-worksheet-03",
     bgColor: "bg-amber-50"
   },
   {
     id: 4,
     icon: "❓",
-    title: "Speaking Worksheet 4",
-    description: "Questions Master - Form & answer questions",
+    title: fr.speaking_worksheet_4,
+    description: fr.questions_master_form_answer_questions,
     path: "/review/speaking-worksheet-04",
     bgColor: "bg-rose-50"
   },
   {
     id: 5,
     icon: "✈️",
-    title: "Travel Stories",
-    description: "Conversation game - Share your travel experiences",
+    title: fr.travel_stories,
+    description: fr.conversation_game_share_travel_experiences,
     path: "/review/travel-stories",
     bgColor: "bg-sky-50"
   },
   {
     id: 6,
     icon: "🚗",
-    title: "Car Driving",
-    description: "Narration game - Tell driving stories in past tense",
+    title: fr.car_driving,
+    description: fr.narration_game_tell_driving_stories,
     path: "/review/car-driving",
     bgColor: "bg-orange-50"
   },
   {
     id: 7,
     icon: "🏎️",
-    title: "Car Comparison",
-    description: "Comparative game - Compare vehicles & features",
+    title: fr.car_comparison,
+    description: fr.comparative_game_compare_vehicles_features,
     path: "/review/car-comparison",
     bgColor: "bg-yellow-50"
   },
   {
     id: 8,
     icon: "🎧",
-    title: "Listening Activity",
-    description: "6-level progressive listening comprehension",
+    title: fr.listening_activity,
+    description: fr.six_level_progressive_listening_comprehension,
     path: "/review/listening-activity",
     bgColor: "bg-blue-50"
   },
   {
     id: 9,
     icon: "📖",
-    title: "School Memories",
-    description: "Share school experiences with mood indicators",
+    title: fr.school_memories,
+    description: fr.share_school_experiences_mood_indicators,
     path: "/review/school-memories",
     bgColor: "bg-purple-50"
   },
   {
     id: 10,
     icon: "🌟",
-    title: "School Life Mix",
-    description: "Mixed tenses - past, present, & future practice",
+    title: fr.school_life_mix,
+    description: fr.mixed_tenses_past_present_future_practice,
     path: "/review/school-life-mix",
     bgColor: "bg-green-50"
   }

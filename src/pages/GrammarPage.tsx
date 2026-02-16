@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { fr } from '../locales/fr';
 
 interface GrammarItem {
   id: string;
@@ -13,111 +14,111 @@ interface GrammarItem {
 }
 
 const GrammarPage = () => {
-  const [selectedTopic, setSelectedTopic] = useState<string>('All Topics');
+  const [selectedTopic, setSelectedTopic] = useState<string>(fr.all_topics);
 
   const grammarContent: GrammarItem[] = [
     // Unit 1
     {
       id: 'gr_01-01',
-      title: 'Verb To Be',
-      content: 'Practice using the verb "to be" in simple sentences.',
+      title: fr.verb_to_be,
+      content: fr.practice_verb_to_be_simple_sentences,
       level: 'A1',
-      topic: 'Verbs',
+      topic: fr.verbs,
       quizId: 'gr_01-01',
     },
     {
       id: 'gr_01-02',
-      title: 'Present Simple',
-      content: 'Learn the present simple tense for habits and facts.',
+      title: fr.present_simple,
+      content: fr.learn_present_simple_tense_habits_facts,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       flashcardId: 'gr_01-02',
     },
     {
       id: 'gr_01-03',
-      title: 'Yes/No Questions',
-      content: 'Practice yes/no questions with short answers.',
+      title: fr.yes_no_questions,
+      content: fr.practice_yes_no_questions_short_answers,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       quizId: 'gr_01-03',
     },
     {
       id: 'gr_01-04',
-      title: 'Yes/No Flashcards',
-      content: 'Flashcards for yes/no questions with short answers.',
+      title: fr.yes_no_flashcards,
+      content: fr.flashcards_yes_no_questions_short_answers,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       flashcardId: 'gr_01-04',
     },
     // Unit 2
     {
       id: 'gr_02-01',
-      title: 'Imperatives for Directions',
-      content: 'Learn how to use imperative forms to give directions.',
+      title: fr.imperatives_for_directions,
+      content: fr.learn_imperative_forms_give_directions,
       level: 'A1',
-      topic: 'Verbs',
+      topic: fr.verbs,
       quizId: 'gr_02-01',
     },
     {
       id: 'gr_02-02',
-      title: 'Asking Questions',
-      content: 'Master question formation for asking directions and information.',
+      title: fr.asking_questions,
+      content: fr.master_question_formation_asking_directions_information,
       level: 'A1',
-      topic: 'Questions',
+      topic: fr.questions,
       quizId: 'gr_02-02',
     },
     {
       id: 'gr_02-03',
-      title: 'Prepositions of Place & Direction',
-      content: 'Practice prepositions used for locations and directions.',
+      title: fr.prepositions_of_place_direction,
+      content: fr.practice_prepositions_locations_directions,
       level: 'A1',
-      topic: 'Prepositions',
+      topic: fr.prepositions,
       quizId: 'gr_02-03',
     },
     {
       id: 'gr_02-04',
-      title: 'Modal Verbs & Polite Requests',
-      content: 'Learn modal verbs to make polite requests and ask for help.',
+      title: fr.modal_verbs_polite_requests,
+      content: fr.learn_modal_verbs_polite_requests_help,
       level: 'A1',
-      topic: 'Verbs',
+      topic: fr.verbs,
       quizId: 'gr_02-04',
     },
     // Unit 3
     {
       id: 'gr_03-01',
-      title: 'Present Progressive',
-      content: 'Practice the present progressive tense. Actions happening RIGHT NOW. Form: am/is/are + -ing verb.',
+      title: fr.present_progressive,
+      content: fr.practice_present_progressive_tense_actions_now,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       quizId: 'gr_03-01',
     },
     {
       id: 'gr_03-02',
-      title: 'Future with Going To',
-      content: 'Learn to express future plans using "going to". Form: am/is/are going to + base verb.',
+      title: fr.future_with_going_to,
+      content: fr.learn_express_future_plans_going_to,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       quizId: 'gr_03-02',
     },
     {
       id: 'gr_03-03',
-      title: 'Simple Past Tense',
-      content: 'Master the simple past with regular verbs. Form: base verb + -ed. For finished actions.',
+      title: fr.simple_past_tense,
+      content: fr.master_simple_past_regular_verbs,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       quizId: 'gr_03-03',
     },
     {
       id: 'gr_03-04',
-      title: 'Mixed Tenses & Questions',
-      content: 'Practice all three tenses and question formation. Yes/no questions and wh-questions.',
+      title: fr.mixed_tenses_questions,
+      content: fr.practice_all_three_tenses_question_formation,
       level: 'A1',
-      topic: 'Tenses',
+      topic: fr.tenses,
       quizId: 'gr_03-04',
     },
   ];
 
-  const filteredGrammar = selectedTopic === 'All Topics'
+  const filteredGrammar = selectedTopic === fr.all_topics
     ? grammarContent
     : grammarContent.filter((item) => item.topic === selectedTopic);
 
@@ -131,14 +132,14 @@ const GrammarPage = () => {
       transition={{ duration: 0.3 }}
       className="flex flex-col items-center w-full max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl"
     >
-      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">Grammar Practice</h1>
+      <h1 className="text-4xl font-bold text-indigo-700 mb-6 text-center">{fr.grammar_practice}</h1>
       <p className="text-gray-700 text-lg leading-relaxed mb-8 text-center">
-        Improve your beginner English grammar skills with interactive practice and explanations.
+        {fr.improve_beginner_english_grammar}
       </p>
 
       <div className="w-full sm:w-auto mb-8">
         <label htmlFor="topic-select" className="block text-sm font-medium text-gray-700 mb-2 text-center sm:text-left">
-          Sort by Topic
+          {fr.sort_by_topic}
         </label>
         <select
           id="topic-select"
@@ -146,7 +147,7 @@ const GrammarPage = () => {
           onChange={(e) => setSelectedTopic(e.target.value)}
           className="px-5 py-2.5 rounded-full bg-white text-gray-800 border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-300 hover:shadow-md w-full sm:w-auto"
         >
-          <option value="All Topics">All Topics</option>
+          <option value={fr.all_topics}>{fr.all_topics}</option>
           {allTopics.map((topic) => (
             <option key={topic} value={topic}>
               {topic}
@@ -171,7 +172,7 @@ const GrammarPage = () => {
                       to={`/quiz/${item.quizId}`}
                       className="text-sm text-indigo-600 hover:underline"
                     >
-                      Practice Quiz
+                      {fr.practice_quiz}
                     </Link>
                   )}
                   {item.flashcardId && (
@@ -179,7 +180,7 @@ const GrammarPage = () => {
                       to={`/quiz/${item.flashcardId}`}
                       className="text-sm text-green-600 hover:underline text-center"
                     >
-                      Flashcard Practice
+                      {fr.flashcard_practice}
                     </Link>
                   )}
                   <span className="bg-indigo-50 text-indigo-600 text-sm font-medium px-2.5 py-0.5 rounded">
@@ -190,7 +191,7 @@ const GrammarPage = () => {
             </div>
           ))
         ) : (
-          <div className="text-gray-700 text-center">No grammar content available for this selection.</div>
+          <div className="text-gray-700 text-center">{fr.no_grammar_content_available}</div>
         )}
       </div>
     </motion.div>

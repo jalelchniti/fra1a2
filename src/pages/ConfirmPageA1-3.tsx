@@ -31,24 +31,24 @@ const sections = ['grammar', 'vocabulary', 'listening', 'reading'];
 const questions: { A1_3: { [key: string]: Question[] } } = {
   A1_3: {
     grammar: [
-      { type: 'mc', question: 'They ___ (never/go) to the cinema.', options: ['never go', 'go never', 'never goes'], answer: 'never go', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'fill', question: 'This is ___ (my/book).', answer: 'my book', sublevel: 'A1-3', curriculumUnit: 7 },
-      { type: 'mc', question: 'We ___ (sometimes/eat) pizza.', options: ['sometimes eat', 'eat sometimes', 'sometimes eats'], answer: 'sometimes eat', sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.a1_3_grammar_q1, options: [fr.a1_3_grammar_q1_option1, fr.a1_3_grammar_q1_option2, fr.a1_3_grammar_q1_option3], answer: fr.a1_3_grammar_q1_answer, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'fill', question: fr.a1_3_grammar_q2, answer: fr.a1_3_grammar_q2_answer, sublevel: 'A1-3', curriculumUnit: 7 },
+      { type: 'mc', question: fr.a1_3_grammar_q3, options: [fr.a1_3_grammar_q3_option1, fr.a1_3_grammar_q3_option2, fr.a1_3_grammar_q3_option3], answer: fr.a1_3_grammar_q3_answer, sublevel: 'A1-3', curriculumUnit: 6 },
     ],
     vocabulary: [
-      { type: 'mc', question: 'I eat ___ for breakfast.', options: ['bread', 'bed', 'chair'], answer: 'bread', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'fill', question: 'I go to the ___ to buy clothes.', answer: 'shop', sublevel: 'A1-3', curriculumUnit: 8 },
-      { type: 'mc', question: 'The clock says seven ___.', options: ['o’clock', 'table', 'red'], answer: 'o’clock', sublevel: 'A1-3', curriculumUnit: 7 },
+      { type: 'mc', question: fr.a1_3_vocabulary_q1, options: [fr.a1_3_vocabulary_q1_option1, fr.a1_3_vocabulary_q1_option2, fr.a1_3_vocabulary_q1_option3], answer: fr.a1_3_vocabulary_q1_answer, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'fill', question: fr.a1_3_vocabulary_q2, answer: fr.a1_3_vocabulary_q2_answer, sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.a1_3_vocabulary_q3, options: [fr.a1_3_vocabulary_q3_option1, fr.a1_3_vocabulary_q3_option2, fr.a1_3_vocabulary_q3_option3], answer: fr.a1_3_vocabulary_q3_answer, sublevel: 'A1-3', curriculumUnit: 7 },
     ],
     listening: [
-      { type: 'mc', question: 'What does Lisa eat?', options: ['Bread', 'Pizza', 'Rice'], answer: 'Pizza', hiddenText: 'My name is Lisa. I eat pizza on weekends. I like pizza. It is good.', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'mc', question: 'Where does Tom go?', options: ['Shop', 'School', 'Park'], answer: 'Shop', hiddenText: 'My name is Tom. I go to the shop. I buy bread and milk. The shop is small.', sublevel: 'A1-3', curriculumUnit: 8 },
-      { type: 'mc', question: 'What is Maria’s house like?', options: ['Big', 'Small', 'Old'], answer: 'Big', hiddenText: 'My name is Maria. I live in a house. My house is big. I have a dog. My dog is black.', sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.a1_3_listening_q1, options: [fr.a1_3_listening_q1_option1, fr.a1_3_listening_q1_option2, fr.a1_3_listening_q1_option3], answer: fr.a1_3_listening_q1_answer, hiddenText: fr.a1_3_listening_q1_hidden_text, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.a1_3_listening_q2, options: [fr.a1_3_listening_q2_option1, fr.a1_3_listening_q2_option2, fr.a1_3_listening_q2_option3], answer: fr.a1_3_listening_q2_answer, hiddenText: fr.a1_3_listening_q2_hidden_text, sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.a1_3_listening_q3, options: [fr.a1_3_listening_q3_option1, fr.a1_3_listening_q3_option2, fr.a1_3_listening_q3_option3], answer: fr.a1_3_listening_q3_answer, hiddenText: fr.a1_3_listening_q3_hidden_text, sublevel: 'A1-3', curriculumUnit: 8 },
     ],
     reading: [
-      { type: 'mc', question: 'What does John like?', options: ['Park', 'School', 'Shop'], answer: 'Park', text: 'My name is John. I go to the park on weekends. I play with my friends. The park is green. I like the park.', sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'mc', question: 'What is Anna’s book like?', options: ['New', 'Old', 'Small'], answer: 'New', text: 'My name is Anna. I have a book. My book is new. I read it at home. I like my book.', sublevel: 'A1-3', curriculumUnit: 7 },
-      { type: 'mc', question: 'Where does Tom live?', options: ['House', 'School', 'Shop'], answer: 'House', text: 'My name is Tom. I live in a house. My house is big. I have a dog. My dog is black. I go to the park.', sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.a1_3_reading_q1, options: [fr.a1_3_reading_q1_option1, fr.a1_3_reading_q1_option2, fr.a1_3_reading_q1_option3], answer: fr.a1_3_reading_q1_answer, text: fr.a1_3_reading_q1_text, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.a1_3_reading_q2, options: [fr.a1_3_reading_q2_option1, fr.a1_3_reading_q2_option2, fr.a1_3_reading_q2_option3], answer: fr.a1_3_reading_q2_answer, text: fr.a1_3_reading_q2_text, sublevel: 'A1-3', curriculumUnit: 7 },
+      { type: 'mc', question: fr.a1_3_reading_q3, options: [fr.a1_3_reading_q3_option1, fr.a1_3_reading_q3_option2, fr.a1_3_reading_q3_option3], answer: fr.a1_3_reading_q3_answer, text: fr.a1_3_reading_q3_text, sublevel: 'A1-3', curriculumUnit: 8 },
     ],
   },
 };
@@ -113,7 +113,7 @@ const ConfirmA1_3Page = () => {
               onClick={() => playTTS(q.hiddenText!)}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              Play Audio
+              {fr.a1_3_play_audio}
             </button>
             <span className="sr-only">{q.hiddenText}</span>
           </div>
@@ -142,7 +142,7 @@ const ConfirmA1_3Page = () => {
             value={answers[key] || ''}
             onChange={(e) => handleAnswer(section, index, e.target.value)}
             className="border p-2 w-full rounded"
-            placeholder="Type your answer"
+            placeholder={fr.a1_3_type_your_answer}
           />
         )}
       </div>
@@ -154,29 +154,29 @@ const ConfirmA1_3Page = () => {
     const passed = totalScore >= 8;
     const level = passed ? 'A1-3' : 'A1-2';
     const feedback = {
-      grammar: scores['A1_3-grammar'] < 2 ? 'Review adverbs and possessives.' : 'Good grammar!',
-      vocabulary: scores['A1_3-vocabulary'] < 2 ? 'Practice food and time words.' : 'Strong vocabulary!',
-      listening: scores['A1_3-listening'] < 2 ? 'Practice longer spoken texts.' : 'Great listening!',
-      reading: scores['A1_3-reading'] < 2 ? 'Practice longer texts.' : 'Good reading!',
+      grammar: scores['A1_3-grammar'] < 2 ? fr.a1_3_grammar_feedback_bad : fr.a1_3_grammar_feedback_good,
+      vocabulary: scores['A1_3-vocabulary'] < 2 ? fr.a1_3_vocabulary_feedback_bad : fr.a1_3_vocabulary_feedback_good,
+      listening: scores['A1_3-listening'] < 2 ? fr.a1_3_listening_feedback_bad : fr.a1_3_listening_feedback_good,
+      reading: scores['A1_3-reading'] < 2 ? fr.a1_3_reading_feedback_bad : fr.a1_3_reading_feedback_good,
     };
 
     return (
       <div className="text-center">
-        <h2 className="text-2xl font-bold mb-4">A1-3 Confirmation Test Results</h2>
-        <p className="text-base mb-2">Grammar: {scores['A1_3-grammar'] || 0}/{sectionLengths.grammar} - {feedback.grammar}</p>
-        <p className="text-base mb-2">Vocabulary: {scores['A1_3-vocabulary'] || 0}/{sectionLengths.vocabulary} - {feedback.vocabulary}</p>
-        <p className="text-base mb-2">Listening: {scores['A1_3-listening'] || 0}/{sectionLengths.listening} - {feedback.listening}</p>
-        <p className="text-base mb-2">Reading: {scores['A1_3-reading'] || 0}/{sectionLengths.reading} - {feedback.reading}</p>
-        <p className="text-base mb-2">Total Score: {totalScore}/12</p>
-        <p className="text-base font-medium mb-4">Confirmed Level: {level}</p>
+        <h2 className="text-2xl font-bold mb-4">{fr.a1_3_confirmation_test_results}</h2>
+        <p className="text-base mb-2">{fr.grammar_score} {scores['A1_3-grammar'] || 0}/{sectionLengths.grammar} - {feedback.grammar}</p>
+        <p className="text-base mb-2">{fr.vocabulary_score} {scores['A1_3-vocabulary'] || 0}/{sectionLengths.vocabulary} - {feedback.vocabulary}</p>
+        <p className="text-base mb-2">{fr.listening_score} {scores['A1_3-listening'] || 0}/{sectionLengths.listening} - {feedback.listening}</p>
+        <p className="text-base mb-2">{fr.reading_score} {scores['A1_3-reading'] || 0}/{sectionLengths.reading} - {feedback.reading}</p>
+        <p className="text-base mb-2">{fr.a1_3_total_score} {totalScore}/12</p>
+        <p className="text-base font-medium mb-4">{fr.a1_3_confirmed_level} {level}</p>
         <p className="text-sm text-gray-600 mb-4">
-          {passed ? 'Start with Units 6-8 to improve A1-3 skills.' : 'Start with Units 3-5 to build A1-2 skills.'}
+          {passed ? fr.a1_3_start_units_6_8 : fr.a1_3_start_units_3_5}
         </p>
         <Link
           to={passed ? '/curriculum' : '/curriculum'}
           className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
-          Start {level} Lessons
+          {fr.a1_3_start_lessons} {level} {fr.lessons}
         </Link>
       </div>
     );
@@ -184,11 +184,11 @@ const ConfirmA1_3Page = () => {
 
   return (
     <div className="max-w-2xl mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-4">A1-3 Confirmation Test</h1>
-      <p className="text-center mb-4">This test confirms your A1-3 level or suggests A1-2.</p>
+      <h1 className="text-3xl font-bold text-center mb-4">{fr.a1_3_confirmation_test}</h1>
+      <p className="text-center mb-4">{fr.a1_3_test_confirms_level}</p>
       {step < sections.length ? (
         <div>
-          <h2 className="text-xl font-medium mb-4">{currentSection.charAt(0).toUpperCase() + currentSection.slice(1)}</h2>
+          <h2 className="text-xl font-medium mb-4">{fr[currentSection as keyof typeof fr]}</h2>
           {questions.A1_3[currentSection].map((q: Question, i: number) => (
             <div key={i}>{renderQuestion(currentSection, q, i)}</div>
           ))}
@@ -198,13 +198,13 @@ const ConfirmA1_3Page = () => {
               disabled={step === 0}
               className={`bg-gray-500 text-white px-4 py-2 rounded ${step === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'}`}
             >
-              Previous
+              {fr.a1_3_previous}
             </button>
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              {step === sections.length - 1 ? 'Finish' : 'Next'}
+              {step === sections.length - 1 ? fr.a1_3_finish : fr.a1_3_next}
             </button>
           </div>
         </div>
