@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
+import { fr } from '../../../../locales/fr';
 
 const VerbToBeQuiz: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -9,29 +10,29 @@ const VerbToBeQuiz: React.FC = () => {
 
   const questions = [
     {
-      question: 'Which sentence uses the verb "to be" correctly?',
-      options: ['She am happy.', 'He is happy.', 'They be happy.', 'We are happy.'],
-      correctAnswer: 'He is happy.',
+      question: fr.verb_to_be_q1,
+      options: [fr.verb_to_be_q1_option1, fr.verb_to_be_q1_option2, fr.verb_to_be_q1_option3, fr.verb_to_be_q1_option4],
+      correctAnswer: fr.verb_to_be_q1_correct,
     },
     {
-      question: 'What is the correct form of "to be" for "I"?',
-      options: ['am', 'is', 'are', 'be'],
-      correctAnswer: 'am',
+      question: fr.verb_to_be_q2,
+      options: [fr.verb_to_be_q2_option1, fr.verb_to_be_q2_option2, fr.verb_to_be_q2_option3, fr.verb_to_be_q2_option4],
+      correctAnswer: fr.verb_to_be_q2_correct,
     },
     {
-      question: 'Choose the correct sentence:',
-      options: ['We is at school.', 'They are at school.', 'He am at school.', 'I is at school.'],
-      correctAnswer: 'They are at school.',
+      question: fr.verb_to_be_q3,
+      options: [fr.verb_to_be_q3_option1, fr.verb_to_be_q3_option2, fr.verb_to_be_q3_option3, fr.verb_to_be_q3_option4],
+      correctAnswer: fr.verb_to_be_q3_correct,
     },
     {
-      question: 'Which sentence is incorrect?',
-      options: ['You are my friend.', 'She is a teacher.', 'It am a cat.', 'We are students.'],
-      correctAnswer: 'It am a cat.',
+      question: fr.verb_to_be_q4,
+      options: [fr.verb_to_be_q4_option1, fr.verb_to_be_q4_option2, fr.verb_to_be_q4_option3, fr.verb_to_be_q4_option4],
+      correctAnswer: fr.verb_to_be_q4_correct,
     },
     {
-      question: 'What is the correct form of "to be" for "it"?',
-      options: ['am', 'is', 'are', 'be'],
-      correctAnswer: 'is',
+      question: fr.verb_to_be_q5,
+      options: [fr.verb_to_be_q5_option1, fr.verb_to_be_q5_option2, fr.verb_to_be_q5_option3, fr.verb_to_be_q5_option4],
+      correctAnswer: fr.verb_to_be_q5_correct,
     },
   ];
 
@@ -61,10 +62,10 @@ const VerbToBeQuiz: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <h1 className="text-4xl font-bold text-indigo-800 mb-6 text-center drop-shadow-sm">
-          A1 Verb To Be Quiz
+          {fr.a1_verb_to_be_quiz_title}
         </h1>
         <p className="text-gray-800 text-lg mb-8 text-center">
-          Practice using the verb "to be" in simple sentences. Choose the correct answer for each question.
+          {fr.practice_verb_to_be_intro}
         </p>
 
         {!showResults ? (
@@ -77,7 +78,7 @@ const VerbToBeQuiz: React.FC = () => {
           >
             <div className="bg-gradient-to-r from-gray-50 to-white p-6 rounded-xl shadow-md">
               <h3 className="text-xl font-bold text-indigo-700 mb-4 drop-shadow-sm">
-                Question {currentQuestion + 1} of {questions.length}
+                {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
               </h3>
               <p className="text-gray-800 mb-6 text-lg">{questions[currentQuestion].question}</p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -103,12 +104,12 @@ const VerbToBeQuiz: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             <h3 className="text-2xl font-bold text-indigo-700 mb-4 drop-shadow-sm">
-              Quiz Results
+              {fr.quiz_results}
             </h3>
             <p className="text-gray-800 mb-6 text-lg">
-              You scored {score} out of {questions.length}!
+              {fr.you_scored.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}
               <span className={`ml-2 font-medium ${score === questions.length ? 'text-green-600' : 'text-indigo-600'}`}>
-                {score === questions.length ? 'Perfect!' : score >= questions.length / 2 ? 'Good job!' : 'Keep practicing!'}
+                {score === questions.length ? fr.perfect : score >= questions.length / 2 ? fr.good_job : fr.keep_practicing}
               </span>
             </p>
             <motion.button
@@ -117,7 +118,7 @@ const VerbToBeQuiz: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Restart Quiz
+              {fr.restart_quiz}
             </motion.button>
           </motion.div>
         )}

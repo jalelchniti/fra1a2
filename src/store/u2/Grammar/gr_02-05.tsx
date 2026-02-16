@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
+import { fr } from '../../../../locales/fr';
 
 const PresentProgressiveGrammar: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -10,40 +11,40 @@ const PresentProgressiveGrammar: React.FC = () => {
 
   const questions = [
     {
-      question: 'Which sentence correctly uses Present Progressive?',
-      options: ['She am eating lunch.', 'He is eating lunch.', 'They am eating lunch.', 'You is eating lunch.'],
-      correctAnswer: 'He is eating lunch.',
-      explanation: 'Present Progressive uses "is/are + verb-ing". "He is" is correct for third person singular.'
+      question: fr.q1_present_progressive,
+      options: [fr.q1_present_progressive_option1, fr.q1_present_progressive_option2, fr.q1_present_progressive_option3, fr.q1_present_progressive_option4],
+      correctAnswer: fr.q1_present_progressive_correct,
+      explanation: fr.q1_present_progressive_explanation
     },
     {
-      question: 'What is the correct form for "I" in Present Progressive?',
-      options: ['I is studying.', 'I are studying.', 'I am studying.', 'I be studying.'],
-      correctAnswer: 'I am studying.',
-      explanation: 'With "I", we use "am" in Present Progressive: I am + verb-ing.'
+      question: fr.q2_present_progressive,
+      options: [fr.q2_present_progressive_option1, fr.q2_present_progressive_option2, fr.q2_present_progressive_option3, fr.q2_present_progressive_option4],
+      correctAnswer: fr.q2_present_progressive_correct,
+      explanation: fr.q2_present_progressive_explanation
     },
     {
-      question: 'Choose the correct sentence about a complaint:',
-      options: ['She is complain about the service.', 'She is complaining about the service.', 'She are complaining about the service.', 'She am complaining about the service.'],
-      correctAnswer: 'She is complaining about the service.',
-      explanation: 'We need "is" + verb-ing. "Complaining" is the -ing form of "complain".'
+      question: fr.q3_present_progressive,
+      options: [fr.q3_present_progressive_option1, fr.q3_present_progressive_option2, fr.q3_present_progressive_option3, fr.q3_present_progressive_option4],
+      correctAnswer: fr.q3_present_progressive_correct,
+      explanation: fr.q3_present_progressive_explanation
     },
     {
-      question: 'Which sentence describes an action happening RIGHT NOW?',
-      options: ['They shop every day.', 'They are shopping right now.', 'They shopped yesterday.', 'They will shop tomorrow.'],
-      correctAnswer: 'They are shopping right now.',
-      explanation: 'Present Progressive shows actions happening at this moment: are + verb-ing.'
+      question: fr.q4_present_progressive,
+      options: [fr.q4_present_progressive_option1, fr.q4_present_progressive_option2, fr.q4_present_progressive_option3, fr.q4_present_progressive_option4],
+      correctAnswer: fr.q4_present_progressive_correct,
+      explanation: fr.q4_present_progressive_explanation
     },
     {
-      question: 'Complete: "We _____ for the bus at this moment."',
-      options: ['wait', 'are waiting', 'waits', 'waited'],
-      correctAnswer: 'are waiting',
-      explanation: 'For present actions: we use "are" + waiting (verb-ing form).'
+      question: fr.q5_present_progressive,
+      options: [fr.q5_present_progressive_option1, fr.q5_present_progressive_option2, fr.q5_present_progressive_option3, fr.q5_present_progressive_option4],
+      correctAnswer: fr.q5_present_progressive_correct,
+      explanation: fr.q5_present_progressive_explanation
     },
     {
-      question: 'Which is grammatically correct?',
-      options: ['You is asking questions right now.', 'You are asking questions right now.', 'You am asking questions right now.', 'You be asking questions right now.'],
-      correctAnswer: 'You are asking questions right now.',
-      explanation: 'With "you" (plural or singular formal), we use "are" in Present Progressive.'
+      question: fr.q6_present_progressive,
+      options: [fr.q6_present_progressive_option1, fr.q6_present_progressive_option2, fr.q6_present_progressive_option3, fr.q6_present_progressive_option4],
+      correctAnswer: fr.q6_present_progressive_correct,
+      explanation: fr.q6_present_progressive_explanation
     },
   ];
 
@@ -76,10 +77,10 @@ const PresentProgressiveGrammar: React.FC = () => {
           <div>
             <div className="mb-8">
               <h1 className="text-4xl font-bold text-indigo-700 mb-2 text-center">
-                Present Progressive Grammar
+                {fr.present_progressive_grammar_title}
               </h1>
               <p className="text-lg text-gray-600 text-center">
-                Master "am/is/are + verb-ing" for current actions and complaints
+                {fr.present_progressive_grammar_intro}
               </p>
             </div>
 
@@ -87,10 +88,10 @@ const PresentProgressiveGrammar: React.FC = () => {
             <div className="mb-6">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm font-semibold text-gray-700">
-                  Question {currentQuestion + 1} of {questions.length}
+                  {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
                 </span>
                 <span className="text-sm font-semibold text-indigo-600">
-                  Score: {score}
+                  {fr.score_text_short.replace('{score}', score.toString())}
                 </span>
               </div>
               <div className="w-full bg-gray-300 rounded-full h-2">
@@ -127,7 +128,7 @@ const PresentProgressiveGrammar: React.FC = () => {
             {/* Hint */}
             <div className="p-4 bg-purple-50 rounded-lg border-l-4 border-purple-500">
               <p className="text-sm text-gray-700">
-                <strong>💡 Hint:</strong> Present Progressive = am/is/are + verb-ing. Use it for actions happening RIGHT NOW or express complaints!
+                <strong>💡 {fr.hint_text}:</strong> {fr.hint_present_progressive}
               </p>
             </div>
           </div>
@@ -137,16 +138,16 @@ const PresentProgressiveGrammar: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="text-center"
           >
-            <h2 className="text-4xl font-bold text-indigo-700 mb-4">Quiz Complete! 🎉</h2>
+            <h2 className="text-4xl font-bold text-indigo-700 mb-4">{fr.quiz_complete} 🎉</h2>
             <p className="text-6xl font-bold text-indigo-600 mb-4">
               {score}/{questions.length}
             </p>
             <p className="text-xl text-gray-600 mb-8">
               {score === questions.length
-                ? 'Perfect! You mastered Present Progressive! 🌟'
+                ? fr.perfect_present_progressive
                 : score >= questions.length * 0.8
-                ? 'Great job! Keep practicing Present Progressive! 👍'
-                : 'Good effort! Review Present Progressive rules and try again! 💪'}
+                ? fr.great_job_present_progressive
+                : fr.good_effort_present_progressive}
             </p>
 
             <motion.button
@@ -155,7 +156,7 @@ const PresentProgressiveGrammar: React.FC = () => {
               onClick={restartQuiz}
               className="px-8 py-3 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-colors"
             >
-              Restart Quiz
+              {fr.restart_quiz}
             </motion.button>
           </motion.div>
         )}

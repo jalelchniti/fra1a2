@@ -1,7 +1,7 @@
 // src/store/u2/Listening/li_02-05.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Volume2, RotateCcw } from "lucide-react";
+import { Volume2 } from "lucide-react";
 
 interface Question {
   text: string;
@@ -18,7 +18,7 @@ const PresentProgressiveListeningQuiz = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [showResults, setShowResults] = useState(false);
 
-  const questions: Question[] = [
+  const questions: Question[] = useMemo(() => [
     {
       text: "Hello everyone! I am shopping at the market right now. I am looking for fresh vegetables and fruits. The vegetables are looking good today. I am complaining about the price because they are very expensive!",
       question: "What is the speaker doing right now?",
@@ -49,19 +49,18 @@ const PresentProgressiveListeningQuiz = () => {
       options: ["The music is too beautiful.", "Someone is making too much noise from guitar playing.", "The house is too old.", "The street is busy."],
       correctAnswer: "Someone is making too much noise from guitar playing."
     }
-  ];
-
-  const speakText = (text: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel(); // Stop any current speech
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
-      utterance.rate = 0.9; // Slightly slower for clarity
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  ], []);
 
   useEffect(() => {
+    const speakText = (text: string) => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        window.speechSynthesis.cancel(); // Stop any current speech
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        utterance.rate = 0.9; // Slightly slower for clarity
+        window.speechSynthesis.speak(utterance);
+      }
+    };
     if (currentQuestion < questions.length) {
       speakText(questions[currentQuestion].text);
     }
@@ -71,7 +70,7 @@ const PresentProgressiveListeningQuiz = () => {
         window.speechSynthesis.cancel();
       }
     };
-  }, [currentQuestion]);
+  }, [currentQuestion, questions]);
 
   const handleAnswer = (answer: string) => {
     setSelectedAnswer(answer);

@@ -1,6 +1,7 @@
 // Unit 2 Lesson 4 - Grammar: Modal Verbs & Polite Requests
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 interface Question {
   question: string;
@@ -11,34 +12,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "Which sentence uses a modal verb for a polite request?",
-    options: ["Can you help me?", "Help me.", "You help me.", "Helping me?"],
+    question: fr.q1_modal_verbs,
+    options: [fr.q1_modal_verbs_option1, fr.q1_modal_verbs_option2, fr.q1_modal_verbs_option3, fr.q1_modal_verbs_option4],
     correctAnswer: 0,
-    explanation: "'Can you help me?' uses the modal verb 'can' to make a polite request."
+    explanation: fr.q1_modal_verbs_explanation
   },
   {
-    question: "Choose the most polite way to ask for directions:",
-    options: ["Tell me where the store is.", "Could you tell me where the store is?", "The store is where?", "I need the store."],
+    question: fr.q2_modal_verbs,
+    options: [fr.q2_modal_verbs_option1, fr.q2_modal_verbs_option2, fr.q2_modal_verbs_option3, fr.q2_modal_verbs_option4],
     correctAnswer: 1,
-    explanation: "'Could you tell me where the store is?' uses 'could' for a very polite request."
+    explanation: fr.q2_modal_verbs_explanation
   },
   {
-    question: "Fill in the blank with the correct modal: '_____ you help me find the street?'",
-    options: ["Can", "Must", "Should", "Will"],
+    question: fr.q3_modal_verbs,
+    options: [fr.q3_modal_verbs_option1, fr.q3_modal_verbs_option2, fr.q3_modal_verbs_option3, fr.q3_modal_verbs_option4],
     correctAnswer: 0,
-    explanation: "'Can' is used to ask politely if someone is able to help."
+    explanation: fr.q3_modal_verbs_explanation
   },
   {
-    question: "Which sentence is grammatically correct?",
-    options: ["May I ask you something?", "I may ask you something?", "You may ask me something?", "May you ask me something?"],
+    question: fr.q4_modal_verbs,
+    options: [fr.q4_modal_verbs_option1, fr.q4_modal_verbs_option2, fr.q4_modal_verbs_option3, fr.q4_modal_verbs_option4],
     correctAnswer: 0,
-    explanation: "'May I ask you something?' uses 'may' for a polite request about permission."
+    explanation: fr.q4_modal_verbs_explanation
   },
   {
-    question: "Choose the sentence with correct modal verb usage:",
-    options: ["Could you to help me?", "Could you help me?", "You could help me?", "Help me could?"],
+    question: fr.q5_modal_verbs,
+    options: [fr.q5_modal_verbs_option1, fr.q5_modal_verbs_option2, fr.q5_modal_verbs_option3, fr.q5_modal_verbs_option4],
     correctAnswer: 1,
-    explanation: "'Could you help me?' is correct. Modal verbs are followed directly by the base verb."
+    explanation: fr.q5_modal_verbs_explanation
   }
 ];
 
@@ -79,8 +80,8 @@ const ModalVerbsGrammarQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Modal Verbs & Polite Requests</h1>
-          <p className="text-gray-600">Unit 2 - Grammar Lesson 4</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.modal_verbs_polite_requests_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_grammar_lesson_4}</p>
         </div>
 
         <div className="mb-8">
@@ -91,7 +92,7 @@ const ModalVerbsGrammarQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
           </p>
         </div>
 
@@ -128,8 +129,8 @@ const ModalVerbsGrammarQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800 mb-2">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? fr.correct_feedback
+                  : fr.wrong_feedback}
               </p>
               <p className="text-gray-700">{questions[currentQuestion].explanation}</p>
             </motion.div>
@@ -142,17 +143,17 @@ const ModalVerbsGrammarQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            {fr.previous}
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">{fr.score_text.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
       </div>

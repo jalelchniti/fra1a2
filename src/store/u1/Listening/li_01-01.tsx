@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 // Define TypeScript interfaces
 interface Question {
@@ -17,40 +18,39 @@ const IntroductionsQuiz = () => {
   const [userAnswers, setUserAnswers] = useState<string[]>([]);
 
   // Quiz questions
-  const questions: Question[] = [
+  const questions: Question[] = useMemo(() => [
     {
-      text: "Hi, my name is Sarah. I'm from Canada and I'm a student.",
-      question: "Where is Sarah from?",
-      options: ["United States", "Canada", "England", "Australia"],
-      correctAnswer: "Canada"
+      text: fr.li_sarah_text,
+      question: fr.li_sarah_question,
+      options: [fr.li_sarah_option1, fr.li_sarah_option2, fr.li_sarah_option3, fr.li_sarah_option4],
+      correctAnswer: fr.li_sarah_correct
     },
     {
-      text: "Hello everyone! I'm David. I work as a software engineer in Tokyo.",
-      question: "What does David do?",
-      options: ["Teacher", "Doctor", "Software Engineer", "Chef"],
-      correctAnswer: "Software Engineer"
+      text: fr.li_david_text,
+      question: fr.li_david_question,
+      options: [fr.li_david_option1, fr.li_david_option2, fr.li_david_option3, fr.li_david_option4],
+      correctAnswer: fr.li_david_correct
     },
     {
-      text: "Nice to meet you all. I'm Emma and I've been teaching English for 5 years.",
-      question: "How long has Emma been teaching English?",
-      options: ["3 years", "4 years", "5 years", "6 years"],
-      correctAnswer: "5 years"
+      text: fr.li_emma_text,
+      question: fr.li_emma_question,
+      options: [fr.li_emma_option1, fr.li_emma_option2, fr.li_emma_option3, fr.li_emma_option4],
+      correctAnswer: fr.li_emma_correct
     }
     // Add more questions as needed
-  ];
-
-  // TTS function with safety checks
-  const speakText = (text: string) => {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = "en-US";
-      utterance.rate = 1;
-      window.speechSynthesis.speak(utterance);
-    }
-  };
+  ], []);
 
   // Speak the current question's text and clean up
   useEffect(() => {
+    // TTS function with safety checks
+    const speakText = (text: string) => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = "en-US";
+        utterance.rate = 1;
+        window.speechSynthesis.speak(utterance);
+      }
+    };
     if (currentQuestion < questions.length) {
       speakText(questions[currentQuestion].text);
     }
@@ -60,7 +60,7 @@ const IntroductionsQuiz = () => {
         window.speechSynthesis.cancel();
       }
     };
-  }, [currentQuestion]);
+  }, [currentQuestion, questions]);
 
   const handleAnswer = (answer: string) => {
     if (isAnswered) return; // Prevent multiple answers
@@ -92,19 +92,19 @@ const IntroductionsQuiz = () => {
 
   return (
     <div className="p-4 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Introductions Listening Quiz</h1>
+      <h1 className="text-2xl font-bold mb-4">{fr.introductions_listening_quiz_title}</h1>
       {currentQuestion < questions.length ? (
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <div className="flex justify-between items-center mb-4">
             <p className="text-lg font-medium">
-              Question {currentQuestion + 1} of {questions.length}
+              {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
             </p>
             <button
               onClick={() => speakText(questions[currentQuestion].text)}
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
               aria-label="Replay introduction"
             >
-              🔊 Replay
+              🔊 {fr.replay_introduction}
             </button>
           </div>
 
@@ -141,7 +141,7 @@ const IntroductionsQuiz = () => {
       ) : (
         <div className="bg-white p-6 rounded-xl shadow-lg">
           <h2 className="text-2xl font-bold mb-4">
-            Quiz Completed! Score: {score}/{questions.length}
+            {fr.quiz_completed} {fr.score_text_short.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}
           </h2>
           
           <div className="space-y-4">
@@ -156,14 +156,14 @@ const IntroductionsQuiz = () => {
               >
                 <p className="font-semibold text-lg">{question.question}</p>
                 <p className="mt-2">
-                  Your answer: {userAnswers[index]} 
+                  {fr.your_answer} {userAnswers[index]} 
                   {userAnswers[index] === question.correctAnswer ? (
                     <span className="text-green-600 ml-2">✓</span>
                   ) : (
                     <span className="text-red-600 ml-2">✗</span>
                   )}
                 </p>
-                <p>Correct answer: {question.correctAnswer}</p>
+                <p>{fr.correct_answer} {question.correctAnswer}</p>
               </div>
             ))}
           </div>
@@ -172,7 +172,7 @@ const IntroductionsQuiz = () => {
             onClick={resetQuiz}
             className="mt-6 w-full p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
           >
-            Retry Quiz
+            {fr.retry_quiz}
           </button>
         </div>
       )}

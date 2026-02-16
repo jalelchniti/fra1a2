@@ -1,18 +1,19 @@
 // Unit 2 Lesson 1 - Shopping Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { sideA: "Shirt", sideB: "A piece of clothing worn on the upper body" },
-  { sideA: "Pants", sideB: "A piece of clothing that covers your legs" },
-  { sideA: "Shoes", sideB: "What you wear on your feet" },
-  { sideA: "Hat", sideB: "Something you wear on your head" },
-  { sideA: "Bag", sideB: "A container to carry things" },
-  { sideA: "Shopping cart", sideB: "A wheeled basket for carrying items in a store" },
-  { sideA: "Store", sideB: "A place where you buy things" },
-  { sideA: "Price", sideB: "How much money something costs" },
-  { sideA: "Expensive", sideB: "Costs a lot of money" },
-  { sideA: "Cheap", sideB: "Costs very little money" },
+  { sideA: fr.shirt_sideA, sideB: fr.shirt_sideB },
+  { sideA: fr.pants_sideA, sideB: fr.pants_sideB },
+  { sideA: fr.shoes_sideA, sideB: fr.shoes_sideB },
+  { sideA: fr.hat_sideA, sideB: fr.hat_sideB },
+  { sideA: fr.bag_sideA, sideB: fr.bag_sideB },
+  { sideA: fr.shopping_cart_sideA, sideB: fr.shopping_cart_sideB },
+  { sideA: fr.store_sideA, sideB: fr.store_sideB },
+  { sideA: fr.price_sideA, sideB: fr.price_sideB },
+  { sideA: fr.expensive_sideA, sideB: fr.expensive_sideB },
+  { sideA: fr.cheap_sideA, sideB: fr.cheap_sideB },
 ];
 
 const ShoppingVocabularyQuiz: React.FC = () => {
@@ -86,8 +87,8 @@ const ShoppingVocabularyQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Shopping Vocabulary</h1>
-          <p className="text-gray-600">Unit 2 - Lesson 1</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.shopping_vocabulary_quiz_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_lesson_1}</p>
         </div>
 
         <div className="flex items-center justify-center mb-8">
@@ -114,19 +115,19 @@ const ShoppingVocabularyQuiz: React.FC = () => {
             onClick={handlePrev}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            ← Previous
+            ← {fr.previous}
           </button>
           <button
             onClick={() => speak(isFlipped ? flashcards[currentCard].sideB : flashcards[currentCard].sideA)}
             className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
           >
-            🔊 Speak
+            {fr.speak}
           </button>
           <button
             onClick={handleNext}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
 
@@ -139,12 +140,12 @@ const ShoppingVocabularyQuiz: React.FC = () => {
             className="w-5 h-5 cursor-pointer"
           />
           <label htmlFor="tts-toggle" className="text-gray-700 cursor-pointer">
-            Enable Text-to-Speech
+            {fr.enable_text_to_speech}
           </label>
         </div>
 
         <div className="text-center mt-8 text-gray-500">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </div>
       </div>
     </motion.div>

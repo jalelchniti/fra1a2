@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, FC } from 'react';
-import { Volume2, VolumeX, CheckCircle, XCircle, Trophy, RotateCcw, Headphones, Play, Pause, Eye, EyeOff, Download } from 'lucide-react';
+import { Volume2, CheckCircle, XCircle, Trophy, RotateCcw, Headphones, Play, Pause, Eye, EyeOff, Download } from 'lucide-react';
 import { generateTestPDF } from '@/lib/pdfGenerator';
 
 interface TestQuestion {

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { word: 'table', image: '/slim/assets/images/table.png' },
-  { word: 'chair', image: '/slim/assets/images/chair.png' },
-  { word: 'door', image: '/slim/assets/images/door.png' },
-  { word: 'window', image: '/slim/assets/images/window.png' },
-  { word: 'bed', image: '/slim/assets/images/bed.png' },
-  { word: 'desk', image: '/slim/assets/images/desk.png' },
-  { word: 'lamp', image: '/slim/assets/images/lamp.png' },
-  { word: 'book', image: '/slim/assets/images/book.png' },
+  { word: fr.table, image: '/slim/assets/images/table.png' },
+  { word: fr.chair, image: '/slim/assets/images/chair.png' },
+  { word: fr.door, image: '/slim/assets/images/door.png' },
+  { word: fr.window, image: '/slim/assets/images/window.png' },
+  { word: fr.bed, image: '/slim/assets/images/bed.png' },
+  { word: fr.desk, image: '/slim/assets/images/desk.png' },
+  { word: fr.lamp, image: '/slim/assets/images/lamp.png' },
+  { word: fr.book, image: '/slim/assets/images/book.png' },
 ];
 
 const FlashcardQuiz: React.FC = () => {
@@ -27,26 +28,26 @@ const FlashcardQuiz: React.FC = () => {
     setCurrentCard((prev) => (prev - 1 + flashcards.length) % flashcards.length);
   };
 
-  const speakWord = () => {
+  const speakWord = React.useCallback(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(flashcards[currentCard].word);
       utterance.lang = 'en-US';
       window.speechSynthesis.speak(utterance);
     } else {
-      console.warn('TTS not supported in this browser.');
+      console.warn(fr.tts_not_supported);
     }
-  };
+  }, [currentCard]);
 
   // Auto-play TTS when Side B appears
   useEffect(() => {
     if (isFlipped) {
       speakWord();
     }
-  }, [isFlipped, currentCard]);
+  }, [isFlipped, currentCard, speakWord]);
 
   return (
     <div className="w-full h-[67vh] p-4 flex flex-col">
-      <h1 className="text-2xl font-bold mb-4 text-center">Everyday Objects Flashcards</h1>
+      <h1 className="text-2xl font-bold mb-4 text-center">{fr.everyday_objects_flashcards_title}</h1>
       <motion.div
         className="relative w-full flex-1 bg-white rounded-lg shadow-md cursor-pointer overflow-hidden"
         onClick={handleFlip}
@@ -85,7 +86,7 @@ const FlashcardQuiz: React.FC = () => {
           onClick={handlePrev}
           className="px-4 py-2 bg-gray-200 rounded-lg shadow hover:bg-gray-300"
         >
-          Previous
+          {fr.previous}
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.02 }}
@@ -94,7 +95,7 @@ const FlashcardQuiz: React.FC = () => {
           className="px-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600"
           aria-label={`Replay pronunciation of ${flashcards[currentCard].word}`}
         >
-          Replay Sound
+          {fr.replay_sound}
         </motion.button>
         <motion.button
           whileHover={{ scale: 1.02 }}
@@ -102,11 +103,11 @@ const FlashcardQuiz: React.FC = () => {
           onClick={handleNext}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600"
         >
-          Next
+          {fr.next}
         </motion.button>
       </div>
       <p className="text-center mt-4 text-gray-600">
-        Card {currentCard + 1} of {flashcards.length}
+        {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
       </p>
     </div>
   );

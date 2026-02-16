@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { id: 1, image: 'table.png', word: 'Table' },
-  { id: 2, image: 'chair.png', word: 'Chair' },
-  { id: 3, image: 'desk.png', word: 'Desk' },
-  { id: 4, image: 'door.png', word: 'Door' },
-  { id: 5, image: 'window.png', word: 'Window' },
-  { id: 6, image: 'bed.png', word: 'Bed' },
-  { id: 7, image: 'lamp.png', word: 'Lamp' },
-  { id: 8, image: 'book.png', word: 'Book' },
+  { id: 1, image: 'table.png', word: fr.table_word },
+  { id: 2, image: 'chair.png', word: fr.chair_word },
+  { id: 3, image: 'desk.png', word: fr.desk_word },
+  { id: 4, image: 'door.png', word: fr.door_word },
+  { id: 5, image: 'window.png', word: fr.window_word },
+  { id: 6, image: 'bed.png', word: fr.bed_word },
+  { id: 7, image: 'lamp.png', word: fr.lamp_word },
+  { id: 8, image: 'book.png', word: fr.book_word },
 ];
 
 const FlashcardQuiz = () => {
@@ -50,7 +51,7 @@ const FlashcardQuiz = () => {
 
   return (
     <div className="w-full h-[67vh] flex flex-col items-center p-4 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl">
-      <h2 className="text-3xl font-bold text-indigo-700 mb-6">Classroom Objects Flashcards</h2>
+      <h2 className="text-3xl font-bold text-indigo-700 mb-6">{fr.classroom_objects_flashcards_title}</h2>
       <div className="flex-1 w-full max-w-xl bg-white p-6 rounded-xl shadow-lg flex items-center justify-center">
         <motion.div
           className="w-full h-full relative"
@@ -79,26 +80,26 @@ const FlashcardQuiz = () => {
           disabled={currentIndex === 0}
           className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-all duration-300"
         >
-          Previous
+          {fr.previous}
         </button>
         <button
           onClick={handleFlip}
           className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-all duration-300"
         >
-          {isFlipped ? 'Show Image' : 'Show Word'}
+          {isFlipped ? fr.show_image : fr.show_word}
         </button>
         <button
           onClick={handleReplay}
           className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-all duration-300"
         >
-          Replay Sound
+          {fr.replay_sound}
         </button>
         <button
           onClick={handleNext}
           disabled={currentIndex === flashcards.length - 1}
           className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-all duration-300"
         >
-          Next
+          {fr.next}
         </button>
       </div>
     </div>

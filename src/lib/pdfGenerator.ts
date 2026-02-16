@@ -1,5 +1,4 @@
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 
 interface EvaluationResults {
   scores: {
@@ -290,7 +289,6 @@ export const generateTestPDF = (data: TestResults) => {
 
       const questionNumber = index + 1;
       const status = q.isCorrect ? '✓ CORRECT' : '✗ INCORRECT';
-      const statusColor = q.isCorrect ? [50, 180, 50] : [220, 50, 50];
 
       // Question number and status
       doc.setTextColor(30, 58, 138);
@@ -366,7 +364,7 @@ export const generateQuizReportPDF = (
   title: string,
   score: number,
   totalQuestions: number,
-  details: Record<string, any>
+  details: Record<string, unknown>
 ) => {
   const doc = new jsPDF({
     orientation: 'portrait',

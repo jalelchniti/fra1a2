@@ -664,7 +664,6 @@ export const fr = {
   click_card_to_flip_hear_question_answer: "Cliquez sur la carte pour la retourner. Entendez la question au recto et la réponse au verso.",
   turn_off_sound: "Désactiver le son",
   turn_on_sound: "Activer le son",
-  repeat_sound: "Répéter le son",
   imperatives_for_directions_title: "Impératifs pour les directions",
   unit_2_grammar_lesson_1: "Unité 2 - Leçon de grammaire 1",
   q1_imperative: "Quelle phrase donne correctement une direction à la forme impérative ?",

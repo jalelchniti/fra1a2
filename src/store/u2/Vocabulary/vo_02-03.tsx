@@ -1,18 +1,19 @@
 // Unit 2 Lesson 3 - Currency & Payment Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { sideA: "Dollar", sideB: "A unit of money used in many countries" },
-  { sideA: "Cent", sideB: "A small unit of money, 100 cents = 1 dollar" },
-  { sideA: "Money", sideB: "Paper or coins used to buy things" },
-  { sideA: "Cash", sideB: "Paper money or coins (not credit card)" },
-  { sideA: "Credit card", sideB: "A card used to pay for things and pay the bank later" },
-  { sideA: "Change", sideB: "Money returned to you after payment" },
-  { sideA: "Receipt", sideB: "A paper showing what you bought and how much you paid" },
-  { sideA: "Return", sideB: "To bring something back to the store" },
-  { sideA: "Refund", sideB: "Money given back to you by the store" },
-  { sideA: "Payment", sideB: "The money you give for something" },
+  { sideA: fr.dollar_sideA, sideB: fr.dollar_sideB },
+  { sideA: fr.cent_sideA, sideB: fr.cent_sideB },
+  { sideA: fr.money_sideA, sideB: fr.money_sideB },
+  { sideA: fr.cash_sideA, sideB: fr.cash_sideB },
+  { sideA: fr.credit_card_sideA, sideB: fr.credit_card_sideB },
+  { sideA: fr.change_sideA, sideB: fr.change_sideB },
+  { sideA: fr.receipt_sideA, sideB: fr.receipt_sideB },
+  { sideA: fr.return_sideA, sideB: fr.return_sideB },
+  { sideA: fr.refund_sideA, sideB: fr.refund_sideB },
+  { sideA: fr.payment_sideA, sideB: fr.payment_sideB },
 ];
 
 const CurrencyVocabularyQuiz: React.FC = () => {
@@ -86,8 +87,8 @@ const CurrencyVocabularyQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Currency & Payment</h1>
-          <p className="text-gray-600">Unit 2 - Lesson 3</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.currency_payment_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_lesson_3}</p>
         </div>
 
         <div className="flex items-center justify-center mb-8">
@@ -114,19 +115,19 @@ const CurrencyVocabularyQuiz: React.FC = () => {
             onClick={handlePrev}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            ← Previous
+            ← {fr.previous}
           </button>
           <button
             onClick={() => speak(isFlipped ? flashcards[currentCard].sideB : flashcards[currentCard].sideA)}
             className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
           >
-            🔊 Speak
+            {fr.speak}
           </button>
           <button
             onClick={handleNext}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
 
@@ -139,12 +140,12 @@ const CurrencyVocabularyQuiz: React.FC = () => {
             className="w-5 h-5 cursor-pointer"
           />
           <label htmlFor="tts-toggle" className="text-gray-700 cursor-pointer">
-            Enable Text-to-Speech
+            {fr.enable_text_to_speech}
           </label>
         </div>
 
         <div className="text-center mt-8 text-gray-500">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </div>
       </div>
     </motion.div>

@@ -2,11 +2,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-interface Question {
-  question: string;
-  options: string[];
-  correctAnswer: string;
-}
+
 
 const quizData = {
   text: "My name is Anna. I live in a small house. It has two bedrooms and a kitchen. Every day, I walk to the park. The park is big and green. I like to read books there. Sometimes, my friend Tom comes with me. We talk about our day.",

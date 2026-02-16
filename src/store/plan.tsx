@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { Calculator, DollarSign, Users, Calendar, TrendingUp, Building, BookOpen, Clock, Settings } from 'lucide-react';
+import { Calculator, DollarSign, Calendar, TrendingUp, Building, BookOpen, Clock, Settings } from 'lucide-react';
 
 // Define interfaces for the state and props
 interface Room {

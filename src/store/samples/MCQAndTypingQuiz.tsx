@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
@@ -71,28 +71,13 @@ const KnowledgeQuiz: React.FC = () => {
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
   const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
   
-  // Initialize and shuffle quiz data
-  useEffect(() => {
-    resetQuiz();
-  }, []);
-  
-  // Shuffle options for current multiple choice question
-  useEffect(() => {
-    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
-      const current = shuffledQuizData[currentQuestion];
-      if (current.type === 'mc' && current.options) {
-        setShuffledOptions([...current.options].sort(() => Math.random() - 0.5));
-      }
-    }
-  }, [currentQuestion, shuffledQuizData]);
-  
   // Function to shuffle the quiz data
-  const shuffleQuizData = () => {
+  const shuffleQuizData = React.useCallback(() => {
     return [...quizData].sort(() => Math.random() - 0.5);
-  };
-  
+  }, []);
+
   // Reset quiz state
-  const resetQuiz = () => {
+  const resetQuiz = React.useCallback(() => {
     const shuffled = shuffleQuizData();
     setShuffledQuizData(shuffled);
     setCurrentQuestion(0);
@@ -102,7 +87,23 @@ const KnowledgeQuiz: React.FC = () => {
     setScore(0);
     setUserAnswers([]);
     setQuizCompleted(false);
-  };
+  }, [shuffleQuizData]);
+
+  // Initialize and shuffle quiz data
+  React.useEffect(() => {
+    resetQuiz();
+  }, [resetQuiz]);
+  
+  // Shuffle options for current multiple choice question
+  React.useEffect(() => {
+    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
+      const current = shuffledQuizData[currentQuestion];
+      if (current.type === 'mc' && current.options) {
+        setShuffledOptions([...current.options].sort(() => Math.random() - 0.5));
+      }
+    }
+  }, [currentQuestion, shuffledQuizData]);
+  
   
   // Handle multiple choice selection
   const handleOptionSelect = (option: string) => {

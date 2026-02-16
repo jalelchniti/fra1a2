@@ -1,18 +1,19 @@
 // Unit 2 Lesson 2 - Directions & Landmarks Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { sideA: "Left", sideB: "The opposite direction of right" },
-  { sideA: "Right", sideB: "The opposite direction of left" },
-  { sideA: "Straight", sideB: "Forward in a direct line, not turning" },
-  { sideA: "Corner", sideB: "Where two streets meet" },
-  { sideA: "Street", sideB: "A public road in a town or city" },
-  { sideA: "Avenue", sideB: "A wide street in a town or city" },
-  { sideA: "Building", sideB: "A large structure with walls and a roof" },
-  { sideA: "Landmark", sideB: "A well-known place or object that helps you find your way" },
-  { sideA: "Hospital", sideB: "A place where doctors help sick people" },
-  { sideA: "Police station", sideB: "A place where police officers work" },
+  { sideA: fr.left_sideA, sideB: fr.left_sideB },
+  { sideA: fr.right_sideA, sideB: fr.right_sideB },
+  { sideA: fr.straight_sideA, sideB: fr.straight_sideB },
+  { sideA: fr.corner_sideA, sideB: fr.corner_sideB },
+  { sideA: fr.street_sideA, sideB: fr.street_sideB },
+  { sideA: fr.avenue_sideA, sideB: fr.avenue_sideB },
+  { sideA: fr.building_sideA, sideB: fr.building_sideB },
+  { sideA: fr.landmark_sideA, sideB: fr.landmark_sideB },
+  { sideA: fr.hospital_sideA, sideB: fr.hospital_sideB },
+  { sideA: fr.police_station_sideA, sideB: fr.police_station_sideB },
 ];
 
 const DirectionsVocabularyQuiz: React.FC = () => {
@@ -86,8 +87,8 @@ const DirectionsVocabularyQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Directions & Landmarks</h1>
-          <p className="text-gray-600">Unit 2 - Lesson 2</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.directions_landmarks_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_lesson_2}</p>
         </div>
 
         <div className="flex items-center justify-center mb-8">
@@ -114,19 +115,19 @@ const DirectionsVocabularyQuiz: React.FC = () => {
             onClick={handlePrev}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            ← Previous
+            ← {fr.previous}
           </button>
           <button
             onClick={() => speak(isFlipped ? flashcards[currentCard].sideB : flashcards[currentCard].sideA)}
             className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition"
           >
-            🔊 Speak
+            {fr.speak}
           </button>
           <button
             onClick={handleNext}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
 
@@ -139,12 +140,12 @@ const DirectionsVocabularyQuiz: React.FC = () => {
             className="w-5 h-5 cursor-pointer"
           />
           <label htmlFor="tts-toggle" className="text-gray-700 cursor-pointer">
-            Enable Text-to-Speech
+            {fr.enable_text_to_speech}
           </label>
         </div>
 
         <div className="text-center mt-8 text-gray-500">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </div>
       </div>
     </motion.div>

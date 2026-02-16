@@ -2,6 +2,7 @@ import { useState, useRef } from 'react';
 import { Volume2, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { fr } from '../../../../locales/fr';
 
 interface FlashCard {
   sideA: string;
@@ -17,14 +18,14 @@ const Vo_03_02 = () => {
   const isSpeakingRef = useRef(false);
 
   const cards: FlashCard[] = [
-    { sideA: 'Drive', sideB: 'To control a vehicle on the road. You hold the steering wheel.' },
-    { sideA: 'Take', sideB: 'To travel using a vehicle. Example: "Take the bus to school".' },
-    { sideA: 'Travel', sideB: 'To go from one place to another. You can travel by car, train, or plane.' },
-    { sideA: 'Wait', sideB: 'To stay in one place until someone or something arrives.' },
-    { sideA: 'Ride', sideB: 'To sit on something that moves. You can ride a bicycle or motorcycle.' },
-    { sideA: 'Board', sideB: 'To get on a vehicle like a train, plane, or ship.' },
-    { sideA: 'Arrive', sideB: 'To reach a place after traveling.' },
-    { sideA: 'Leave', sideB: 'To go away from a place.' },
+    { sideA: fr.drive_sideA, sideB: fr.drive_sideB },
+    { sideA: fr.take_sideA, sideB: fr.take_sideB },
+    { sideA: fr.travel_sideA, sideB: fr.travel_sideB },
+    { sideA: fr.wait_sideA, sideB: fr.wait_sideB },
+    { sideA: fr.ride_sideA, sideB: fr.ride_sideB },
+    { sideA: fr.board_sideA, sideB: fr.board_sideB },
+    { sideA: fr.arrive_sideA, sideB: fr.arrive_sideB },
+    { sideA: fr.leave_sideA, sideB: fr.leave_sideB },
   ];
 
   // Load voices
@@ -85,10 +86,10 @@ const Vo_03_02 = () => {
             className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-white/80 rounded-lg transition"
           >
             <ChevronLeft size={20} />
-            Back
+            {fr.back_button}
           </button>
           <h1 className="text-2xl font-bold text-gray-800 text-center">
-            Transport Action Verbs
+            {fr.transport_action_verbs_title}
           </h1>
           <div className="w-[100px]"></div>
         </div>
@@ -123,7 +124,7 @@ const Vo_03_02 = () => {
                     >
                       {!isFlipped ? (
                         <div>
-                          <p className="text-sm text-gray-500 mb-4">Click to reveal</p>
+                          <p className="text-sm text-gray-500 mb-4">{fr.click_to_reveal}</p>
                           <p className="text-5xl font-bold text-blue-600">{currentCard.sideA}</p>
                         </div>
                       ) : (
@@ -139,7 +140,7 @@ const Vo_03_02 = () => {
                             className="mt-4 flex items-center gap-2 mx-auto px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition"
                           >
                             <Volume2 size={18} />
-                            Listen
+                            {fr.listen}
                           </button>
                         </div>
                       )}
@@ -154,7 +155,7 @@ const Vo_03_02 = () => {
         {/* Card Counter */}
         <div className="text-center mb-8">
           <p className="text-gray-700 font-semibold">
-            Card {currentCardIndex + 1} of {cards.length}
+            {fr.card} {currentCardIndex + 1} {fr.of} {cards.length}
           </p>
         </div>
 
@@ -166,21 +167,21 @@ const Vo_03_02 = () => {
             className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-lg shadow hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
             <ChevronLeft size={20} />
-            Previous
+            {fr.previous}
           </button>
           <button
             onClick={handleReset}
             className="flex items-center gap-2 px-6 py-3 bg-white text-gray-700 rounded-lg shadow hover:shadow-lg transition"
           >
             <RotateCcw size={20} />
-            Reset
+            {fr.reset}
           </button>
           <button
             onClick={handleNext}
             disabled={currentCardIndex === cards.length - 1}
             className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed transition"
           >
-            Next
+            {fr.next}
             <ChevronRight size={20} />
           </button>
         </div>
@@ -195,7 +196,7 @@ const Vo_03_02 = () => {
                 : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
             }`}
           >
-            {isTtsEnabled ? '🔊 Sound On' : '🔇 Sound Off'}
+            {isTtsEnabled ? fr.sound_on : fr.sound_off}
           </button>
         </div>
       </div>

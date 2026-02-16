@@ -186,21 +186,59 @@ const A1PlacementEvaluationPage = () => {
           {level === 'A1-2' && fr.continue_with_units_3_5_strengthen_beginner}
           {level === 'A1-3' && fr.advance_with_units_6_8_improve_upper_beginner}
         </p>
-        {level === 'A1-1' ? (
-          <Link
-            to="/curriculum"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        <div className="flex justify-center space-x-4">
+          {level === 'A1-1' ? (
+            <Link
+              to="/curriculum"
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              {fr.start_a1_1_lessons}
+            </Link>
+          ) : (
+            <Link
+              to={confirmPath}
+              className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              {fr.confirm_your_level}
+            </Link>
+          )}
+          <button
+            onClick={() => {
+              const evaluationData = {
+                scores,
+                recommendations: level,
+                totalScore,
+                totalQuestions: 22,
+                sectionDetails: {
+                  grammar: {
+                    score: scores['A1-grammar'] || 0,
+                    total: sectionLengths.grammar,
+                    feedback: feedback.grammar,
+                  },
+                  vocabulary: {
+                    score: scores['A1-vocabulary'] || 0,
+                    total: sectionLengths.vocabulary,
+                    feedback: feedback.vocabulary,
+                  },
+                  listening: {
+                    score: scores['A1-listening'] || 0,
+                    total: sectionLengths.listening,
+                    feedback: feedback.listening,
+                  },
+                  reading: {
+                    score: scores['A1-reading'] || 0,
+                    total: sectionLengths.reading,
+                    feedback: feedback.reading,
+                  },
+                },
+              };
+              generateEvaluationPDF(evaluationData);
+            }}
+            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
           >
-            {fr.start_a1_1_lessons}
-          </Link>
-        ) : (
-          <Link
-            to={confirmPath}
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            {fr.confirm_your_level}
-          </Link>
-        )}
+            Download PDF
+          </button>
+        </div>
       </div>
     );
   };

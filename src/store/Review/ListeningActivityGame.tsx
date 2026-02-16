@@ -1,22 +1,9 @@
 import React, { useState, useEffect, FC } from 'react';
-import { Volume2, VolumeX, CheckCircle, XCircle, Trophy, RotateCcw, Headphones, Play, Pause } from 'lucide-react';
+import { Volume2, CheckCircle, XCircle, Trophy, RotateCcw, Headphones, Play, Pause } from 'lucide-react';
 
-interface Question {
-  id: string;
-  question: string;
-  options: string[];
-  correct: number;
-  type: string;
-}
 
-interface Activity {
-  level: number;
-  title: string;
-  difficulty: string;
-  text: string;
-  questions: Question[];
-  color: string;
-}
+
+
 
 const ListeningActivityGame: FC = () => {
   const [currentLevel, setCurrentLevel] = useState<number>(0);

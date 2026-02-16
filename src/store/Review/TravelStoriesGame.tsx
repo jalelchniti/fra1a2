@@ -1,14 +1,7 @@
 import React, { useState, FC } from 'react';
 import { Plane, MapPin, Camera, Award, RotateCcw } from 'lucide-react';
 
-interface TravelPrompt {
-  id: number;
-  icon: React.ReactNode;
-  title: string;
-  question: string;
-  keywords: string[];
-  color: string;
-}
+
 
 const TravelStoriesGame: FC = () => {
   const [currentCard, setCurrentCard] = useState<number>(0);

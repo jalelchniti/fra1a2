@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Volume2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 
 interface Flashcard {
   id: number | string;
@@ -30,7 +28,6 @@ const VocabularyFlashcards: React.FC = () => {
   const [currentCard, setCurrentCard] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const isSpeakingRef = useRef<boolean>(false);
-  const navigate = useNavigate();
 
   const speakText = (text: string) => {
     if (isSpeakingRef.current) {

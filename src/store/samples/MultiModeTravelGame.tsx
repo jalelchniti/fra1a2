@@ -1,4 +1,4 @@
-import React, { useState, useEffect, FC, JSX } from 'react';
+import React, { useState, FC, JSX } from 'react';
 import { 
   Plane, 
   Map, 
@@ -12,11 +12,8 @@ import {
   Tag,        // For Ticket
   FileText,   // For Passport
   ArrowLeft, 
-  ArrowRight, 
   RefreshCw, 
   Award, 
-  Check, 
-  X, 
   HelpCircle 
 } from 'lucide-react';
 
@@ -68,7 +65,6 @@ const TravelGame: FC = () => {
   const [options, setOptions] = useState<TravelItem[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
-  const [timer, setTimer] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
   const [memoryCards, setMemoryCards] = useState<TravelItem[]>([]);
@@ -102,7 +98,7 @@ const TravelGame: FC = () => {
     const randomItemIndex = Math.floor(Math.random() * travelItems.length);
     const correctItem = travelItems[randomItemIndex];
     
-    let incorrectOptions: TravelItem[] = [];
+    const incorrectOptions: TravelItem[] = [];
     const usedIndices = new Set([randomItemIndex]);
     
     while (incorrectOptions.length < 3) {
@@ -149,7 +145,7 @@ const TravelGame: FC = () => {
     const randomItemIndex = Math.floor(Math.random() * travelItems.length);
     const correctItem = travelItems[randomItemIndex];
     
-    let incorrectOptions: Partial<TravelItem>[] = [];
+    const incorrectOptions: Partial<TravelItem>[] = [];
     const usedIndices = new Set([randomItemIndex]);
     
     while (incorrectOptions.length < 3) {
@@ -163,7 +159,7 @@ const TravelGame: FC = () => {
       }
     }
     
-    const allOptions: any = [
+    const allOptions: Array<{ id: string; description: string; }> = [
       { id: correctItem.id, description: correctItem.description },
       ...incorrectOptions
     ];

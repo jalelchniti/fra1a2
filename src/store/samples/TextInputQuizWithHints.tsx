@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -48,7 +47,6 @@ const quizData: QuizItem[] = flashcards.map((card) => ({
 }));
 
 const InteractiveTypeAnswerQuiz: React.FC = () => {
-  const navigate = useNavigate();
 
   // State management
   const [shuffledQuizData, setShuffledQuizData] = useState<QuizItem[]>([]);
@@ -65,33 +63,11 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
   const [showHint, setShowHint] = useState<boolean>(false);
   const [hintText, setHintText] = useState<string>('');
 
-  // Initialize and shuffle quiz data
-  useEffect(() => {
-    resetQuiz();
+  const shuffleQuizData = React.useCallback(() => {
+    return [...quizData].sort(() => Math.random() - 0.5);
   }, []);
 
-  // Play the TTS for the current sentence when the question changes
-  useEffect(() => {
-    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
-      speakSentence(shuffledQuizData[currentQuestion].sentence);
-    }
-  }, [currentQuestion, shuffledQuizData]);
-
-  // Shuffle options for current multiple choice question
-  useEffect(() => {
-    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
-      const current = shuffledQuizData[currentQuestion];
-      if (current.type === 'mc' && current.options) {
-        setShuffledOptions([...current.options].sort(() => Math.random() - 0.5));
-      }
-    }
-  }, [currentQuestion, shuffledQuizData]);
-
-  const shuffleQuizData = () => {
-    return [...quizData].sort(() => Math.random() - 0.5);
-  };
-
-  const resetQuiz = () => {
+  const resetQuiz = React.useCallback(() => {
     const shuffled = shuffleQuizData();
     setShuffledQuizData(shuffled);
     setCurrentQuestion(0);
@@ -104,7 +80,29 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
     setHintLevel(0);
     setShowHint(false);
     setHintText('');
-  };
+  }, [shuffleQuizData]);
+
+  // Initialize and shuffle quiz data
+  React.useEffect(() => {
+    resetQuiz();
+  }, [resetQuiz]);
+
+  // Play the TTS for the current sentence when the question changes
+  React.useEffect(() => {
+    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
+      speakSentence(shuffledQuizData[currentQuestion].sentence);
+    }
+  }, [currentQuestion, shuffledQuizData]);
+
+  // Shuffle options for current multiple choice question
+  React.useEffect(() => {
+    if (shuffledQuizData.length > 0 && currentQuestion < shuffledQuizData.length) {
+      const current = shuffledQuizData[currentQuestion];
+      if (current.type === 'mc' && current.options) {
+        setShuffledOptions([...current.options].sort(() => Math.random() - 0.5));
+      }
+    }
+  }, [currentQuestion, shuffledQuizData]);
 
   const speakSentence = (text: string) => {
     if ('speechSynthesis' in window) {
@@ -255,9 +253,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
     }
   };
 
-  const goToFlashcards = () => {
-    navigate('/flashcards');
-  };
+
 
   const progressPercentage = ((currentQuestion + 1) / shuffledQuizData.length) * 100;
   const currentItem = shuffledQuizData[currentQuestion];

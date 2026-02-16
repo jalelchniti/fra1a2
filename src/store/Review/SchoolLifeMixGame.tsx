@@ -1,16 +1,7 @@
 import React, { useState, FC } from 'react';
 import { BookOpen, Clock, Calendar, History, RotateCcw, Trophy, Zap, Target } from 'lucide-react';
 
-interface MixedPrompt {
-  id: number;
-  icon: React.ReactNode;
-  title: string;
-  question: string;
-  tenses: string[];
-  keywords: string[];
-  color: string;
-  emoji: string;
-}
+
 
 const SchoolLifeMixGame: FC = () => {
   const [currentCard, setCurrentCard] = useState<number>(0);

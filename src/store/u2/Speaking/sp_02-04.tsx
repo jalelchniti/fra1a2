@@ -38,7 +38,6 @@ const scenarios: Scenario[] = [
 
 const SpeakingRolePlayQuiz: React.FC = () => {
   const [currentScenario, setCurrentScenario] = useState(0);
-  const [isExpanded, setIsExpanded] = useState(false);
   const [completedScenarios, setCompletedScenarios] = useState<number[]>([]);
 
   const handleComplete = () => {
@@ -47,21 +46,18 @@ const SpeakingRolePlayQuiz: React.FC = () => {
     }
     if (currentScenario < scenarios.length - 1) {
       setCurrentScenario(currentScenario + 1);
-      setIsExpanded(false);
     }
   };
 
   const handleNext = () => {
     if (currentScenario < scenarios.length - 1) {
       setCurrentScenario(currentScenario + 1);
-      setIsExpanded(false);
     }
   };
 
   const handlePrev = () => {
     if (currentScenario > 0) {
       setCurrentScenario(currentScenario - 1);
-      setIsExpanded(false);
     }
   };
 

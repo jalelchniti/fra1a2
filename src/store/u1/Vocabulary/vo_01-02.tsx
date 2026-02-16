@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
+import { fr } from '../../../../locales/fr';
 
 const IntroductionsQuiz: React.FC = () => {
   const [answers, setAnswers] = useState<string[]>(['', '', '', '']);
@@ -9,10 +10,10 @@ const IntroductionsQuiz: React.FC = () => {
   const [showCorrect, setShowCorrect] = useState<boolean>(false);
 
   const dialogue = [
-    { speaker: 'Tom', text: '___! I’m Tom.', correct: 'hello' },
-    { speaker: 'Jack', text: 'Hi! My ___ is Jack.', correct: 'name' },
-    { speaker: 'Tom', text: '___ to meet you, Jack.', correct: 'nice' },
-    { speaker: 'Jack', text: 'Nice to meet you too! See you later, ___!', correct: 'bye' },
+    { speaker: 'Tom', text: fr.hello_im_tom, correct: 'hello' },
+    { speaker: 'Jack', text: fr.my_name_is_jack, correct: 'name' },
+    { speaker: 'Tom', text: fr.nice_to_meet_you_jack, correct: 'nice' },
+    { speaker: 'Jack', text: fr.see_you_later_bye, correct: 'bye' },
   ];
 
   const handleChange = (index: number, value: string) => {
@@ -25,7 +26,7 @@ const IntroductionsQuiz: React.FC = () => {
 
   const checkAnswers = () => {
     const allCorrect = answers.every((answer, i) => answer === dialogue[i].correct);
-    setFeedback(allCorrect ? 'Well done, mates! Perfect score!' : 'Not quite right. Check your answers!');
+    setFeedback(allCorrect ? fr.well_done_mates_perfect_score : fr.not_quite_right_check_your_answers);
     setShowCorrect(true);
   };
 
@@ -44,7 +45,7 @@ const IntroductionsQuiz: React.FC = () => {
         transition={{ duration: 0.5 }}
       >
         <h2 className="text-3xl font-bold mb-8 text-center text-indigo-800 drop-shadow-sm">
-          Tom & Jack: Introductions Quiz
+          {fr.tom_jack_introductions_quiz}
         </h2>
         
         <div className="space-y-6">
@@ -77,7 +78,7 @@ const IntroductionsQuiz: React.FC = () => {
                 <p className="text-gray-800">{line.text.split('___')[1]}</p>
                 {showCorrect && answers[index] && answers[index] !== dialogue[index].correct && (
                   <span className="text-sm text-green-600 ml-2 italic">
-                    Correct: {dialogue[index].correct}
+                    {fr.correct} {dialogue[index].correct}
                   </span>
                 )}
               </div>
@@ -92,7 +93,7 @@ const IntroductionsQuiz: React.FC = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Check Answers
+            {fr.check_answers}
           </motion.button>
           <motion.button
             onClick={resetQuiz}
@@ -100,7 +101,7 @@ const IntroductionsQuiz: React.FC = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Reset Quiz
+            {fr.reset_quiz}
           </motion.button>
         </div>
 

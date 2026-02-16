@@ -1,6 +1,7 @@
 // Unit 2 Lesson 2 - Grammar: Asking Questions
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 interface Question {
   question: string;
@@ -11,34 +12,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "Which question is grammatically correct?",
-    options: ["Where is the hospital?", "Where the hospital is?", "The hospital is where?", "Where it is the hospital?"],
+    question: fr.q1_asking_questions,
+    options: [fr.q1_asking_questions_option1, fr.q1_asking_questions_option2, fr.q1_asking_questions_option3, fr.q1_asking_questions_option4],
     correctAnswer: 0,
-    explanation: "In questions, we use the word order: 'Where + is + the hospital?' This is the correct question formation."
+    explanation: fr.q1_asking_questions_explanation
   },
   {
-    question: "Choose the correct question form for directions:",
-    options: ["How do I get to...?", "How I get to...?", "How to get to...?", "Do how I get to...?"],
+    question: fr.q2_asking_questions,
+    options: [fr.q2_asking_questions_option1, fr.q2_asking_questions_option2, fr.q2_asking_questions_option3, fr.q2_asking_questions_option4],
     correctAnswer: 0,
-    explanation: "The correct question form is 'How + do + I + get + to...?' with the auxiliary verb 'do'."
+    explanation: fr.q2_asking_questions_explanation
   },
   {
-    question: "Fill in the blank: '_____ the nearest bank?'",
-    options: ["Where is", "Is where", "Where be", "Is the"],
+    question: fr.q3_asking_questions,
+    options: [fr.q3_asking_questions_option1, fr.q3_asking_questions_option2, fr.q3_asking_questions_option3, fr.q3_asking_questions_option4],
     correctAnswer: 0,
-    explanation: "'Where is' is the correct question formation for asking location."
+    explanation: fr.q3_asking_questions_explanation
   },
   {
-    question: "Which is the correct way to ask for directions politely?",
-    options: ["Can you tell me where the store is?", "You can tell me where the store is?", "Tell me where the store is?", "Is the store where you tell me?"],
+    question: fr.q4_asking_questions,
+    options: [fr.q4_asking_questions_option1, fr.q4_asking_questions_option2, fr.q4_asking_questions_option3, fr.q4_asking_questions_option4],
     correctAnswer: 0,
-    explanation: "'Can you tell me where the store is?' is polite and grammatically correct."
+    explanation: fr.q4_asking_questions_explanation
   },
   {
-    question: "How do we form a 'yes/no' question about directions?",
-    options: ["Do + subject + verb + to location?", "Subject + do + verb + to location?", "Do + verb + subject + to location?", "Verb + subject + do + to location?"],
+    question: fr.q5_asking_questions,
+    options: [fr.q5_asking_questions_option1, fr.q5_asking_questions_option2, fr.q5_asking_questions_option3, fr.q5_asking_questions_option4],
     correctAnswer: 0,
-    explanation: "Yes/no questions follow the pattern: 'Do/Does + subject + verb + prepositional phrase?'"
+    explanation: fr.q5_asking_questions_explanation
   }
 ];
 
@@ -79,8 +80,8 @@ const AskingQuestionsGrammarQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Asking Questions</h1>
-          <p className="text-gray-600">Unit 2 - Grammar Lesson 2</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.asking_questions_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_grammar_lesson_2}</p>
         </div>
 
         <div className="mb-8">
@@ -91,7 +92,7 @@ const AskingQuestionsGrammarQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
           </p>
         </div>
 
@@ -128,8 +129,8 @@ const AskingQuestionsGrammarQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800 mb-2">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? fr.correct_feedback
+                  : fr.wrong_feedback}
               </p>
               <p className="text-gray-700">{questions[currentQuestion].explanation}</p>
             </motion.div>
@@ -142,17 +143,17 @@ const AskingQuestionsGrammarQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            {fr.previous}
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">{fr.score_text.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
       </div>

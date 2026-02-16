@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Volume2, RotateCcw } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Volume2 } from 'lucide-react';
 
 // Define Flashcard interface
 interface Flashcard {
@@ -72,7 +70,6 @@ const HaveGotFlashcards: React.FC = () => {
   const [currentCard, setCurrentCard] = useState<number>(0);
   const [isFlipped, setIsFlipped] = useState<boolean>(false);
   const isSpeakingRef = useRef<boolean>(false);
-  const navigate = useNavigate();
 
   // Function to play text-to-speech
   const speakText = (text: string) => {

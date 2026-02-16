@@ -1,6 +1,7 @@
 // Unit 2 Lesson 1 - Grammar: Imperatives for Directions
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 interface Question {
   question: string;
@@ -11,34 +12,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "Which sentence correctly gives a direction in imperative form?",
-    options: ["You turn right here.", "Turn right here.", "You should turn right.", "Do turn right here."],
+    question: fr.q1_imperative,
+    options: [fr.q1_imperative_option1, fr.q1_imperative_option2, fr.q1_imperative_option3, fr.q1_imperative_option4],
     correctAnswer: 1,
-    explanation: "Imperatives use the base verb form without 'you'. 'Turn right here.' is the correct imperative form."
+    explanation: fr.q1_imperative_explanation
   },
   {
-    question: "How do we make a negative imperative?",
-    options: ["Don't turn left.", "Not turn left.", "You don't turn left.", "Don't to turn left."],
+    question: fr.q2_negative_imperative,
+    options: [fr.q2_negative_imperative_option1, fr.q2_negative_imperative_option2, fr.q2_negative_imperative_option3, fr.q2_negative_imperative_option4],
     correctAnswer: 0,
-    explanation: "'Don't' + base verb is the correct negative imperative form."
+    explanation: fr.q2_negative_imperative_explanation
   },
   {
-    question: "Fill in the blank: '_____ straight until you see the bank.'",
-    options: ["Goes", "Go", "Going", "Went"],
+    question: fr.q3_fill_blank_go_straight,
+    options: [fr.q3_fill_blank_go_straight_option1, fr.q3_fill_blank_go_straight_option2, fr.q3_fill_blank_go_straight_option3, fr.q3_fill_blank_go_straight_option4],
     correctAnswer: 1,
-    explanation: "In imperative sentences, we use the base form of the verb without 's'."
+    explanation: fr.q3_fill_blank_go_straight_explanation
   },
   {
-    question: "Which is NOT an imperative sentence?",
-    options: ["Take the first left.", "You must take the first left.", "Follow this street.", "Stop at the corner."],
+    question: fr.q4_not_imperative,
+    options: [fr.q4_not_imperative_option1, fr.q4_not_imperative_option2, fr.q4_not_imperative_option3, fr.q4_not_imperative_option4],
     correctAnswer: 1,
-    explanation: "'You must take the first left' is not imperative; it's a statement with modal verb 'must'."
+    explanation: fr.q4_not_imperative_explanation
   },
   {
-    question: "Choose the correct imperative: 'Please _____ me where the store is.'",
-    options: ["tell", "tells", "telling", "told"],
+    question: fr.q5_correct_imperative_please,
+    options: [fr.q5_correct_imperative_please_option1, fr.q5_correct_imperative_please_option2, fr.q5_correct_imperative_please_option3, fr.q5_correct_imperative_please_option4],
     correctAnswer: 0,
-    explanation: "Imperatives always use the base form of the verb."
+    explanation: fr.q5_correct_imperative_please_explanation
   }
 ];
 
@@ -79,8 +80,8 @@ const ImperativesGrammarQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Imperatives for Directions</h1>
-          <p className="text-gray-600">Unit 2 - Grammar Lesson 1</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.imperatives_for_directions_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_grammar_lesson_1}</p>
         </div>
 
         <div className="mb-8">
@@ -91,7 +92,7 @@ const ImperativesGrammarQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
           </p>
         </div>
 
@@ -128,8 +129,8 @@ const ImperativesGrammarQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800 mb-2">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? fr.correct_feedback
+                  : fr.wrong_feedback}
               </p>
               <p className="text-gray-700">{questions[currentQuestion].explanation}</p>
             </motion.div>
@@ -142,17 +143,17 @@ const ImperativesGrammarQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            {fr.previous}
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">{fr.score_text.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
       </div>

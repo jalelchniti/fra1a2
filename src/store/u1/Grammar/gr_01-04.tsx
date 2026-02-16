@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { fr } from '../../../../locales/fr';
 
 interface Flashcard {
   id: number;
@@ -10,16 +11,16 @@ interface Flashcard {
 }
 
 const flashcards: Flashcard[] = [
-  { id: 1, question: "Is she a teacher?", hint: "👍", options: ["Yes, she is.", "No, she isn’t."], correctAnswer: "Yes, she is." },
-  { id: 2, question: "Are they students?", hint: "👎", options: ["Yes, they are.", "No, they aren’t."], correctAnswer: "No, they aren’t." },
-  { id: 3, question: "Am I late for class?", hint: "👎", options: ["Yes, you are.", "No, you aren’t."], correctAnswer: "No, you aren’t." },
-  { id: 4, question: "Is he from London?", hint: "👍", options: ["Yes, he is.", "No, he isn’t."], correctAnswer: "Yes, he is." },
-  { id: 5, question: "Are we at the park?", hint: "👍", options: ["Yes, we are.", "No, we aren’t."], correctAnswer: "Yes, we are." },
-  { id: 6, question: "Is it a sunny day?", hint: "👍", options: ["Yes, it is.", "No, it isn’t."], correctAnswer: "Yes, it is." },
-  { id: 7, question: "Are you a doctor?", hint: "👎", options: ["Yes, I am.", "No, I’m not."], correctAnswer: "No, I’m not." },
-  { id: 8, question: "Is she very tall?", hint: "👍", options: ["Yes, she is.", "No, she isn’t."], correctAnswer: "Yes, she is." },
-  { id: 9, question: "Are they from Brazil?", hint: "👎", options: ["Yes, they are.", "No, they aren’t."], correctAnswer: "No, they aren’t." },
-  { id: 10, question: "Am I in the right room?", hint: "👍", options: ["Yes, you are.", "No, you aren’t."], correctAnswer: "Yes, you are." },
+  { id: 1, question: fr.verb_to_be_q1, hint: fr.hint_thumbs_up, options: [fr.yes_she_is, fr.no_she_isnt], correctAnswer: fr.yes_she_is },
+  { id: 2, question: fr.gr_q_are_they_students, hint: fr.hint_thumbs_down, options: [fr.yes_they_are, fr.no_they_arent], correctAnswer: fr.no_they_arent },
+  { id: 3, question: fr.gr_q_am_i_late, hint: fr.hint_thumbs_down, options: [fr.yes_you_are, fr.no_you_arent], correctAnswer: fr.no_you_arent },
+  { id: 4, question: fr.gr_q_is_he_from_london, hint: fr.hint_thumbs_up, options: [fr.yes_he_is, fr.no_he_isnt], correctAnswer: fr.yes_he_is },
+  { id: 5, question: fr.gr_q_are_we_at_park, hint: fr.hint_thumbs_up, options: [fr.yes_we_are, fr.no_we_arent], correctAnswer: fr.yes_we_are },
+  { id: 6, question: fr.gr_q_is_it_sunny, hint: fr.hint_thumbs_up, options: [fr.yes_it_is, fr.no_it_isnt], correctAnswer: fr.yes_it_is },
+  { id: 7, question: fr.gr_q_are_you_doctor, hint: fr.hint_thumbs_down, options: [fr.yes_i_am, fr.no_im_not], correctAnswer: fr.no_im_not },
+  { id: 8, question: fr.gr_q_is_she_tall, hint: fr.hint_thumbs_up, options: [fr.yes_she_is, fr.no_she_isnt], correctAnswer: fr.yes_she_is },
+  { id: 9, question: fr.gr_q_are_they_from_brazil, hint: fr.hint_thumbs_down, options: [fr.yes_they_are, fr.no_they_arent], correctAnswer: fr.no_they_arent },
+  { id: 10, question: fr.gr_q_am_i_right_room, hint: fr.hint_thumbs_up, options: [fr.yes_you_are, fr.no_you_arent], correctAnswer: fr.yes_you_are },
 ];
 
 const FlashcardQuiz: React.FC = () => {
@@ -29,7 +30,7 @@ const FlashcardQuiz: React.FC = () => {
   const [isTtsEnabled, setIsTtsEnabled] = useState(true);
   const isSpeakingRef = useRef(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
       if (availableVoices.length > 0) {
@@ -48,9 +49,9 @@ const FlashcardQuiz: React.FC = () => {
     return () => {
       window.speechSynthesis.onvoiceschanged = null;
     };
-  }, []);
+  }, [isTtsEnabled, speak]);
 
-  const speak = (text: string) => {
+  const speak = React.useCallback((text: string) => {
     if (!isTtsEnabled || isSpeakingRef.current || !window.speechSynthesis) return;
     isSpeakingRef.current = true;
 
@@ -60,7 +61,7 @@ const FlashcardQuiz: React.FC = () => {
     if (englishVoice) utterance.voice = englishVoice;
     utterance.onend = () => (isSpeakingRef.current = false);
     window.speechSynthesis.speak(utterance);
-  };
+  }, [isTtsEnabled, voices]);
 
   const handleFlip = () => {
     const newFlipped = !isFlipped;
@@ -98,7 +99,7 @@ const FlashcardQuiz: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl min-h-screen flex flex-col items-center">
       <h1 className="text-4xl font-bold text-indigo-700 mb-8 text-center tracking-tight">
-        Verb To Be Flashcards
+        {fr.verb_to_be_flashcards_title}
       </h1>
 
       {/* Flashcard */}
@@ -118,7 +119,7 @@ const FlashcardQuiz: React.FC = () => {
           <p className="text-3xl font-bold text-indigo-600 tracking-wide text-center">
             {flashcards[currentCard].question}
           </p>
-          <p className="text-xl text-gray-600 mt-4">Hint: {flashcards[currentCard].hint}</p>
+          <p className="text-xl text-gray-600 mt-4">{fr.hint}: {flashcards[currentCard].hint}</p>
         </motion.div>
 
         {/* Side B: Correct Answer Only */}
@@ -140,10 +141,10 @@ const FlashcardQuiz: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Previous
+          {fr.previous}
         </motion.button>
         <p className="text-xl text-gray-600 font-semibold flex items-center">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </p>
         <motion.button
           onClick={handleNext}
@@ -151,14 +152,14 @@ const FlashcardQuiz: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Next
+          {fr.next}
         </motion.button>
       </div>
 
       {/* Instructions and TTS Controls */}
       <div className="text-center mt-8">
         <p className="text-gray-600 text-lg italic mb-4">
-          Click the card to flip. Hear the question on the front and the answer on the back.
+          {fr.click_card_to_flip_hear_question_answer}
         </p>
         <div className="flex justify-center gap-4">
           <motion.button
@@ -169,7 +170,7 @@ const FlashcardQuiz: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {isTtsEnabled ? "Turn Off Sound" : "Turn On Sound"}
+            {isTtsEnabled ? fr.turn_off_sound : fr.turn_on_sound}
           </motion.button>
           <motion.button
             onClick={handleRepeat}
@@ -177,7 +178,7 @@ const FlashcardQuiz: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Repeat Sound
+            {fr.repeat_sound}
           </motion.button>
         </div>
       </div>

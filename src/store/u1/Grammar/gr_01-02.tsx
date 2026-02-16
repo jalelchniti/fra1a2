@@ -1,46 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
   {
-    incomplete: "I _____ a student.",
-    complete: "I'm a student.",
+    incomplete: fr.incomplete_i_a_student,
+    complete: fr.complete_i_a_student,
   },
   {
-    incomplete: "She _____ a teacher.",
-    complete: "She's a teacher.",
+    incomplete: fr.incomplete_she_a_teacher,
+    complete: fr.complete_she_a_teacher,
   },
   {
-    incomplete: "They _____ at school.",
-    complete: "They're at school.",
+    incomplete: fr.incomplete_they_at_school,
+    complete: fr.complete_they_at_school,
   },
   {
-    incomplete: "We _____ happy.",
-    complete: "We're happy.",
+    incomplete: fr.incomplete_we_happy,
+    complete: fr.complete_we_happy,
   },
   {
-    incomplete: "He _____ my friend.",
-    complete: "He's my friend.",
+    incomplete: fr.incomplete_he_my_friend,
+    complete: fr.complete_he_my_friend,
   },
   {
-    incomplete: "You _____ amazing!",
-    complete: "You're amazing!",
+    incomplete: fr.incomplete_you_amazing,
+    complete: fr.complete_you_amazing,
   },
   {
-    incomplete: "It _____ a cat.",
-    complete: "It's a cat.",
+    incomplete: fr.incomplete_it_a_cat,
+    complete: fr.complete_it_a_cat,
   },
   {
-    incomplete: "I _____ not tired.",
-    complete: "I'm not tired.",
+    incomplete: fr.incomplete_i_not_tired,
+    complete: fr.complete_i_not_tired,
   },
   {
-    incomplete: "She _____ not here.",
-    complete: "She's not here.",
+    incomplete: fr.incomplete_she_not_here,
+    complete: fr.complete_she_not_here,
   },
   {
-    incomplete: "They _____ not ready.",
-    complete: "They're not ready.",
+    incomplete: fr.incomplete_they_not_ready,
+    complete: fr.complete_they_not_ready,
   },
 ];
 
@@ -103,7 +104,7 @@ const SimplePresentVerbToBeFlashcards: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl min-h-screen flex flex-col items-center">
       <h1 className="text-4xl font-bold text-indigo-700 mb-8 text-center">
-        Simple Present of the Verb "To Be" Flashcards
+        {fr.simple_present_verb_to_be_flashcards_title}
       </h1>
 
       {/* Flashcard */}
@@ -144,10 +145,10 @@ const SimplePresentVerbToBeFlashcards: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Previous
+          {fr.previous}
         </motion.button>
         <p className="text-xl text-gray-600 font-semibold flex items-center">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </p>
         <motion.button
           onClick={handleNext}
@@ -155,7 +156,7 @@ const SimplePresentVerbToBeFlashcards: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Next
+          {fr.next}
         </motion.button>
       </div>
 
@@ -170,11 +171,11 @@ const SimplePresentVerbToBeFlashcards: React.FC = () => {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {isSoundActive ? 'Deactivate Sound' : 'Activate Sound'}
+        {isSoundActive ? fr.deactivate_sound : fr.activate_sound}
       </motion.button>
 
       <p className="text-gray-600 text-center mt-8 text-lg italic">
-        Click the card to flip between the incomplete and complete sentences.
+        {fr.click_card_to_flip_incomplete_complete}
       </p>
     </div>
   );

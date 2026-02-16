@@ -1,20 +1,21 @@
 // src/store/Vocabulary/01-01-01.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 const flashcards = [
-  { sideA: "Hello! How are you?", sideB: "Hi! I'm fine, thank you. And you?" },
-  { sideA: "Can you help me, please?", sideB: "Sure! What do you need?" },
-  { sideA: "Where is the bathroom?", sideB: "It's down the hall, on your left." },
-  { sideA: "I don't understand.", sideB: "Could you repeat that, please?" },
-  { sideA: "Excuse me, where is...?", sideB: "Go straight and turn right." },
-  { sideA: "How much does this cost?", sideB: "That's five dollars." },
-  { sideA: "Thank you very much!", sideB: "You're welcome!" },
-  { sideA: "I'm sorry, I'm new here.", sideB: "No problem! Let me help you." },
-  { sideA: "Can I have..., please?", sideB: "Of course! Here you go." },
-  { sideA: "What time is it?", sideB: "It's three o'clock." },
-  { sideA: "See you later!", sideB: "See you! Have a great day!" },
-  { sideA: "I need help with...", sideB: "I can help you with that." },
+  { sideA: fr.flashcard_hello_how_are_you_a, sideB: fr.flashcard_hello_how_are_you_b },
+  { sideA: fr.flashcard_can_you_help_me_a, sideB: fr.flashcard_can_you_help_me_b },
+  { sideA: fr.flashcard_where_is_bathroom_a, sideB: fr.flashcard_where_is_bathroom_b },
+  { sideA: fr.flashcard_i_dont_understand_a, sideB: fr.flashcard_i_dont_understand_b },
+  { sideA: fr.flashcard_excuse_me_where_is_a, sideB: fr.flashcard_excuse_me_where_is_b },
+  { sideA: fr.flashcard_how_much_cost_a, sideB: fr.flashcard_how_much_cost_b },
+  { sideA: fr.flashcard_thank_you_a, sideB: fr.flashcard_thank_you_b },
+  { sideA: fr.flashcard_im_sorry_new_a, sideB: fr.flashcard_im_sorry_new_b },
+  { sideA: fr.flashcard_can_i_have_a, sideB: fr.flashcard_can_i_have_b },
+  { sideA: fr.flashcard_what_time_is_it_a, sideB: fr.flashcard_what_time_is_it_b },
+  { sideA: fr.flashcard_see_you_later_a, sideB: fr.flashcard_see_you_later_b },
+  { sideA: fr.flashcard_i_need_help_a, sideB: fr.flashcard_i_need_help_b },
 ];
 
 const FlashcardQuiz: React.FC = () => {
@@ -108,10 +109,10 @@ const FlashcardQuiz: React.FC = () => {
   return (
     <div className="max-w-5xl mx-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl shadow-xl min-h-screen flex flex-col items-center">
       <h1 className="text-4xl font-bold text-indigo-700 mb-4 text-center tracking-tight">
-        Session 1: Survival Phrases for USA
+        {fr.survival_phrases_title}
       </h1>
       <p className="text-lg text-gray-600 mb-8 text-center max-w-2xl">
-        Learn essential phrases for daily interactions in America
+        {fr.survival_phrases_description}
       </p>
 
       {/* Flashcard */}
@@ -152,10 +153,10 @@ const FlashcardQuiz: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Previous
+          {fr.previous}
         </motion.button>
         <p className="text-xl text-gray-600 font-semibold flex items-center">
-          Card {currentCard + 1} of {flashcards.length}
+          {fr.card} {currentCard + 1} {fr.of} {flashcards.length}
         </p>
         <motion.button
           onClick={handleNext}
@@ -163,14 +164,14 @@ const FlashcardQuiz: React.FC = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Next
+          {fr.next}
         </motion.button>
       </div>
 
       {/* Instructions and TTS Controls */}
       <div className="text-center mt-8">
         <p className="text-gray-600 text-lg italic mb-4">
-          Click the card to flip and hear both the question and the response.
+          {fr.click_card_to_flip}
         </p>
         <div className="flex justify-center gap-4">
           <motion.button
@@ -181,7 +182,7 @@ const FlashcardQuiz: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            {isTtsEnabled ? "Deactivate Sound" : "Activate Sound"}
+            {isTtsEnabled ? fr.deactivate_sound : fr.activate_sound}
           </motion.button>
           <motion.button
             onClick={handleRepeat}
@@ -189,7 +190,7 @@ const FlashcardQuiz: React.FC = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Repeat Sound
+            {fr.repeat_sound}
           </motion.button>
         </div>
       </div>

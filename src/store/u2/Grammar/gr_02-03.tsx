@@ -1,6 +1,7 @@
 // Unit 2 Lesson 3 - Grammar: Prepositions of Place
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { fr } from '../../../../locales/fr';
 
 interface Question {
   question: string;
@@ -11,34 +12,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "Choose the correct preposition: 'The bank is _____ the corner.'",
-    options: ["at", "in", "on", "near"],
+    question: fr.q1_prepositions_place,
+    options: [fr.q1_prepositions_place_option1, fr.q1_prepositions_place_option2, fr.q1_prepositions_place_option3, fr.q1_prepositions_place_option4],
     correctAnswer: 0,
-    explanation: "'At' is used for specific locations like corners. 'The bank is at the corner.'"
+    explanation: fr.q1_prepositions_place_explanation
   },
   {
-    question: "Fill in the blank: 'The store is _____ Main Street.'",
-    options: ["at", "on", "near", "in"],
+    question: fr.q2_prepositions_place,
+    options: [fr.q2_prepositions_place_option1, fr.q2_prepositions_place_option2, fr.q2_prepositions_place_option3, fr.q2_prepositions_place_option4],
     correctAnswer: 1,
-    explanation: "'On' is used for streets. 'The store is on Main Street.'"
+    explanation: fr.q2_prepositions_place_explanation
   },
   {
-    question: "Which sentence correctly uses a preposition for directions?",
-    options: ["Go the hospital.", "Go in the hospital.", "Go to the hospital.", "Go at the hospital."],
+    question: fr.q3_prepositions_place,
+    options: [fr.q3_prepositions_place_option1, fr.q3_prepositions_place_option2, fr.q3_prepositions_place_option3, fr.q3_prepositions_place_option4],
     correctAnswer: 2,
-    explanation: "'To' indicates movement toward a destination. 'Go to the hospital.'"
+    explanation: fr.q3_prepositions_place_explanation
   },
   {
-    question: "Choose the correct preposition: 'The pharmacy is _____ the supermarket.'",
-    options: ["near", "at", "on", "by"],
+    question: fr.q4_prepositions_place,
+    options: [fr.q4_prepositions_place_option1, fr.q4_prepositions_place_option2, fr.q4_prepositions_place_option3, fr.q4_prepositions_place_option4],
     correctAnswer: 0,
-    explanation: "'Near' shows proximity or closeness. 'The pharmacy is near the supermarket.'"
+    explanation: fr.q4_prepositions_place_explanation
   },
   {
-    question: "Which preposition correctly completes: 'Turn right _____ the traffic light.'",
-    options: ["in", "at", "on", "near"],
+    question: fr.q5_prepositions_place,
+    options: [fr.q5_prepositions_place_option1, fr.q5_prepositions_place_option2, fr.q5_prepositions_place_option3, fr.q5_prepositions_place_option4],
     correctAnswer: 1,
-    explanation: "'At' is used for specific landmarks or points. 'Turn right at the traffic light.'"
+    explanation: fr.q5_prepositions_place_explanation
   }
 ];
 
@@ -79,8 +80,8 @@ const PrepositionsGrammarQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Prepositions of Place & Direction</h1>
-          <p className="text-gray-600">Unit 2 - Grammar Lesson 3</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">{fr.prepositions_of_place_title}</h1>
+          <p className="text-gray-600">{fr.unit_2_grammar_lesson_3}</p>
         </div>
 
         <div className="mb-8">
@@ -91,7 +92,7 @@ const PrepositionsGrammarQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            {fr.question_of_total.replace('{current}', (currentQuestion + 1).toString()).replace('{total}', questions.length.toString())}
           </p>
         </div>
 
@@ -128,8 +129,8 @@ const PrepositionsGrammarQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800 mb-2">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? fr.correct_feedback
+                  : fr.wrong_feedback}
               </p>
               <p className="text-gray-700">{questions[currentQuestion].explanation}</p>
             </motion.div>
@@ -142,17 +143,17 @@ const PrepositionsGrammarQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            {fr.previous}
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">{fr.score_text.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            {fr.next} →
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
 // src/store/u2/Reading/re_02-05.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface QuizQuestion {
