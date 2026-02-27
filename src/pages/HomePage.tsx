@@ -231,12 +231,13 @@ const reviewActivities: ReviewActivity[] = [
 ];
 
 const HomePage = () => {
+  const baseUrl = import.meta.env.BASE_URL;
   return (
     <div className="space-y-10">
       {/* Hero Section - SmartHub Banner */}
       <section
         className="relative overflow-hidden rounded-2xl text-white h-64 sm:h-80 md:h-96 lg:h-[28rem] bg-cover bg-center shadow-xl"
-        style={{ backgroundImage: `url('/assets/images/fb_cover-01.png')` }}
+        style={{ backgroundImage: `url('/fra1a2/assets/images/fb_cover-01.png')` }}
       >
         {/* Optional subtle gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"></div>

@@ -36,7 +36,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
             </button>
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img
-                src={`${baseUrl}assets/images/lnkd_profile_picture-01.jpg`}
+                src="/fra1a2/assets/images/lnkd_profile_picture-01.jpg"
                 alt={fr.smarthub_tunis_logo}
                 className="h-12 w-12 rounded-full object-cover shadow-md border-2 border-orange-400"
               />
