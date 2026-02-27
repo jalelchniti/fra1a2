@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, FC } from 'react';
 import { useParams } from 'react-router-dom';
+import { fr } from '../locales/fr';
 
 const quizMap = {
   // Unit 1 Quizzes
@@ -40,7 +41,6 @@ const quizMap = {
   // Unit 2 Quizzes - Speaking
   'sp_02-01': lazy(() => import('../store/u2/Speaking/sp_02-01')),
   'sp_02-02': lazy(() => import('../store/u2/Speaking/sp_02-02')),
-  'sp_02-03': lazy(() => import('../store/u2/Speaking/sp_02-03')),
   'sp_02-04': lazy(() => import('../store/u2/Speaking/sp_02-04')),
   'sp_02-05': lazy(() => import('../store/u2/Speaking/sp_02-05')),
 

@@ -1,7 +1,7 @@
 // Unit 2 Lesson 1 - Shopping Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { sideA: fr.shirt_sideA, sideB: fr.shirt_sideB },

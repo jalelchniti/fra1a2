@@ -1,4 +1,4 @@
-// Unit 2 Lesson 4 - Listening: Prices & Numbers
+// Unit 2 Lesson 4 - Comprehension orale : prix et nombres
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -11,34 +11,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "What is the price of the shirt?",
+    question: "Quel est le prix de la chemise ?",
     options: ["$15.99", "$25.99", "$35.99", "$45.99"],
     correctAnswer: 1,
-    audio: "The shirt is now on sale for twenty-five ninety-nine. That's a great deal!"
+    audio: "La chemise est maintenant en promotion a vingt-cinq quatre-vingt-dix-neuf. C'est une super affaire !"
   },
   {
-    question: "How much discount is mentioned?",
-    options: ["20% off", "30% off", "40% off", "50% off"],
+    question: "Quelle reduction est mentionnee ?",
+    options: ["20 % de reduction", "30 % de reduction", "40 % de reduction", "50 % de reduction"],
     correctAnswer: 2,
-    audio: "All items are forty percent off this week. Don't miss this opportunity!"
+    audio: "Tous les articles ont 40 % de reduction cette semaine. Ne manquez pas cette occasion !"
   },
   {
-    question: "What's the total cost?",
+    question: "Quel est le cout total ?",
     options: ["$30.00", "$45.00", "$60.00", "$75.00"],
     correctAnswer: 2,
-    audio: "Three shirts at twenty dollars each comes to sixty dollars total."
+    audio: "Trois chemises a vingt dollars chacune font soixante dollars au total."
   },
   {
-    question: "How much change should the customer get?",
+    question: "Quelle monnaie le client doit-il recevoir ?",
     options: ["$5.00", "$10.00", "$15.00", "$20.00"],
     correctAnswer: 1,
-    audio: "The total is thirty dollars. Here's your change: ten dollars."
+    audio: "Le total est de trente dollars. Voici votre monnaie : dix dollars."
   },
   {
-    question: "What's the shipping fee?",
-    options: ["Free", "$5", "$10", "$15"],
+    question: "Quels sont les frais de livraison ?",
+    options: ["Gratuit", "$5", "$10", "$15"],
     correctAnswer: 0,
-    audio: "Free shipping on all orders! Plus, we deliver in just two business days."
+    audio: "Livraison gratuite pour toutes les commandes ! En plus, nous livrons en seulement deux jours ouvrables."
   }
 ];
 
@@ -50,7 +50,7 @@ const ListeningPricesQuiz: React.FC = () => {
 
   const playAudio = () => {
     const utterance = new SpeechSynthesisUtterance(questions[currentQuestion].audio);
-    utterance.lang = "en-US";
+    utterance.lang = "fr-FR";
     window.speechSynthesis.speak(utterance);
     setHasListened(true);
   };
@@ -89,8 +89,8 @@ const ListeningPricesQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Listening: Prices & Numbers</h1>
-          <p className="text-gray-600">Unit 2 - Listening Lesson 4</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Comprehension orale : prix et nombres</h1>
+          <p className="text-gray-600">Unite 2 - Lecon d'ecoute 4</p>
         </div>
 
         <div className="mb-8">
@@ -101,7 +101,7 @@ const ListeningPricesQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} sur {questions.length}
           </p>
         </div>
 
@@ -112,12 +112,12 @@ const ListeningPricesQuiz: React.FC = () => {
             onClick={playAudio}
             className="w-full px-6 py-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition mb-8 text-lg"
           >
-            🔊 Play Audio
+            Ecouter l'audio
           </button>
 
           {!hasListened && (
             <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-yellow-800">Click the "Play Audio" button above to listen carefully.</p>
+              <p className="text-yellow-800">Cliquez sur le bouton "Ecouter l'audio" ci-dessus pour ecouter attentivement.</p>
             </div>
           )}
 
@@ -154,8 +154,8 @@ const ListeningPricesQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? "Bonne reponse !"
+                  : "Incorrect"}
               </p>
               <p className="text-gray-700 mt-2 text-sm italic">{questions[currentQuestion].audio}</p>
             </motion.div>
@@ -168,17 +168,17 @@ const ListeningPricesQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            Precedent
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">Score : {score} / {questions.length}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant
           </button>
         </div>
       </div>
@@ -187,3 +187,4 @@ const ListeningPricesQuiz: React.FC = () => {
 };
 
 export default ListeningPricesQuiz;
+

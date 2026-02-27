@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   {

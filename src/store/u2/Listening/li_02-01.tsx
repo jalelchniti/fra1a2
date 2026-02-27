@@ -1,4 +1,4 @@
-// Unit 2 Lesson 1 - Listening: Understanding Directions
+// Unit 2 Lesson 1 - Comprehension orale : comprendre les directions
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -11,34 +11,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "Where should you turn left?",
-    options: ["At the bank", "At the traffic light", "At the church", "At the corner store"],
+    question: "Ou faut-il tourner a gauche ?",
+    options: ["A la banque", "Au feu de circulation", "A l'eglise", "Au magasin du coin"],
     correctAnswer: 1,
-    audio: "Turn right at the traffic light, then go straight for two blocks. When you see the church, turn left."
+    audio: "Tournez a droite au feu de circulation, puis allez tout droit pendant deux blocs. Quand vous voyez l'eglise, tournez a gauche."
   },
   {
-    question: "How far is the hospital from the station?",
-    options: ["Very close, 5 minutes walk", "Medium distance, 15 minutes", "Far, 30 minutes", "Very far, take a taxi"],
+    question: "A quelle distance est l'hopital de la gare ?",
+    options: ["Tres proche, 5 minutes a pied", "Distance moyenne, 15 minutes", "Loin, 30 minutes", "Tres loin, prenez un taxi"],
     correctAnswer: 1,
-    audio: "From the train station, it takes about 15 minutes to walk to the hospital. Just follow Main Street."
+    audio: "Depuis la gare, il faut environ 15 minutes a pied pour aller a l'hopital. Suivez simplement la rue principale."
   },
   {
-    question: "What landmark is next to the library?",
-    options: ["A coffee shop", "A park", "A bookstore", "A museum"],
+    question: "Quel repere est a cote de la bibliotheque ?",
+    options: ["Un cafe", "Un parc", "Une librairie", "Un musee"],
     correctAnswer: 2,
-    audio: "The library is on Oak Street, next to a big bookstore. You can't miss it!"
+    audio: "La bibliotheque est sur Oak Street, a cote d'une grande librairie. Vous ne pouvez pas la manquer !"
   },
   {
-    question: "Which direction do you go first?",
-    options: ["Left", "Right", "Straight", "Turn around"],
+    question: "Dans quelle direction allez-vous d'abord ?",
+    options: ["A gauche", "A droite", "Tout droit", "Faites demi-tour"],
     correctAnswer: 0,
-    audio: "Excuse me, to get to the bus station? Go left here, then take the first right turn."
+    audio: "Excusez-moi, pour aller a la gare routiere ? Allez a gauche ici, puis prenez la premiere a droite."
   },
   {
-    question: "How many blocks should you walk?",
-    options: ["One block", "Two blocks", "Three blocks", "Four blocks"],
+    question: "Combien de blocs faut-il marcher ?",
+    options: ["Un bloc", "Deux blocs", "Trois blocs", "Quatre blocs"],
     correctAnswer: 1,
-    audio: "Walk straight ahead for two blocks, then you'll see the bank on your left."
+    audio: "Marchez tout droit pendant deux blocs, puis vous verrez la banque sur votre gauche."
   }
 ];
 
@@ -50,7 +50,7 @@ const ListeningDirectionsQuiz: React.FC = () => {
 
   const playAudio = () => {
     const utterance = new SpeechSynthesisUtterance(questions[currentQuestion].audio);
-    utterance.lang = "en-US";
+    utterance.lang = "fr-FR";
     window.speechSynthesis.speak(utterance);
     setHasListened(true);
   };
@@ -89,8 +89,8 @@ const ListeningDirectionsQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Listening: Understanding Directions</h1>
-          <p className="text-gray-600">Unit 2 - Listening Lesson 1</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Comprehension orale : comprendre les directions</h1>
+          <p className="text-gray-600">Unite 2 - Lecon d'ecoute 1</p>
         </div>
 
         <div className="mb-8">
@@ -101,7 +101,7 @@ const ListeningDirectionsQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} sur {questions.length}
           </p>
         </div>
 
@@ -112,12 +112,12 @@ const ListeningDirectionsQuiz: React.FC = () => {
             onClick={playAudio}
             className="w-full px-6 py-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition mb-8 text-lg"
           >
-            🔊 Play Audio
+            Ecouter l'audio
           </button>
 
           {!hasListened && (
             <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-yellow-800">Click the "Play Audio" button above to listen to the conversation.</p>
+              <p className="text-yellow-800">Cliquez sur le bouton "Ecouter l'audio" ci-dessus pour ecouter la conversation.</p>
             </div>
           )}
 
@@ -154,8 +154,8 @@ const ListeningDirectionsQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? "Bonne reponse !"
+                  : "Incorrect"}
               </p>
               <p className="text-gray-700 mt-2 text-sm italic">{questions[currentQuestion].audio}</p>
             </motion.div>
@@ -168,17 +168,17 @@ const ListeningDirectionsQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            Precedent
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">Score : {score} / {questions.length}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant
           </button>
         </div>
       </div>
@@ -187,3 +187,4 @@ const ListeningDirectionsQuiz: React.FC = () => {
 };
 
 export default ListeningDirectionsQuiz;
+

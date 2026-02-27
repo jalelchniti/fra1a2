@@ -1,7 +1,7 @@
 // src/store/Vocabulary/01-01-01.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { sideA: fr.flashcard_hello_how_are_you_a, sideB: fr.flashcard_hello_how_are_you_b },

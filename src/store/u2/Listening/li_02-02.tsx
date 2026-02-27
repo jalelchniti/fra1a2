@@ -1,4 +1,4 @@
-// Unit 2 Lesson 2 - Listening: Shopping Conversations
+// Unit 2 Lesson 2 - Comprehension orale : conversations de shopping
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -11,34 +11,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "What size does the customer want?",
-    options: ["Small", "Medium", "Large", "Extra Large"],
+    question: "Quelle taille le client veut-il ?",
+    options: ["Petit", "Moyen", "Grand", "Tres grand"],
     correctAnswer: 1,
-    audio: "Customer: Do you have this shirt in medium? Cashier: Yes, we do. Here you go."
+    audio: "Client : Vous avez cette chemise en taille moyenne ? Caissier : Oui, bien sur. La voila."
   },
   {
-    question: "How much does the item cost?",
+    question: "Combien coute l'article ?",
     options: ["$15", "$25", "$35", "$45"],
     correctAnswer: 1,
-    audio: "Cashier: That jacket is on sale today for $25. It was originally $50."
+    audio: "Caissier : Cette veste est en promotion aujourd'hui a 25 $. Elle etait a l'origine a 50 $."
   },
   {
-    question: "Is there a discount?",
-    options: ["5% off", "15% off", "30% off", "50% off"],
+    question: "Y a-t-il une reduction ?",
+    options: ["5 % de reduction", "15 % de reduction", "30 % de reduction", "50 % de reduction"],
     correctAnswer: 2,
-    audio: "Customer: Is there any sale today? Cashier: Yes! Everything on the blue rack has 30% off."
+    audio: "Client : Y a-t-il des promotions aujourd'hui ? Caissier : Oui ! Tout ce qui est sur le portant bleu a 30 % de reduction."
   },
   {
-    question: "Can the customer return the item?",
-    options: ["No returns allowed", "Yes, within 7 days", "Yes, within 14 days", "Only with receipt"],
+    question: "Le client peut-il retourner l'article ?",
+    options: ["Aucun retour accepte", "Oui, dans les 7 jours", "Oui, dans les 14 jours", "Seulement avec le recu"],
     correctAnswer: 2,
-    audio: "Customer: What's your return policy? Cashier: You can return items within 14 days with your receipt."
+    audio: "Client : Quelle est votre politique de retour ? Caissier : Vous pouvez retourner les articles dans les 14 jours avec votre recu."
   },
   {
-    question: "What payment method does the customer use?",
-    options: ["Cash only", "Credit card", "Debit card", "Not mentioned"],
+    question: "Quel moyen de paiement le client utilise-t-il ?",
+    options: ["Especes uniquement", "Carte de credit", "Carte de debit", "Non mentionne"],
     correctAnswer: 1,
-    audio: "Customer: Can I pay with a credit card? Cashier: Of course! We accept all major cards."
+    audio: "Client : Puis-je payer par carte de credit ? Caissier : Bien sur ! Nous acceptons toutes les principales cartes."
   }
 ];
 
@@ -50,7 +50,7 @@ const ListeningShoppingQuiz: React.FC = () => {
 
   const playAudio = () => {
     const utterance = new SpeechSynthesisUtterance(questions[currentQuestion].audio);
-    utterance.lang = "en-US";
+    utterance.lang = "fr-FR";
     window.speechSynthesis.speak(utterance);
     setHasListened(true);
   };
@@ -89,8 +89,8 @@ const ListeningShoppingQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Listening: Shopping Conversations</h1>
-          <p className="text-gray-600">Unit 2 - Listening Lesson 2</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Comprehension orale : conversations de shopping</h1>
+          <p className="text-gray-600">Unite 2 - Lecon d'ecoute 2</p>
         </div>
 
         <div className="mb-8">
@@ -101,7 +101,7 @@ const ListeningShoppingQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} sur {questions.length}
           </p>
         </div>
 
@@ -112,12 +112,12 @@ const ListeningShoppingQuiz: React.FC = () => {
             onClick={playAudio}
             className="w-full px-6 py-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition mb-8 text-lg"
           >
-            🔊 Play Audio
+            Ecouter l'audio
           </button>
 
           {!hasListened && (
             <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-yellow-800">Click the "Play Audio" button above to listen to the conversation.</p>
+              <p className="text-yellow-800">Cliquez sur le bouton "Ecouter l'audio" ci-dessus pour ecouter la conversation.</p>
             </div>
           )}
 
@@ -154,8 +154,8 @@ const ListeningShoppingQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? "Bonne reponse !"
+                  : "Incorrect"}
               </p>
               <p className="text-gray-700 mt-2 text-sm italic">{questions[currentQuestion].audio}</p>
             </motion.div>
@@ -168,17 +168,17 @@ const ListeningShoppingQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            Precedent
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">Score : {score} / {questions.length}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant
           </button>
         </div>
       </div>
@@ -187,3 +187,4 @@ const ListeningShoppingQuiz: React.FC = () => {
 };
 
 export default ListeningShoppingQuiz;
+

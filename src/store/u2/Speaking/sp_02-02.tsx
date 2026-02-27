@@ -1,4 +1,4 @@
-// Unit 2 Lesson 2 - Speaking: Shopping Phrases
+﻿// Unit 2 Lesson 2 - Speaking: Shopping Phrases
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -8,16 +8,16 @@ interface Phrase {
 }
 
 const phrases: Phrase[] = [
-  { english: "How much does this cost?", description: "Asking for price" },
-  { english: "Do you have this in a different size?", description: "Asking for another size" },
-  { english: "Can I try this on?", description: "Asking for fitting room permission" },
-  { english: "Is this on sale?", description: "Asking about discount" },
-  { english: "Do you accept credit cards?", description: "Asking about payment methods" },
-  { english: "Can I get a receipt?", description: "Asking for proof of purchase" },
-  { english: "What's the return policy?", description: "Asking about returns" },
-  { english: "Can you help me find...?", description: "Asking for shopping assistance" },
-  { english: "That looks great on you!", description: "Compliment phrase" },
-  { english: "Thank you for your service!", description: "Expressing appreciation" }
+  { english: "Combien cela coûte-t-il ?", description: "Demander le prix" },
+  { english: "L’avez-vous dans une autre taille ?", description: "Demander une autre taille" },
+  { english: "Puis-je essayer ceci ?", description: "Demander à utiliser la cabine d’essayage" },
+  { english: "Cet article est-il en promotion ?", description: "Demander une remise" },
+  { english: "Acceptez-vous les cartes de crédit ?", description: "Demander les moyens de paiement" },
+  { english: "Puis-je avoir un reçu ?", description: "Demander une preuve d’achat" },
+  { english: "Quelle est votre politique de retour ?", description: "Demander les retours" },
+  { english: "Pouvez-vous m’aider à trouver... ?", description: "Demander de l’aide en magasin" },
+  { english: "Ça vous va très bien !", description: "Faire un compliment" },
+  { english: "Merci pour votre service !", description: "Exprimer sa reconnaissance" }
 ];
 
 const SpeakingShoppingQuiz: React.FC = () => {
@@ -28,7 +28,7 @@ const SpeakingShoppingQuiz: React.FC = () => {
   const speak = (text: string) => {
     setIsSpeaking(true);
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
+    utterance.lang = "fr-FR";
     utterance.onend = () => {
       setIsSpeaking(false);
     };
@@ -62,8 +62,8 @@ const SpeakingShoppingQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Speaking: Shopping Phrases</h1>
-          <p className="text-gray-600">Unit 2 - Speaking Lesson 2</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Expression orale : phrases pour faire du shopping</h1>
+          <p className="text-gray-600">Unité 2 - Leçon d’expression orale 2</p>
         </div>
 
         <div className="mb-8">
@@ -74,7 +74,7 @@ const SpeakingShoppingQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Phrase {currentPhrase + 1} of {phrases.length}
+            Phrase {currentPhrase + 1} sur {phrases.length}
           </p>
         </div>
 
@@ -97,7 +97,7 @@ const SpeakingShoppingQuiz: React.FC = () => {
               disabled={isSpeaking}
               className="w-full px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 disabled:bg-gray-400 transition"
             >
-              {isSpeaking ? "🔊 Speaking..." : "🔊 Listen & Pronounce"}
+              {isSpeaking ? "🔊 Lecture..." : "🔊 Écouter et prononcer"}
             </button>
 
             <button
@@ -108,17 +108,17 @@ const SpeakingShoppingQuiz: React.FC = () => {
                   : "bg-orange-100 text-orange-800 border-2 border-orange-500 hover:bg-orange-200"
               }`}
             >
-              {completedPhrases.includes(currentPhrase) ? "✓ Practiced" : "Mark as Practiced"}
+              {completedPhrases.includes(currentPhrase) ? "✓ Pratiqué" : "Marquer comme pratiqué"}
             </button>
           </div>
 
           <div className="mt-8 p-4 bg-orange-50 rounded-lg">
-            <h3 className="font-semibold text-gray-800 mb-2">Practice Tips:</h3>
+            <h3 className="font-semibold text-gray-800 mb-2">Conseils de pratique :</h3>
             <ul className="text-sm text-gray-700 space-y-1">
-              <li>• Repeat each phrase several times</li>
-              <li>• Try using these phrases in real conversations</li>
-              <li>• Practice with different intonations</li>
-              <li>• Role-play shopping scenarios</li>
+              <li>• Répétez chaque phrase plusieurs fois</li>
+              <li>• Utilisez ces phrases en situation réelle</li>
+              <li>• Variez l’intonation pour gagner en naturel</li>
+              <li>• Faites des jeux de rôle de situations d’achat</li>
             </ul>
           </div>
         </motion.div>
@@ -129,17 +129,17 @@ const SpeakingShoppingQuiz: React.FC = () => {
             disabled={currentPhrase === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            ← Précédent
           </button>
           <p className="text-center text-gray-600">
-            Practiced: {completedPhrases.length} / {phrases.length}
+            Pratiqué : {completedPhrases.length} / {phrases.length}
           </p>
           <button
             onClick={handleNext}
             disabled={currentPhrase === phrases.length - 1}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant →
           </button>
         </div>
       </div>

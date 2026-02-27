@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Volume2, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 interface FlashCard {
   sideA: string;

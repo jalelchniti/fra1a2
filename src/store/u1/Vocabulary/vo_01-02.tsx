@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const IntroductionsQuiz: React.FC = () => {
   const [answers, setAnswers] = useState<string[]>(['', '', '', '']);

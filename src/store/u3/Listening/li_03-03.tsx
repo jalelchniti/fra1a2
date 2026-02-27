@@ -22,80 +22,80 @@ const Li_03_03 = () => {
   const isSpeakingRef = useRef(false);
 
   const transcript = `
-    FUTURE TRAVEL PLANS
+    PLANS DE VOYAGE FUTURS
 
-    A: Omar, I hear you are going to travel soon!
-    B: Yes! I am going to take a trip next weekend.
-    A: Where are you going to go?
-    B: I am going to go to the mountains. It is going to be my first time.
-    A: How are you going to travel?
-    B: I am going to take the train. It is going to depart at 8 AM.
-    A: How long is the journey going to be?
-    B: It is going to be about 3 hours. Then I am going to take a taxi to my hotel.
-    A: What are you going to do in the mountains?
-    B: I am going to walk, take photos, and enjoy the nature. It is going to be amazing!
-    A: Are you going to return next weekend?
-    B: Yes, I am going to return on Sunday evening.
+    A: Omar, j'ai entendu dire que tu vas voyager bientot !
+    B: Oui ! Je vais faire un voyage le week-end prochain.
+    A: Ou vas-tu aller ?
+    B: Je vais aller a la montagne. Ce sera ma premiere fois.
+    A: Comment vas-tu voyager ?
+    B: Je vais prendre le train. Il va partir a 8 h.
+    A: Combien de temps va durer le trajet ?
+    B: Cela va durer environ 3 heures. Ensuite je vais prendre un taxi jusqu'a mon hotel.
+    A: Qu'est-ce que tu vas faire a la montagne ?
+    B: Je vais marcher, prendre des photos et profiter de la nature. Ce sera incroyable !
+    A: Vas-tu revenir le week-end prochain ?
+    B: Oui, je vais rentrer dimanche soir.
   `;
 
   const questions: Question[] = [
-    {
-      id: 1,
-      question: 'When is Omar going to travel?',
-      options: ['This week', 'Next weekend', 'Next month', 'Next year'],
-      correct: 1,
-      explanation: 'Omar says: "I am going to take a trip next weekend."'
-    },
-    {
-      id: 2,
-      question: 'Where is Omar going to go?',
-      options: ['To the beach', 'To the city', 'To the mountains', 'To the park'],
-      correct: 2,
-      explanation: 'Omar says: "I am going to go to the mountains."'
-    },
-    {
-      id: 3,
-      question: 'Is this Omar\'s first time going there?',
-      options: ['Yes, it is his first time', 'No, he has been before', 'Maybe', 'He does not know'],
-      correct: 0,
-      explanation: 'Omar says: "It is going to be my first time."'
-    },
-    {
-      id: 4,
-      question: 'How is Omar going to travel?',
-      options: ['By bus', 'By car', 'By train', 'By plane'],
-      correct: 2,
-      explanation: 'Omar says: "I am going to take the train."'
-    },
-    {
-      id: 5,
-      question: 'What time is the train going to depart?',
-      options: ['6 AM', '7 AM', '8 AM', '9 AM'],
-      correct: 2,
-      explanation: 'Omar says: "It is going to depart at 8 AM."'
-    },
-    {
-      id: 6,
-      question: 'How long is the train journey going to be?',
-      options: ['1 hour', '2 hours', '3 hours', '4 hours'],
-      correct: 2,
-      explanation: 'Omar says: "It is going to be about 3 hours."'
-    },
-    {
-      id: 7,
-      question: 'What is Omar going to do after arriving?',
-      options: ['Walk to the hotel', 'Take a taxi', 'Take a bus', 'Wait at the station'],
-      correct: 1,
-      explanation: 'Omar says: "I am going to take a taxi to my hotel."'
-    },
-    {
-      id: 8,
-      question: 'What is Omar NOT going to do in the mountains?',
-      options: ['Walk', 'Take photos', 'Swim', 'Enjoy nature'],
-      correct: 2,
-      explanation: 'Omar says: "I am going to walk, take photos, and enjoy the nature." Swimming is not mentioned.'
-    }
-  ];
+  {
+    id: 1,
+    question: "Quand Omar va-t-il voyager ?",
+    options: ["Cette semaine", "Le week-end prochain", "Le mois prochain", "L'annee prochaine"],
+    correct: 1,
+    explanation: "Omar dit : 'Je vais faire un voyage le week-end prochain.'"
+  },
+  {
+    id: 2,
+    question: "Ou Omar va-t-il aller ?",
+    options: ["A la plage", "En ville", "A la montagne", "Au parc"],
+    correct: 2,
+    explanation: "Omar dit : 'Je vais aller a la montagne.'"
+  },
+  {
+    id: 3,
+    question: "Est-ce la premiere fois d'Omar la-bas ?",
+    options: ["Oui, c'est sa premiere fois", "Non, il y est deja alle", "Peut-etre", "Il ne sait pas"],
+    correct: 0,
+    explanation: "Omar dit : 'Ce sera ma premiere fois.'"
+  },
+  {
+    id: 4,
+    question: "Comment Omar va-t-il voyager ?",
+    options: ["En bus", "En voiture", "En train", "En avion"],
+    correct: 2,
+    explanation: "Omar dit : 'Je vais prendre le train.'"
+  },
+  {
+    id: 5,
+    question: "A quelle heure le train va-t-il partir ?",
+    options: ["6 h", "7 h", "8 h", "9 h"],
+    correct: 2,
+    explanation: "Omar dit : 'Il va partir a 8 h.'"
+  },
+  {
+    id: 6,
+    question: "Combien de temps va durer le trajet en train ?",
+    options: ["1 heure", "2 heures", "3 heures", "4 heures"],
+    correct: 2,
+    explanation: "Omar dit : 'Cela va durer environ 3 heures.'"
+  },
+  {
+    id: 7,
+    question: "Que va faire Omar apres son arrivee ?",
+    options: ["Marcher jusqu'a l'hotel", "Prendre un taxi", "Prendre un bus", "Attendre a la gare"],
+    correct: 1,
+    explanation: "Omar dit : 'Je vais prendre un taxi jusqu'a mon hotel.'"
+  },
+  {
+    id: 8,
+    question: "Qu'est-ce qu'Omar ne va PAS faire a la montagne ?",
+    options: ["Marcher", "Prendre des photos", "Nager", "Profiter de la nature"],
+    correct: 2,
+    explanation: "Omar dit : 'Je vais marcher, prendre des photos et profiter de la nature.' Nager n'est pas mentionne."
+  }
+];
 
   const speakWithPauses = () => {
     if (isSpeakingRef.current) return;
@@ -119,7 +119,7 @@ const Li_03_03 = () => {
 
       const line = lines[currentIndex];
       const utterance = new SpeechSynthesisUtterance(line);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.85;
 
       utterance.onend = () => {
@@ -201,10 +201,10 @@ const Li_03_03 = () => {
             className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-white/80 rounded-lg transition"
           >
             <ChevronLeft size={20} />
-            Back
+            Retour
           </button>
           <h1 className="text-2xl font-bold text-gray-800 text-center">
-            Listening: Future Travel Plans
+            Comprehension orale : plans de voyage futurs
           </h1>
           <div className="w-[100px]"></div>
         </div>
@@ -212,7 +212,7 @@ const Li_03_03 = () => {
         {/* Transcript Box */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-800">Listening Transcript:</h2>
+            <h2 className="text-lg font-bold text-gray-800">Transcription d'ecoute :</h2>
             <div className="flex gap-2">
               <button
                 onClick={speakWithPauses}
@@ -220,14 +220,14 @@ const Li_03_03 = () => {
                 className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
               >
                 <Volume2 size={18} />
-                {isSpeaking ? 'Playing...' : 'Play Audio'}
+                {isSpeaking ? 'Lecture...' : "Ecouter l'audio"}
               </button>
               <button
                 onClick={() => setShowTranscript(!showTranscript)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
               >
                 {showTranscript ? <EyeOff size={18} /> : <Eye size={18} />}
-                {showTranscript ? 'Hide' : 'Show'}
+                {showTranscript ? 'Masquer' : 'Afficher'}
               </button>
             </div>
           </div>
@@ -242,10 +242,10 @@ const Li_03_03 = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <p className="text-gray-700 font-semibold">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentQuestionIndex + 1} sur {questions.length}
             </p>
             <p className="text-gray-700 font-semibold">
-              Score: {score}/{questions.length}
+              Score : {score}/{questions.length}
             </p>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2">
@@ -321,7 +321,7 @@ const Li_03_03 = () => {
             }`}
           >
             <p className="font-semibold text-gray-800 mb-2">
-              {selectedAnswer === currentQuestion.correct ? '✓ Correct!' : '✗ Not quite right'}
+              {selectedAnswer === currentQuestion.correct ? 'Bonne reponse !' : 'Pas tout a fait'}
             </p>
             <p className="text-gray-700">{currentQuestion.explanation}</p>
           </motion.div>
@@ -334,23 +334,21 @@ const Li_03_03 = () => {
               onClick={handleNext}
               className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
             >
-              Next Question
+              Question suivante
             </button>
           )}
 
           {isComplete && (
             <div className="w-full text-center">
-              <p className="text-2xl font-bold text-gray-800 mb-4">
-                Quiz Complete! 🎉
-              </p>
+              <p className="text-2xl font-bold text-gray-800 mb-4">Quiz termine !</p>
               <p className="text-lg text-gray-700 mb-4">
-                Your score: {score} out of {questions.length}
+                Votre score : {score} sur {questions.length}
               </p>
               <button
                 onClick={handleReset}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
               >
-                Try Again
+                Reessayer
               </button>
             </div>
           )}
@@ -361,3 +359,5 @@ const Li_03_03 = () => {
 };
 
 export default Li_03_03;
+
+

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
 import { Calculator, DollarSign, Calendar, TrendingUp, Building, BookOpen, Clock, Settings } from 'lucide-react';
+import { fr } from '../locales/fr';
 
 // Define interfaces for the state and props
 interface Room {

@@ -1,7 +1,7 @@
 // Unit 2 Lesson 4 - Shopping Conversation Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { sideA: fr.cashier_sideA, sideB: fr.cashier_sideB },

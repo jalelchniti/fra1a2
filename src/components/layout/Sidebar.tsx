@@ -59,7 +59,7 @@ const Sidebar = ({ isOpen, closeSidebar }: SidebarProps) => {
           <div className="md:hidden p-4 border-b border-gray-200 flex justify-between items-center">
             <Link to="/" onClick={closeSidebar} className="flex items-center gap-2">
               <img
-                src="/slim/assets/images/lnkd_profile_picture-01.jpg"
+                src="/assets/images/lnkd_profile_picture-01.jpg"
                 alt={fr.smarthub_tunis_logo}
                 className="h-10 w-10 rounded-full object-cover shadow-md border-2 border-orange-400"
               />

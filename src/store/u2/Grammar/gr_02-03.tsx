@@ -1,7 +1,7 @@
 // Unit 2 Lesson 3 - Grammar: Prepositions of Place
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 interface Question {
   question: string;

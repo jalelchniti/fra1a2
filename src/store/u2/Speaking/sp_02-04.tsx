@@ -1,4 +1,4 @@
-// Unit 2 Lesson 4 - Speaking: Role Play Scenarios
+﻿// Unit 2 Lesson 4 - Speaking: Role Play Scenarios
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -11,28 +11,28 @@ interface Scenario {
 
 const scenarios: Scenario[] = [
   {
-    title: "Shopping at a Clothing Store",
-    situation: "You want to buy a new shirt for work",
-    rolePlay: "You are the customer. Ask about sizes, prices, and discounts. Ask for a fitting room.",
-    tips: ["Ask 'How much is this?'", "Say 'Do you have a smaller size?'", "Ask 'Is there a discount?'"]
+    title: "Faire du shopping dans un magasin de vêtements",
+    situation: "Vous voulez acheter une nouvelle chemise pour le travail",
+    rolePlay: "Vous êtes le client. Demandez les tailles, les prix, les remises. Demandez une cabine d’essayage.",
+    tips: ["Demandez « Combien ça coûte ? »", "Dites « Avez-vous une taille plus petite ? »", "Demandez « Y a-t-il une remise ? »"]
   },
   {
-    title: "Asking for Directions",
-    situation: "You are lost and looking for a bank",
-    rolePlay: "Stop a local person and ask for directions politely. Ask about landmarks and distance.",
-    tips: ["Start with 'Excuse me'", "Ask 'How do I get to...'", "Ask 'Is it far?'"]
+    title: "Demander son chemin",
+    situation: "Vous êtes perdu et cherchez une banque",
+    rolePlay: "Arrêtez un passant et demandez poliment votre chemin. Demandez des repères et la distance.",
+    tips: ["Commencez par « Excusez-moi »", "Demandez « Comment aller à … »", "Demandez « Est-ce loin ? »"]
   },
   {
-    title: "Making a Return",
-    situation: "You bought a shirt that doesn't fit",
-    rolePlay: "Go to the store and explain the problem. Ask about the return policy and refund.",
-    tips: ["Bring your receipt", "Explain what's wrong politely", "Ask about refund time"]
+    title: "Faire un retour",
+    situation: "Vous avez acheté une chemise qui ne va pas",
+    rolePlay: "Allez au magasin et expliquez le problème. Demandez la politique de retour et le remboursement.",
+    tips: ["Apportez votre reçu", "Expliquez poliment le problème", "Demandez le délai de remboursement"]
   },
   {
-    title: "Paying at Checkout",
-    situation: "You're buying items at a supermarket",
-    rolePlay: "Chat with the cashier, ask about prices, payment methods, and get your receipt.",
-    tips: ["Ask 'How much total?'", "Say 'Can I pay by card?'", "Ask for a receipt"]
+    title: "Payer en caisse",
+    situation: "Vous achetez des articles au supermarché",
+    rolePlay: "Discutez avec le caissier, demandez les prix, les moyens de paiement et demandez un reçu.",
+    tips: ["Demandez « Combien au total ? »", "Dites « Puis-je payer par carte ? »", "Demandez un reçu"]
   }
 ];
 
@@ -72,8 +72,8 @@ const SpeakingRolePlayQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Speaking: Role Play Scenarios</h1>
-          <p className="text-gray-600">Unit 2 - Speaking Lesson 4</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Expression orale : jeux de rôle</h1>
+          <p className="text-gray-600">Unité 2 - Leçon d’expression orale 4</p>
         </div>
 
         <div className="mb-8">
@@ -84,7 +84,7 @@ const SpeakingRolePlayQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Scenario {currentScenario + 1} of {scenarios.length}
+            Scénario {currentScenario + 1} sur {scenarios.length}
           </p>
         </div>
 
@@ -98,17 +98,17 @@ const SpeakingRolePlayQuiz: React.FC = () => {
 
           <div className="space-y-4 mb-6">
             <div className="bg-blue-50 p-4 rounded-lg">
-              <p className="font-semibold text-gray-800 mb-2">Situation:</p>
+              <p className="font-semibold text-gray-800 mb-2">Situation :</p>
               <p className="text-gray-700">{scenario.situation}</p>
             </div>
 
             <div className="bg-purple-50 p-4 rounded-lg">
-              <p className="font-semibold text-gray-800 mb-2">Your Role:</p>
+              <p className="font-semibold text-gray-800 mb-2">Votre rôle :</p>
               <p className="text-gray-700">{scenario.rolePlay}</p>
             </div>
 
             <div className="bg-orange-50 p-4 rounded-lg">
-              <p className="font-semibold text-gray-800 mb-2">Useful Phrases:</p>
+              <p className="font-semibold text-gray-800 mb-2">Phrases utiles :</p>
               <ul className="space-y-2">
                 {scenario.tips.map((tip, idx) => (
                   <li key={idx} className="text-gray-700 flex items-start">
@@ -138,17 +138,17 @@ const SpeakingRolePlayQuiz: React.FC = () => {
             disabled={currentScenario === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            ← Précédent
           </button>
           <p className="text-center text-gray-600">
-            Completed: {completedScenarios.length} / {scenarios.length}
+            Terminé : {completedScenarios.length} / {scenarios.length}
           </p>
           <button
             onClick={handleNext}
             disabled={currentScenario === scenarios.length - 1}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant →
           </button>
         </div>
 
@@ -160,7 +160,7 @@ const SpeakingRolePlayQuiz: React.FC = () => {
               : "bg-green-500 text-white hover:bg-green-600"
           }`}
         >
-          {completedScenarios.includes(currentScenario) ? "✓ Completed" : "Mark as Completed"}
+          {completedScenarios.includes(currentScenario) ? "✓ Terminé" : "Marquer comme terminé"}
         </button>
       </div>
     </motion.div>
@@ -168,3 +168,4 @@ const SpeakingRolePlayQuiz: React.FC = () => {
 };
 
 export default SpeakingRolePlayQuiz;
+

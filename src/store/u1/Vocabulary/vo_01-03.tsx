@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
-  { word: fr.table, image: '/slim/assets/images/table.png' },
-  { word: fr.chair, image: '/slim/assets/images/chair.png' },
-  { word: fr.door, image: '/slim/assets/images/door.png' },
-  { word: fr.window, image: '/slim/assets/images/window.png' },
-  { word: fr.bed, image: '/slim/assets/images/bed.png' },
-  { word: fr.desk, image: '/slim/assets/images/desk.png' },
-  { word: fr.lamp, image: '/slim/assets/images/lamp.png' },
-  { word: fr.book, image: '/slim/assets/images/book.png' },
+  { word: fr.table, image: '/assets/images/table.png' },
+  { word: fr.chair, image: '/assets/images/chair.png' },
+  { word: fr.door, image: '/assets/images/door.png' },
+  { word: fr.window, image: '/assets/images/window.png' },
+  { word: fr.bed, image: '/assets/images/bed.png' },
+  { word: fr.desk, image: '/assets/images/desk.png' },
+  { word: fr.lamp, image: '/assets/images/lamp.png' },
+  { word: fr.book, image: '/assets/images/book.png' },
 ];
 
 const FlashcardQuiz: React.FC = () => {

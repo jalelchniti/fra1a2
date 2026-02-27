@@ -16,14 +16,14 @@ const ListeningActivityGame: FC = () => {
   const activities = [
     {
       level: 1,
-      title: "Level 1: One Short Sentence",
-      difficulty: "Beginner",
-      text: "Maria lives in New York.",
+      title: "Niveau 1 : Une phrase courte",
+      difficulty: "Debutant",
+      text: "Maria vit a New York.",
       questions: [
         {
           id: "q1",
-          question: "Where does Maria live?",
-          options: ["In Boston", "In New York", "In Chicago", "In Miami"],
+          question: "Ou vit Maria ?",
+          options: ["A Boston", "A New York", "A Chicago", "A Miami"],
           correct: 1,
           type: "location"
         }
@@ -32,21 +32,21 @@ const ListeningActivityGame: FC = () => {
     },
     {
       level: 2,
-      title: "Level 2: One Long Sentence",
-      difficulty: "Beginner",
-      text: "My brother John works as a software engineer at a technology company in San Francisco.",
+      title: "Niveau 2 : Une phrase longue",
+      difficulty: "Debutant",
+      text: "Mon frere John travaille comme ingenieur logiciel dans une entreprise de technologie a San Francisco.",
       questions: [
         {
           id: "q1",
-          question: "What is John's job?",
-          options: ["Teacher", "Doctor", "Software engineer", "Sales manager"],
+          question: "Quel est le metier de John ?",
+          options: ["Enseignant", "Medecin", "Ingenieur logiciel", "Responsable des ventes"],
           correct: 2,
           type: "occupation"
         },
         {
           id: "q2",
-          question: "Where does John work?",
-          options: ["New York", "Los Angeles", "San Francisco", "Seattle"],
+          question: "Ou travaille John ?",
+          options: ["A New York", "A Los Angeles", "A San Francisco", "A Seattle"],
           correct: 2,
           type: "location"
         }
@@ -55,28 +55,28 @@ const ListeningActivityGame: FC = () => {
     },
     {
       level: 3,
-      title: "Level 3: Two Short Sentences",
-      difficulty: "Elementary",
-      text: "Sarah went to the supermarket yesterday. She bought fresh vegetables and fruit.",
+      title: "Niveau 3 : Deux phrases courtes",
+      difficulty: "Elementaire",
+      text: "Sarah est allee au supermarche hier. Elle a achete des legumes et des fruits frais.",
       questions: [
         {
           id: "q1",
-          question: "Where did Sarah go?",
-          options: ["To the pharmacy", "To the supermarket", "To the library", "To the bank"],
+          question: "Ou est allee Sarah ?",
+          options: ["A la pharmacie", "Au supermarche", "A la bibliotheque", "A la banque"],
           correct: 1,
           type: "location"
         },
         {
           id: "q2",
-          question: "When did she go there?",
-          options: ["Today", "Tomorrow", "Yesterday", "Last week"],
+          question: "Quand y est-elle allee ?",
+          options: ["Aujourd'hui", "Demain", "Hier", "La semaine derniere"],
           correct: 2,
           type: "time"
         },
         {
           id: "q3",
-          question: "What did Sarah buy?",
-          options: ["Clothes and shoes", "Books and magazines", "Vegetables and fruit", "Meat and fish"],
+          question: "Qu'a achete Sarah ?",
+          options: ["Des vetements et des chaussures", "Des livres et des magazines", "Des legumes et des fruits", "De la viande et du poisson"],
           correct: 2,
           type: "detail"
         }
@@ -85,35 +85,35 @@ const ListeningActivityGame: FC = () => {
     },
     {
       level: 4,
-      title: "Level 4: Two Long Sentences",
-      difficulty: "Elementary",
-      text: "Tom is planning to move to Boston next month because he got a new job at a large hospital there. He is very excited about this opportunity and is already looking for an apartment near the city center.",
+      title: "Niveau 4 : Deux phrases longues",
+      difficulty: "Elementaire",
+      text: "Tom prevoit de demenager a Boston le mois prochain parce qu'il a obtenu un nouveau travail dans un grand hopital la-bas. Il est tres enthousiaste pour cette opportunite et cherche deja un appartement pres du centre-ville.",
       questions: [
         {
           id: "q1",
-          question: "Where is Tom going to move?",
-          options: ["Chicago", "Boston", "Miami", "Denver"],
+          question: "Ou Tom va-t-il demenager ?",
+          options: ["A Chicago", "A Boston", "A Miami", "A Denver"],
           correct: 1,
           type: "location"
         },
         {
           id: "q2",
-          question: "When is Tom moving?",
-          options: ["This week", "Next month", "Next year", "Tomorrow"],
+          question: "Quand Tom va-t-il demenager ?",
+          options: ["Cette semaine", "Le mois prochain", "L'annee prochaine", "Demain"],
           correct: 1,
           type: "time"
         },
         {
           id: "q3",
-          question: "Why is Tom moving?",
-          options: ["For vacation", "To study", "He got a new job", "To visit family"],
+          question: "Pourquoi Tom demenage-t-il ?",
+          options: ["Pour les vacances", "Pour etudier", "Il a obtenu un nouveau travail", "Pour visiter sa famille"],
           correct: 2,
           type: "reason"
         },
         {
           id: "q4",
-          question: "What is Tom looking for?",
-          options: ["A car", "An apartment", "A restaurant", "A school"],
+          question: "Que cherche Tom ?",
+          options: ["Une voiture", "Un appartement", "Un restaurant", "Une ecole"],
           correct: 1,
           type: "detail"
         }
@@ -122,42 +122,42 @@ const ListeningActivityGame: FC = () => {
     },
     {
       level: 5,
-      title: "Level 5: Three Sentences",
-      difficulty: "Intermediate",
-      text: "Lisa has been learning English for three years and she is making great progress. Last week, she passed an important exam with a very high score. Now she is planning to travel to England next summer to practice her speaking skills.",
+      title: "Niveau 5 : Trois phrases",
+      difficulty: "Intermediaire",
+      text: "Lisa apprend l'anglais depuis trois ans et elle fait de grands progres. La semaine derniere, elle a reussi un examen important avec une tres bonne note. Maintenant, elle prevoit de voyager en Angleterre l'ete prochain pour pratiquer son expression orale.",
       questions: [
         {
           id: "q1",
-          question: "How long has Lisa been learning English?",
-          options: ["One year", "Two years", "Three years", "Four years"],
+          question: "Depuis combien de temps Lisa apprend-elle l'anglais ?",
+          options: ["Un an", "Deux ans", "Trois ans", "Quatre ans"],
           correct: 2,
           type: "duration"
         },
         {
           id: "q2",
-          question: "What happened last week?",
-          options: ["She started a class", "She passed an exam", "She traveled", "She got a job"],
+          question: "Que s'est-il passe la semaine derniere ?",
+          options: ["Elle a commence un cours", "Elle a reussi un examen", "Elle a voyage", "Elle a obtenu un travail"],
           correct: 1,
           type: "past_event"
         },
         {
           id: "q3",
-          question: "How did she do on the exam?",
-          options: ["She failed", "She got a low score", "She got a high score", "She didn't take it"],
+          question: "Comment a-t-elle fait a l'examen ?",
+          options: ["Elle a echoue", "Elle a eu une mauvaise note", "Elle a eu une tres bonne note", "Elle ne l'a pas passe"],
           correct: 2,
           type: "result"
         },
         {
           id: "q4",
-          question: "Where is Lisa planning to go?",
-          options: ["France", "Spain", "England", "Italy"],
+          question: "Ou Lisa prevoit-elle d'aller ?",
+          options: ["En France", "En Espagne", "En Angleterre", "En Italie"],
           correct: 2,
           type: "location"
         },
         {
           id: "q5",
-          question: "Why does she want to travel there?",
-          options: ["For vacation", "To practice speaking", "To work", "To study grammar"],
+          question: "Pourquoi veut-elle voyager la-bas ?",
+          options: ["Pour les vacances", "Pour pratiquer l'expression orale", "Pour travailler", "Pour etudier la grammaire"],
           correct: 1,
           type: "purpose"
         }
@@ -166,49 +166,49 @@ const ListeningActivityGame: FC = () => {
     },
     {
       level: 6,
-      title: "Level 6: Complex Story",
-      difficulty: "Intermediate",
-      text: "Ahmed moved to the United States two years ago to pursue his dream of becoming a doctor. At first, everything was difficult because he didn't speak English very well and he missed his family in Tunisia. However, he studied hard every day, made many new friends, and joined a conversation club at his university. Now, his English is much better, he feels more confident, and he is doing well in his medical school classes. He calls his family every week and tells them about his progress.",
+      title: "Niveau 6 : Histoire complexe",
+      difficulty: "Intermediaire",
+      text: "Ahmed a demenage aux Etats-Unis il y a deux ans pour poursuivre son reve de devenir medecin. Au debut, tout etait difficile parce qu'il ne parlait pas tres bien anglais et sa famille en Tunisie lui manquait. Cependant, il a etudie dur chaque jour, il s'est fait beaucoup de nouveaux amis et il a rejoint un club de conversation a l'universite. Maintenant, son anglais est bien meilleur, il se sent plus confiant et il reussit bien ses cours de medecine. Il appelle sa famille chaque semaine et leur parle de ses progres.",
       questions: [
         {
           id: "q1",
-          question: "When did Ahmed move to the USA?",
-          options: ["One year ago", "Two years ago", "Three years ago", "Five years ago"],
+          question: "Quand Ahmed a-t-il demenage aux Etats-Unis ?",
+          options: ["Il y a un an", "Il y a deux ans", "Il y a trois ans", "Il y a cinq ans"],
           correct: 1,
           type: "time"
         },
         {
           id: "q2",
-          question: "What is Ahmed's goal?",
-          options: ["To be a teacher", "To be a doctor", "To be an engineer", "To be a businessman"],
+          question: "Quel est l'objectif d'Ahmed ?",
+          options: ["Devenir enseignant", "Devenir medecin", "Devenir ingenieur", "Devenir homme d'affaires"],
           correct: 1,
           type: "goal"
         },
         {
           id: "q3",
-          question: "What was difficult at first?",
-          options: ["Making friends", "Finding a house", "Speaking English well", "Buying food"],
+          question: "Qu'est-ce qui etait difficile au debut ?",
+          options: ["Se faire des amis", "Trouver un logement", "Bien parler anglais", "Acheter de la nourriture"],
           correct: 2,
           type: "difficulty"
         },
         {
           id: "q4",
-          question: "What did Ahmed do to improve?",
-          options: ["He quit school", "He went home", "He studied hard and joined a club", "He changed majors"],
+          question: "Qu'a fait Ahmed pour s'ameliorer ?",
+          options: ["Il a quitte l'ecole", "Il est rentre chez lui", "Il a etudie dur et a rejoint un club", "Il a change de filiere"],
           correct: 2,
           type: "action"
         },
         {
           id: "q5",
-          question: "How is Ahmed doing now?",
-          options: ["He's struggling", "He's doing well", "He went back home", "He changed schools"],
+          question: "Comment Ahmed s'en sort-il maintenant ?",
+          options: ["Il a des difficultes", "Il reussit bien", "Il est rentre chez lui", "Il a change d'ecole"],
           correct: 1,
           type: "current_status"
         },
         {
           id: "q6",
-          question: "How often does Ahmed call his family?",
-          options: ["Every day", "Every week", "Every month", "Every year"],
+          question: "A quelle frequence Ahmed appelle-t-il sa famille ?",
+          options: ["Tous les jours", "Chaque semaine", "Chaque mois", "Chaque annee"],
           correct: 1,
           type: "frequency"
         }
@@ -223,7 +223,7 @@ const ListeningActivityGame: FC = () => {
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.9; // Slightly slower for clarity
       utterance.pitch = 1;
 
@@ -233,7 +233,7 @@ const ListeningActivityGame: FC = () => {
 
       window.speechSynthesis.speak(utterance);
     } else {
-      alert('Sorry, your browser does not support text-to-speech.');
+      alert('Desole, votre navigateur ne prend pas en charge la synthese vocale.');
     }
   };
 
@@ -309,10 +309,10 @@ const ListeningActivityGame: FC = () => {
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-3 mb-4">
             <Headphones className="w-12 h-12 text-cyan-400 animate-pulse" />
-            <h1 className="text-6xl font-bold text-white">Listen & Learn</h1>
+            <h1 className="text-6xl font-bold text-white">Ecouter et apprendre</h1>
             <Volume2 className="w-12 h-12 text-green-400 animate-pulse" />
           </div>
-          <p className="text-xl text-blue-200">Progressive Listening Activities</p>
+          <p className="text-xl text-blue-200">Activites d'ecoute progressives</p>
         </div>
 
         {/* Score Board */}
@@ -320,12 +320,12 @@ const ListeningActivityGame: FC = () => {
           <div className="flex items-center gap-3">
             <Trophy className="w-10 h-10 text-yellow-400" />
             <div>
-              <p className="text-sm text-blue-200 font-medium">Total Score</p>
+              <p className="text-sm text-blue-200 font-medium">Score total</p>
               <p className="text-4xl font-bold text-white">{score}</p>
             </div>
           </div>
           <div>
-            <p className="text-sm text-blue-200 font-medium">Levels Completed</p>
+            <p className="text-sm text-blue-200 font-medium">Niveaux termines</p>
             <p className="text-4xl font-bold text-white">{completedLevels.length}/{activities.length}</p>
           </div>
           <button
@@ -333,7 +333,7 @@ const ListeningActivityGame: FC = () => {
             className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 py-3 rounded-xl transition-all hover:scale-105 font-bold shadow-lg"
           >
             <RotateCcw className="w-5 h-5" />
-            <span>Reset</span>
+            <span>Reinitialiser</span>
           </button>
         </div>
 
@@ -353,7 +353,7 @@ const ListeningActivityGame: FC = () => {
               <div className="bg-black/30 backdrop-blur-sm rounded-2xl p-8 mb-8 w-full border-2 border-white/30">
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <Headphones className="w-8 h-8" />
-                  <p className="text-lg font-bold">Listen Carefully</p>
+                  <p className="text-lg font-bold">Ecoutez attentivement</p>
                 </div>
                 
                 <div className="flex justify-center gap-4">
@@ -367,7 +367,7 @@ const ListeningActivityGame: FC = () => {
                     }`}
                   >
                     <Play className="w-6 h-6" />
-                    Play Audio
+                    Lire l'audio
                   </button>
                   
                   {isPlaying && (
@@ -376,13 +376,13 @@ const ListeningActivityGame: FC = () => {
                       className="flex items-center gap-2 bg-red-500 hover:bg-red-600 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-105 shadow-lg"
                     >
                       <Pause className="w-6 h-6" />
-                      Stop
+                      Arreter
                     </button>
                   )}
                 </div>
 
                 <p className="text-center text-sm mt-4 italic opacity-80">
-                  💡 You can play the audio as many times as you need
+                   Vous pouvez lire l'audio autant de fois que necessaire
                 </p>
               </div>
 
@@ -391,7 +391,7 @@ const ListeningActivityGame: FC = () => {
                 {currentActivity.questions.map((question, qIndex) => (
                   <div key={question.id} className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border-2 border-white/20">
                     <p className="text-xl font-bold mb-4">
-                      Question {qIndex + 1}: {question.question}
+                      Question {qIndex + 1} : {question.question}
                     </p>
                     
                     <div className="space-y-3">
@@ -441,7 +441,7 @@ const ListeningActivityGame: FC = () => {
                         : 'bg-white text-gray-900 hover:bg-yellow-100 hover:scale-105'
                     }`}
                   >
-                    Submit Answers
+                    Valider les reponses
                   </button>
                 ) : (
                   <>
@@ -452,14 +452,14 @@ const ListeningActivityGame: FC = () => {
                       }}
                       className="px-10 py-5 rounded-2xl font-bold text-xl bg-white/80 text-gray-900 hover:bg-white transition-all hover:scale-105 shadow-2xl"
                     >
-                      Try Again
+                      Reessayer
                     </button>
                     {currentLevel < activities.length - 1 && (
                       <button
                         onClick={nextLevel}
                         className="px-10 py-5 rounded-2xl font-bold text-xl bg-white text-gray-900 hover:bg-green-100 transition-all hover:scale-105 shadow-2xl border-4 border-green-300"
                       >
-                        Next Level →
+                        Niveau suivant 
                       </button>
                     )}
                   </>
@@ -469,18 +469,18 @@ const ListeningActivityGame: FC = () => {
           </div>
         ) : (
           <div className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-3xl shadow-2xl p-12 text-white text-center border-4 border-yellow-300">
-            <div className="text-9xl mb-6">🎧</div>
+            <div className="text-9xl mb-6">ECOUTE</div>
             <Trophy className="w-24 h-24 mx-auto mb-6" />
-            <h2 className="text-5xl font-bold mb-4">Listening Master!</h2>
-            <p className="text-2xl mb-6">You completed all 6 levels!</p>
+            <h2 className="text-5xl font-bold mb-4">Maitre de l'ecoute !</h2>
+            <p className="text-2xl mb-6">Vous avez termine les 6 niveaux !</p>
             <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-6 mb-8 inline-block">
-              <p className="text-5xl font-bold">Final Score: {score}</p>
+              <p className="text-5xl font-bold">Score final : {score}</p>
             </div>
             <button
               onClick={resetGame}
               className="bg-white text-orange-600 px-14 py-6 rounded-2xl font-bold text-2xl hover:bg-gray-100 transition-all hover:scale-105 shadow-2xl"
             >
-              Practice Again
+              S'entrainer a nouveau
             </button>
           </div>
         )}
@@ -507,13 +507,13 @@ const ListeningActivityGame: FC = () => {
         <div className="mt-8 bg-gradient-to-r from-blue-900/50 to-indigo-900/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-blue-400/30">
           <h3 className="text-2xl font-bold text-white mb-4 text-center flex items-center justify-center gap-2">
             <Headphones className="w-6 h-6 text-cyan-400" />
-            Listening Tips
+            Conseils d'ecoute
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-blue-100">
-            <p>🎧 Listen 2-3 times before answering</p>
-            <p>📝 Focus on key words and names</p>
-            <p>🔢 Pay attention to numbers and times</p>
-            <p>❓ Listen for question words (who, what, when, where, why, how)</p>
+            <p>Ecoutez 2 a 3 fois avant de repondre</p>
+            <p>Concentrez-vous sur les mots cles et les noms</p>
+            <p>Faites attention aux nombres et aux heures</p>
+            <p>Ecoutez les mots interrogatifs (qui, quoi, quand, ou, pourquoi, comment)</p>
           </div>
         </div>
       </div>

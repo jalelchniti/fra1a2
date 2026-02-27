@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 interface Flashcard {
   id: number;
@@ -30,6 +30,18 @@ const FlashcardQuiz: React.FC = () => {
   const [isTtsEnabled, setIsTtsEnabled] = useState(true);
   const isSpeakingRef = useRef(false);
 
+  const speak = React.useCallback((text: string) => {
+    if (!isTtsEnabled || isSpeakingRef.current || !window.speechSynthesis) return;
+    isSpeakingRef.current = true;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US";
+    const englishVoice = voices.find((voice) => voice.lang === "en-US") || voices[0];
+    if (englishVoice) utterance.voice = englishVoice;
+    utterance.onend = () => (isSpeakingRef.current = false);
+    window.speechSynthesis.speak(utterance);
+  }, [isTtsEnabled, voices]);
+
   React.useEffect(() => {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
@@ -50,18 +62,6 @@ const FlashcardQuiz: React.FC = () => {
       window.speechSynthesis.onvoiceschanged = null;
     };
   }, [isTtsEnabled, speak]);
-
-  const speak = React.useCallback((text: string) => {
-    if (!isTtsEnabled || isSpeakingRef.current || !window.speechSynthesis) return;
-    isSpeakingRef.current = true;
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = "en-US";
-    const englishVoice = voices.find((voice) => voice.lang === "en-US") || voices[0];
-    if (englishVoice) utterance.voice = englishVoice;
-    utterance.onend = () => (isSpeakingRef.current = false);
-    window.speechSynthesis.speak(utterance);
-  }, [isTtsEnabled, voices]);
 
   const handleFlip = () => {
     const newFlipped = !isFlipped;

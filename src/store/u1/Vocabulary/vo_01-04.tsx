@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { id: 1, image: 'table.png', word: fr.table_word },
@@ -62,7 +62,7 @@ const FlashcardQuiz = () => {
         >
           <div className="absolute w-full h-full backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
             <img
-              src={`/slim/assets/images/${flashcards[currentIndex].image}`}
+              src={`/assets/images/${flashcards[currentIndex].image}`}
               alt={flashcards[currentIndex].word}
               className="w-full h-full object-contain"
             />

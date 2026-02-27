@@ -22,76 +22,76 @@ const Li_03_01 = () => {
   const isSpeakingRef = useRef(false);
 
   const transcript = `
-    UNDERSTANDING DIRECTIONS
+    COMPREHENSION ORALE COMPRENDRE LES DIRECTIONS
 
-    A: Excuse me. How do I get to the train station?
-    B: It is easy! Go straight. Then turn left at the big church.
-    A: Turn left at the church?
-    B: Yes. After the church, you will see the station on your right.
-    A: How long does it take?
-    B: About 10 minutes on foot.
-    A: Thank you so much!
-    B: You are welcome!
+    A: Excusez-moi. Comment aller a la gare ?
+    B: C'est facile ! Allez tout droit. Puis tournez a gauche a la grande eglise.
+    A: Tourner a gauche a l'eglise ?
+    B: Oui. Apres l'eglise, vous verrez la gare sur votre droite.
+    A: Combien de temps cela prend-il ?
+    B: Environ 10 minutes a pied.
+    A: Merci beaucoup !
+    B: Je vous en prie !
   `;
 
   const questions: Question[] = [
-    {
-      id: 1,
-      question: 'What is the person asking for?',
-      options: ['The bus stop', 'The train station', 'The church', 'The market'],
-      correct: 1,
-      explanation: 'Person A asks: "How do I get to the train station?"'
-    },
-    {
-      id: 2,
-      question: 'What does Person B tell them to do first?',
-      options: ['Turn left', 'Turn right', 'Go straight', 'Go to the church'],
-      correct: 2,
-      explanation: 'Person B says: "Go straight. Then turn left at the big church."'
-    },
-    {
-      id: 3,
-      question: 'Where is the big church?',
-      options: ['On the right', 'On the left', 'Near the station', 'At the beginning'],
-      correct: 2,
-      explanation: 'Person B says: "Turn left at the big church."'
-    },
-    {
-      id: 4,
-      question: 'Where is the train station?',
-      options: ['On the left', 'On the right', 'Behind the church', 'Behind the person'],
-      correct: 1,
-      explanation: 'Person B says: "After the church, you will see the station on your right."'
-    },
-    {
-      id: 5,
-      question: 'How long is the walk?',
-      options: ['5 minutes', '10 minutes', '15 minutes', '20 minutes'],
-      correct: 1,
-      explanation: 'Person B says: "About 10 minutes on foot."'
-    },
-    {
-      id: 6,
-      question: 'What is the most important landmark?',
-      options: ['The market', 'The church', 'The bus stop', 'The park'],
-      correct: 1,
-      explanation: 'The church is mentioned as the place to turn left. It is the main landmark.'
-    },
-    {
-      id: 7,
-      question: 'Is the direction easy or difficult?',
-      options: ['Very difficult', 'A bit difficult', 'Easy', 'Very confusing'],
-      correct: 2,
-      explanation: 'Person B says: "It is easy!"'
-    },
-    {
-      id: 8,
-      question: 'How does Person A feel at the end?',
-      options: ['Confused', 'Angry', 'Grateful', 'Scared'],
-      correct: 2,
-      explanation: 'Person A says: "Thank you so much!" showing gratitude.'
-    }
-  ];
+  {
+    id: 1,
+    question: "Que demande la personne ?",
+    options: ["L'arret de bus", "La gare", "L'eglise", "Le marche"],
+    correct: 1,
+    explanation: "La personne A demande : 'Comment aller a la gare ?'"
+  },
+  {
+    id: 2,
+    question: "Que lui dit la personne B de faire en premier ?",
+    options: ["Tourner a gauche", "Tourner a droite", "Aller tout droit", "Aller a l'eglise"],
+    correct: 2,
+    explanation: "La personne B dit : 'Allez tout droit. Puis tournez a gauche a la grande eglise.'"
+  },
+  {
+    id: 3,
+    question: "Ou se trouve la grande eglise ?",
+    options: ["A droite", "A gauche", "Pres de la gare", "Au debut"],
+    correct: 2,
+    explanation: "La personne B dit : 'Tournez a gauche a la grande eglise.'"
+  },
+  {
+    id: 4,
+    question: "Ou est la gare ?",
+    options: ["A gauche", "A droite", "Derriere l'eglise", "Derriere la personne"],
+    correct: 1,
+    explanation: "La personne B dit : 'Apres l'eglise, vous verrez la gare sur votre droite.'"
+  },
+  {
+    id: 5,
+    question: "Combien de temps dure la marche ?",
+    options: ["5 minutes", "10 minutes", "15 minutes", "20 minutes"],
+    correct: 1,
+    explanation: "La personne B dit : 'Environ 10 minutes a pied.'"
+  },
+  {
+    id: 6,
+    question: "Quel est le repere le plus important ?",
+    options: ["Le marche", "L'eglise", "L'arret de bus", "Le parc"],
+    correct: 1,
+    explanation: "L'eglise est mentionnee comme l'endroit ou il faut tourner a gauche. C'est le repere principal."
+  },
+  {
+    id: 7,
+    question: "La direction est-elle facile ou difficile ?",
+    options: ["Tres difficile", "Un peu difficile", "Facile", "Tres confuse"],
+    correct: 2,
+    explanation: "La personne B dit : 'C'est facile !'"
+  },
+  {
+    id: 8,
+    question: "Comment se sent la personne A a la fin ?",
+    options: ["Confuse", "En colere", "Reconnaissante", "Effrayee"],
+    correct: 2,
+    explanation: "La personne A dit : 'Merci beaucoup !' ce qui montre sa reconnaissance."
+  }
+];
 
   const speakWithPauses = () => {
     if (isSpeakingRef.current) return;
@@ -115,7 +115,7 @@ const Li_03_01 = () => {
 
       const line = lines[currentIndex];
       const utterance = new SpeechSynthesisUtterance(line);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.85;
 
       utterance.onend = () => {
@@ -197,10 +197,10 @@ const Li_03_01 = () => {
             className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-white/80 rounded-lg transition"
           >
             <ChevronLeft size={20} />
-            Back
+            Retour
           </button>
           <h1 className="text-2xl font-bold text-gray-800 text-center">
-            Listening: Understanding Directions
+            Comprehension orale : comprendre les directions
           </h1>
           <div className="w-[100px]"></div>
         </div>
@@ -208,7 +208,7 @@ const Li_03_01 = () => {
         {/* Transcript Box */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-800">Listening Transcript:</h2>
+            <h2 className="text-lg font-bold text-gray-800">Transcription d'ecoute :</h2>
             <div className="flex gap-2">
               <button
                 onClick={speakWithPauses}
@@ -216,14 +216,14 @@ const Li_03_01 = () => {
                 className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
               >
                 <Volume2 size={18} />
-                {isSpeaking ? 'Playing...' : 'Play Audio'}
+                {isSpeaking ? 'Lecture...' : "Ecouter l'audio"}
               </button>
               <button
                 onClick={() => setShowTranscript(!showTranscript)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
               >
                 {showTranscript ? <EyeOff size={18} /> : <Eye size={18} />}
-                {showTranscript ? 'Hide' : 'Show'}
+                {showTranscript ? 'Masquer' : 'Afficher'}
               </button>
             </div>
           </div>
@@ -238,10 +238,10 @@ const Li_03_01 = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <p className="text-gray-700 font-semibold">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentQuestionIndex + 1} sur {questions.length}
             </p>
             <p className="text-gray-700 font-semibold">
-              Score: {score}/{questions.length}
+              Score : {score}/{questions.length}
             </p>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2">
@@ -317,7 +317,7 @@ const Li_03_01 = () => {
             }`}
           >
             <p className="font-semibold text-gray-800 mb-2">
-              {selectedAnswer === currentQuestion.correct ? '✓ Correct!' : '✗ Not quite right'}
+              {selectedAnswer === currentQuestion.correct ? 'Bonne reponse !' : 'Pas tout a fait'}
             </p>
             <p className="text-gray-700">{currentQuestion.explanation}</p>
           </motion.div>
@@ -330,23 +330,21 @@ const Li_03_01 = () => {
               onClick={handleNext}
               className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
             >
-              Next Question
+              Question suivante
             </button>
           )}
 
           {isComplete && (
             <div className="w-full text-center">
-              <p className="text-2xl font-bold text-gray-800 mb-4">
-                Quiz Complete! 🎉
-              </p>
+              <p className="text-2xl font-bold text-gray-800 mb-4">Quiz termine !</p>
               <p className="text-lg text-gray-700 mb-4">
-                Your score: {score} out of {questions.length}
+                Votre score : {score} sur {questions.length}
               </p>
               <button
                 onClick={handleReset}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
               >
-                Try Again
+                Reessayer
               </button>
             </div>
           )}
@@ -357,3 +355,5 @@ const Li_03_01 = () => {
 };
 
 export default Li_03_01;
+
+

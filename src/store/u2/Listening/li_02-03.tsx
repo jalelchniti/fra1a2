@@ -1,4 +1,4 @@
-// Unit 2 Lesson 3 - Listening: Landmarks & Locations
+// Unit 2 Lesson 3 - Comprehension orale : reperes et lieux
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -11,34 +11,34 @@ interface Question {
 
 const questions: Question[] = [
   {
-    question: "What landmark is mentioned first?",
-    options: ["A park", "A church", "A hospital", "A bank"],
+    question: "Quel repere est mentionne en premier ?",
+    options: ["Un parc", "Une eglise", "Un hopital", "Une banque"],
     correctAnswer: 1,
-    audio: "The hospital is located next to a big old church. You cannot miss it."
+    audio: "L'hopital est situe a cote d'une grande vieille eglise. Vous ne pouvez pas le manquer."
   },
   {
-    question: "On which street is the post office?",
+    question: "Dans quelle rue se trouve la poste ?",
     options: ["Main Street", "Oak Avenue", "Pine Road", "Elm Street"],
     correctAnswer: 2,
-    audio: "The post office is on Pine Road, between the bakery and the supermarket."
+    audio: "La poste est sur Pine Road, entre la boulangerie et le supermarche."
   },
   {
-    question: "What's next to the pharmacy?",
-    options: ["A coffee shop", "A bookstore", "A supermarket", "A restaurant"],
+    question: "Qu'y a-t-il a cote de la pharmacie ?",
+    options: ["Un cafe", "Une librairie", "Un supermarche", "Un restaurant"],
     correctAnswer: 0,
-    audio: "You will find the pharmacy next to a nice coffee shop, just across from the park."
+    audio: "Vous trouverez la pharmacie a cote d'un joli cafe, juste en face du parc."
   },
   {
-    question: "How far is the station from downtown?",
+    question: "A quelle distance est la gare du centre-ville ?",
     options: ["5 minutes", "10 minutes", "20 minutes", "30 minutes"],
     correctAnswer: 1,
-    audio: "The train station is about 10 minutes away from downtown by bus or taxi."
+    audio: "La gare est a environ 10 minutes du centre-ville en bus ou en taxi."
   },
   {
-    question: "What's the name of the main plaza?",
+    question: "Quel est le nom de la place principale ?",
     options: ["Central Plaza", "Town Plaza", "Market Plaza", "Peace Plaza"],
     correctAnswer: 0,
-    audio: "All major stores are located around Central Plaza, in the heart of the city."
+    audio: "Tous les grands magasins se trouvent autour de Central Plaza, au coeur de la ville."
   }
 ];
 
@@ -50,7 +50,7 @@ const ListeningLandmarksQuiz: React.FC = () => {
 
   const playAudio = () => {
     const utterance = new SpeechSynthesisUtterance(questions[currentQuestion].audio);
-    utterance.lang = "en-US";
+    utterance.lang = "fr-FR";
     window.speechSynthesis.speak(utterance);
     setHasListened(true);
   };
@@ -89,8 +89,8 @@ const ListeningLandmarksQuiz: React.FC = () => {
     >
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-blue-600 mb-2">Listening: Landmarks & Locations</h1>
-          <p className="text-gray-600">Unit 2 - Listening Lesson 3</p>
+          <h1 className="text-4xl font-bold text-blue-600 mb-2">Comprehension orale : reperes et lieux</h1>
+          <p className="text-gray-600">Unite 2 - Lecon d'ecoute 3</p>
         </div>
 
         <div className="mb-8">
@@ -101,7 +101,7 @@ const ListeningLandmarksQuiz: React.FC = () => {
             />
           </div>
           <p className="text-center text-gray-600 mt-2">
-            Question {currentQuestion + 1} of {questions.length}
+            Question {currentQuestion + 1} sur {questions.length}
           </p>
         </div>
 
@@ -112,12 +112,12 @@ const ListeningLandmarksQuiz: React.FC = () => {
             onClick={playAudio}
             className="w-full px-6 py-4 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition mb-8 text-lg"
           >
-            🔊 Play Audio
+            Ecouter l'audio
           </button>
 
           {!hasListened && (
             <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded">
-              <p className="text-yellow-800">Click the "Play Audio" button above to listen.</p>
+              <p className="text-yellow-800">Cliquez sur le bouton "Ecouter l'audio" ci-dessus pour ecouter.</p>
             </div>
           )}
 
@@ -154,8 +154,8 @@ const ListeningLandmarksQuiz: React.FC = () => {
             >
               <p className="font-semibold text-gray-800">
                 {selectedAnswers[currentQuestion] === questions[currentQuestion].correctAnswer
-                  ? "✓ Correct!"
-                  : "✗ Incorrect"}
+                  ? "Bonne reponse !"
+                  : "Incorrect"}
               </p>
               <p className="text-gray-700 mt-2 text-sm italic">{questions[currentQuestion].audio}</p>
             </motion.div>
@@ -168,17 +168,17 @@ const ListeningLandmarksQuiz: React.FC = () => {
             disabled={currentQuestion === 0}
             className="px-6 py-2 bg-gray-400 text-white rounded-lg hover:bg-gray-500 disabled:opacity-50 transition"
           >
-            ← Previous
+            Precedent
           </button>
           <div className="text-center">
-            <p className="text-gray-600">Score: {score} / {questions.length}</p>
+            <p className="text-gray-600">Score : {score} / {questions.length}</p>
           </div>
           <button
             onClick={handleNext}
             disabled={currentQuestion === questions.length - 1 || selectedAnswers[currentQuestion] === null}
             className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:opacity-50 transition"
           >
-            Next →
+            Suivant
           </button>
         </div>
       </div>
@@ -187,3 +187,4 @@ const ListeningLandmarksQuiz: React.FC = () => {
 };
 
 export default ListeningLandmarksQuiz;
+

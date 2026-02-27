@@ -1,7 +1,7 @@
 // Unit 2 Lesson 4 - Grammar: Modal Verbs & Polite Requests
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 interface Question {
   question: string;

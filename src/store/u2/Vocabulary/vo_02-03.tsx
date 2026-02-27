@@ -1,7 +1,7 @@
 // Unit 2 Lesson 3 - Currency & Payment Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { sideA: fr.dollar_sideA, sideB: fr.dollar_sideB },

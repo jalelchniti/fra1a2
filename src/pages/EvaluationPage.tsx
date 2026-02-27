@@ -49,18 +49,18 @@ const questions: { A1: { [key: string]: Question[] } } = {
       { type: 'fill', question: fr.buy_food_shop_fill_question, answer: 'shop', sublevel: 'A1-3', curriculumUnit: 8 },
     ],
     listening: [
-      { type: 'mc', question: fr.toms_job_question, options: [fr.toms_job_options_1, fr.toms_job_options_2, fr.toms_job_options_3], answer: 'Teacher', hiddenText: fr.toms_job_hidden_text, sublevel: 'A1-1', curriculumUnit: 3 },
-      { type: 'mc', question: fr.where_is_anna_question, options: [fr.where_is_anna_options_1, fr.where_is_anna_options_2, fr.where_is_anna_options_3], answer: 'House', hiddenText: fr.where_is_anna_hidden_text, sublevel: 'A1-1', curriculumUnit: 2 },
-      { type: 'mc', question: fr.what_does_maria_like_question, options: [fr.what_does_maria_like_options_1, fr.what_does_maria_like_options_2, fr.what_does_maria_like_options_3], answer: 'Cats', hiddenText: fr.what_does_maria_like_hidden_text, sublevel: 'A1-2', curriculumUnit: 4 },
-      { type: 'mc', question: fr.what_is_lisas_school_like_question, options: [fr.what_is_lisas_school_like_options_1, fr.what_is_lisas_school_like_options_2, fr.what_is_lisas_school_like_options_3], answer: 'Big', hiddenText: fr.what_is_lisas_school_like_hidden_text, sublevel: 'A1-3', curriculumUnit: 6 },
-      { type: 'mc', question: fr.what_does_john_do_question, options: [fr.what_does_john_do_options_1, fr.what_does_john_do_options_2, fr.what_does_john_do_options_3], answer: 'Plays', hiddenText: fr.what_does_john_do_hidden_text, sublevel: 'A1-3', curriculumUnit: 5 },
+      { type: 'mc', question: fr.toms_job_question_listening, options: [fr.toms_job_options_listening_1, fr.toms_job_options_listening_2, fr.toms_job_options_listening_3], answer: fr.toms_job_options_listening_1, hiddenText: fr.toms_job_hidden_text_listening, sublevel: 'A1-1', curriculumUnit: 3 },
+      { type: 'mc', question: fr.where_is_anna_question_listening, options: [fr.where_is_anna_options_listening_1, fr.where_is_anna_options_listening_2, fr.where_is_anna_options_listening_3], answer: fr.where_is_anna_options_listening_1, hiddenText: fr.where_is_anna_hidden_text_listening, sublevel: 'A1-1', curriculumUnit: 2 },
+      { type: 'mc', question: fr.what_does_maria_like_question_listening, options: [fr.what_does_maria_like_options_listening_1, fr.what_does_maria_like_options_listening_2, fr.what_does_maria_like_options_listening_3], answer: fr.what_does_maria_like_options_listening_1, hiddenText: fr.what_does_maria_like_hidden_text_listening, sublevel: 'A1-2', curriculumUnit: 4 },
+      { type: 'mc', question: fr.what_is_lisas_school_like_question_listening, options: [fr.what_is_lisas_school_like_options_listening_1, fr.what_is_lisas_school_like_options_listening_2, fr.what_is_lisas_school_like_options_listening_3], answer: 'Big', hiddenText: fr.what_is_lisas_school_like_hidden_text_listening, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.what_does_john_do_question_listening, options: [fr.what_does_john_do_options_listening_1, fr.what_does_john_do_options_listening_2, fr.what_does_john_do_options_listening_3], answer: 'Plays', hiddenText: fr.what_does_john_do_hidden_text_listening, sublevel: 'A1-3', curriculumUnit: 5 },
     ],
     reading: [
-      { type: 'mc', question: fr.where_is_john_from_question, options: [fr.where_is_john_from_options_1, fr.where_is_john_from_options_2, fr.where_is_john_from_options_3], answer: 'Spain', text: fr.where_is_john_from_text, sublevel: 'A1-1', curriculumUnit: 2 },
-      { type: 'mc', question: fr.what_does_anna_have_question, options: [fr.what_does_anna_have_options_1, fr.what_does_anna_have_options_2, fr.what_does_anna_have_options_3], answer: 'Cat', text: fr.what_does_anna_have_text, sublevel: 'A1-2', curriculumUnit: 4 },
-      { type: 'mc', question: fr.what_does_maria_do_question, options: [fr.what_does_maria_do_options_1, fr.what_does_maria_do_options_2, fr.what_does_maria_do_options_3], answer: 'Plays', text: fr.what_does_maria_do_text, sublevel: 'A1-2', curriculumUnit: 5 },
-      { type: 'mc', question: fr.what_is_toms_house_like_question, options: [fr.what_is_toms_house_like_options_1, fr.what_is_toms_house_like_options_2, fr.what_is_toms_house_like_options_3], answer: 'Big', text: fr.what_is_toms_house_like_text, sublevel: 'A1-3', curriculumUnit: 8 },
-      { type: 'mc', question: fr.what_does_lisa_like_question, options: [fr.what_does_lisa_like_options_1, fr.what_does_lisa_like_options_2, fr.what_does_lisa_like_options_3], answer: 'Park', text: fr.what_does_lisa_like_text, sublevel: 'A1-3', curriculumUnit: 6 },
+      { type: 'mc', question: fr.where_is_john_from_question_reading, options: [fr.where_is_john_from_options_reading_1, fr.where_is_john_from_options_reading_2, fr.where_is_john_from_options_reading_3], answer: 'Spain', text: fr.where_is_john_from_text_reading, sublevel: 'A1-1', curriculumUnit: 2 },
+      { type: 'mc', question: fr.what_does_anna_have_question_reading, options: [fr.what_does_anna_have_options_reading_1, fr.what_does_anna_have_options_reading_2, fr.what_does_anna_have_options_reading_3], answer: 'Cat', text: fr.what_does_anna_have_text_reading, sublevel: 'A1-2', curriculumUnit: 4 },
+      { type: 'mc', question: fr.what_does_maria_do_question_reading, options: [fr.what_does_maria_do_options_reading_1, fr.what_does_maria_do_options_reading_2, fr.what_does_maria_do_options_reading_3], answer: 'Plays', text: fr.what_does_maria_do_text_reading, sublevel: 'A1-2', curriculumUnit: 5 },
+      { type: 'mc', question: fr.what_is_toms_house_like_question_reading, options: [fr.what_is_toms_house_like_options_reading_1, fr.what_is_toms_house_like_options_reading_2, fr.what_is_toms_house_like_options_reading_3], answer: 'Big', text: fr.what_is_toms_house_like_text_reading, sublevel: 'A1-3', curriculumUnit: 8 },
+      { type: 'mc', question: fr.what_does_lisa_like_question_reading, options: [fr.what_does_lisa_like_options_reading_1, fr.what_does_lisa_like_options_reading_2, fr.what_does_lisa_like_options_reading_3], answer: 'Park', text: fr.what_does_lisa_like_text_reading, sublevel: 'A1-3', curriculumUnit: 6 },
     ],
   },
 };
@@ -80,10 +80,11 @@ const A1PlacementEvaluationPage = () => {
 
   const playTTS = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-GB';
+    utterance.lang = 'fr-FR';
     const voices = window.speechSynthesis.getVoices();
-    const gbVoice = voices.find((voice) => voice.lang === 'en-GB');
-    if (gbVoice) utterance.voice = gbVoice;
+    const frVoice = voices.find((voice) => voice.lang === 'fr-FR') || voices.find((voice) => voice.lang.startsWith('fr'));
+    if (frVoice) utterance.voice = frVoice;
+    
     window.speechSynthesis.speak(utterance);
   };
 

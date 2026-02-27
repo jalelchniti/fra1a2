@@ -69,10 +69,11 @@ const ConfirmA1_3Page = () => {
 
   const playTTS = (text: string) => {
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-GB';
+    utterance.lang = 'fr-FR';
     const voices = window.speechSynthesis.getVoices();
-    const gbVoice = voices.find((voice) => voice.lang === 'en-GB');
-    if (gbVoice) utterance.voice = gbVoice;
+    const frVoice = voices.find((voice) => voice.lang === 'fr-FR') || voices.find((voice) => voice.lang.startsWith('fr'));
+    if (frVoice) utterance.voice = frVoice;
+    
     window.speechSynthesis.speak(utterance);
   };
 
@@ -199,13 +200,13 @@ const ConfirmA1_3Page = () => {
               disabled={step === 0}
               className={`bg-gray-500 text-white px-4 py-2 rounded ${step === 0 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-600'}`}
             >
-              {fr.a1_3_previous}
+              {fr.previous}
             </button>
             <button
               onClick={handleNext}
               className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
             >
-              {step === sections.length - 1 ? fr.a1_3_finish : fr.a1_3_next}
+              {step === sections.length - 1 ? fr.a1_3_finish : fr.next}
             </button>
           </div>
         </div>

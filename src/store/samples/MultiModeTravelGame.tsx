@@ -145,22 +145,19 @@ const TravelGame: FC = () => {
     const randomItemIndex = Math.floor(Math.random() * travelItems.length);
     const correctItem = travelItems[randomItemIndex];
     
-    const incorrectOptions: Partial<TravelItem>[] = [];
+    const incorrectOptions: TravelItem[] = [];
     const usedIndices = new Set([randomItemIndex]);
     
     while (incorrectOptions.length < 3) {
       const idx = Math.floor(Math.random() * travelItems.length);
       if (!usedIndices.has(idx)) {
-        incorrectOptions.push({
-          id: travelItems[idx].id,
-          description: travelItems[idx].description
-        });
+        incorrectOptions.push(travelItems[idx]);
         usedIndices.add(idx);
       }
     }
-    
-    const allOptions: Array<{ id: string; description: string; }> = [
-      { id: correctItem.id, description: correctItem.description },
+   
+    const allOptions: TravelItem[] = [
+      correctItem,
       ...incorrectOptions
     ];
     for (let i = allOptions.length - 1; i > 0; i--) {

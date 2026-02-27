@@ -22,79 +22,79 @@ const Li_03_02 = () => {
   const isSpeakingRef = useRef(false);
 
   const transcript = `
-    PAST TRAVEL CONVERSATION
+    CONVERSATION DE VOYAGE AU PASSE
 
-    A: Hi Fatima! How was your bus trip yesterday?
-    B: It was great! I went to the beach.
-    A: How long was the journey?
-    B: About 2 hours. The bus was fast and comfortable.
-    A: Did you wait long for the bus?
-    B: No, I only waited 10 minutes at the station.
-    A: What did you do at the beach?
-    B: I walked, swam, and took many photos. It was wonderful!
-    A: Did you come back yesterday?
-    B: Yes, I took the evening bus. I arrived home at 8 PM.
-    A: That sounds amazing!
+    A: Salut Fatima ! Comment etait ton voyage en bus hier ?
+    B: C'etait super ! Je suis allee a la plage.
+    A: Combien de temps a dure le trajet ?
+    B: Environ 2 heures. Le bus etait rapide et confortable.
+    A: As-tu attendu longtemps le bus ?
+    B: Non, j'ai attendu seulement 10 minutes a la gare.
+    A: Qu'as-tu fait a la plage ?
+    B: J'ai marche, nage et pris beaucoup de photos. C'etait magnifique !
+    A: Tu es revenue hier ?
+    B: Oui, j'ai pris le bus du soir. Je suis arrivee a la maison a 20 h.
+    A: Ca a l'air genial !
   `;
 
   const questions: Question[] = [
-    {
-      id: 1,
-      question: 'Where did Fatima go yesterday?',
-      options: ['To the market', 'To the beach', 'To the park', 'To the train station'],
-      correct: 1,
-      explanation: 'Fatima says: "I went to the beach."'
-    },
-    {
-      id: 2,
-      question: 'How long was the bus journey?',
-      options: ['1 hour', '2 hours', '3 hours', '4 hours'],
-      correct: 1,
-      explanation: 'Fatima says: "About 2 hours."'
-    },
-    {
-      id: 3,
-      question: 'How was the bus?',
-      options: ['Slow and uncomfortable', 'Fast and uncomfortable', 'Slow and comfortable', 'Fast and comfortable'],
-      correct: 3,
-      explanation: 'Fatima says: "The bus was fast and comfortable."'
-    },
-    {
-      id: 4,
-      question: 'How long did Fatima wait for the bus?',
-      options: ['5 minutes', '10 minutes', '15 minutes', '20 minutes'],
-      correct: 1,
-      explanation: 'Fatima says: "I only waited 10 minutes at the station."'
-    },
-    {
-      id: 5,
-      question: 'What did Fatima NOT do at the beach?',
-      options: ['Walk', 'Swim', 'Take photos', 'Play football'],
-      correct: 3,
-      explanation: 'Fatima says: "I walked, swam, and took many photos." She did not mention playing football.'
-    },
-    {
-      id: 6,
-      question: 'When did Fatima come back?',
-      options: ['In the morning', 'In the afternoon', 'In the evening', 'At night'],
-      correct: 2,
-      explanation: 'Fatima says: "I took the evening bus."'
-    },
-    {
-      id: 7,
-      question: 'What time did Fatima arrive home?',
-      options: ['6 PM', '7 PM', '8 PM', '9 PM'],
-      correct: 2,
-      explanation: 'Fatima says: "I arrived home at 8 PM."'
-    },
-    {
-      id: 8,
-      question: 'How does Fatima feel about the trip?',
-      options: ['Sad', 'Tired', 'Wonderful/Happy', 'Angry'],
-      correct: 2,
-      explanation: 'Fatima says: "It was wonderful!" showing she had a great time.'
-    }
-  ];
+  {
+    id: 1,
+    question: "Ou est allee Fatima hier ?",
+    options: ["Au marche", "A la plage", "Au parc", "A la gare"],
+    correct: 1,
+    explanation: "Fatima dit : 'Je suis allee a la plage.'"
+  },
+  {
+    id: 2,
+    question: "Combien de temps a dure le trajet en bus ?",
+    options: ["1 heure", "2 heures", "3 heures", "4 heures"],
+    correct: 1,
+    explanation: "Fatima dit : 'Environ 2 heures.'"
+  },
+  {
+    id: 3,
+    question: "Comment etait le bus ?",
+    options: ["Lent et inconfortable", "Rapide et inconfortable", "Lent et confortable", "Rapide et confortable"],
+    correct: 3,
+    explanation: "Fatima dit : 'Le bus etait rapide et confortable.'"
+  },
+  {
+    id: 4,
+    question: "Combien de temps Fatima a-t-elle attendu le bus ?",
+    options: ["5 minutes", "10 minutes", "15 minutes", "20 minutes"],
+    correct: 1,
+    explanation: "Fatima dit : 'J'ai attendu seulement 10 minutes a la gare.'"
+  },
+  {
+    id: 5,
+    question: "Qu'est-ce que Fatima n'a PAS fait a la plage ?",
+    options: ["Marcher", "Nager", "Prendre des photos", "Jouer au football"],
+    correct: 3,
+    explanation: "Fatima dit : 'J'ai marche, nage et pris beaucoup de photos.' Elle n'a pas mentionne jouer au football."
+  },
+  {
+    id: 6,
+    question: "Quand Fatima est-elle revenue ?",
+    options: ["Le matin", "L'apres-midi", "Le soir", "La nuit"],
+    correct: 2,
+    explanation: "Fatima dit : 'J'ai pris le bus du soir.'"
+  },
+  {
+    id: 7,
+    question: "A quelle heure Fatima est-elle arrivee chez elle ?",
+    options: ["18 h", "19 h", "20 h", "21 h"],
+    correct: 2,
+    explanation: "Fatima dit : 'Je suis arrivee a la maison a 20 h.'"
+  },
+  {
+    id: 8,
+    question: "Comment Fatima se sent-elle par rapport au voyage ?",
+    options: ["Triste", "Fatiguee", "Ravie/Heureuse", "En colere"],
+    correct: 2,
+    explanation: "Fatima dit : 'C'etait magnifique !' ce qui montre qu'elle a passe un tres bon moment."
+  }
+];
 
   const speakWithPauses = () => {
     if (isSpeakingRef.current) return;
@@ -118,7 +118,7 @@ const Li_03_02 = () => {
 
       const line = lines[currentIndex];
       const utterance = new SpeechSynthesisUtterance(line);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.85;
 
       utterance.onend = () => {
@@ -200,10 +200,10 @@ const Li_03_02 = () => {
             className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-white/80 rounded-lg transition"
           >
             <ChevronLeft size={20} />
-            Back
+            Retour
           </button>
           <h1 className="text-2xl font-bold text-gray-800 text-center">
-            Listening: Past Travel Conversation
+            Comprehension orale : conversation de voyage au passe
           </h1>
           <div className="w-[100px]"></div>
         </div>
@@ -211,7 +211,7 @@ const Li_03_02 = () => {
         {/* Transcript Box */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-800">Listening Transcript:</h2>
+            <h2 className="text-lg font-bold text-gray-800">Transcription d'ecoute :</h2>
             <div className="flex gap-2">
               <button
                 onClick={speakWithPauses}
@@ -219,14 +219,14 @@ const Li_03_02 = () => {
                 className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
               >
                 <Volume2 size={18} />
-                {isSpeaking ? 'Playing...' : 'Play Audio'}
+                {isSpeaking ? 'Lecture...' : "Ecouter l'audio"}
               </button>
               <button
                 onClick={() => setShowTranscript(!showTranscript)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
               >
                 {showTranscript ? <EyeOff size={18} /> : <Eye size={18} />}
-                {showTranscript ? 'Hide' : 'Show'}
+                {showTranscript ? 'Masquer' : 'Afficher'}
               </button>
             </div>
           </div>
@@ -241,10 +241,10 @@ const Li_03_02 = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <p className="text-gray-700 font-semibold">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentQuestionIndex + 1} sur {questions.length}
             </p>
             <p className="text-gray-700 font-semibold">
-              Score: {score}/{questions.length}
+              Score : {score}/{questions.length}
             </p>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2">
@@ -320,7 +320,7 @@ const Li_03_02 = () => {
             }`}
           >
             <p className="font-semibold text-gray-800 mb-2">
-              {selectedAnswer === currentQuestion.correct ? '✓ Correct!' : '✗ Not quite right'}
+              {selectedAnswer === currentQuestion.correct ? 'Bonne reponse !' : 'Pas tout a fait'}
             </p>
             <p className="text-gray-700">{currentQuestion.explanation}</p>
           </motion.div>
@@ -333,23 +333,21 @@ const Li_03_02 = () => {
               onClick={handleNext}
               className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
             >
-              Next Question
+              Question suivante
             </button>
           )}
 
           {isComplete && (
             <div className="w-full text-center">
-              <p className="text-2xl font-bold text-gray-800 mb-4">
-                Quiz Complete! 🎉
-              </p>
+              <p className="text-2xl font-bold text-gray-800 mb-4">Quiz termine !</p>
               <p className="text-lg text-gray-700 mb-4">
-                Your score: {score} out of {questions.length}
+                Votre score : {score} sur {questions.length}
               </p>
               <button
                 onClick={handleReset}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
               >
-                Try Again
+                Reessayer
               </button>
             </div>
           )}
@@ -360,3 +358,5 @@ const Li_03_02 = () => {
 };
 
 export default Li_03_02;
+
+

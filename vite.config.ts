@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
+  base: '/fra1a2/',
   plugins: [react()],
   resolve: {
     alias: {
@@ -24,7 +25,7 @@ export default defineConfig({
           'u2-vocabulary': ['src/store/u2/Vocabulary/vo_02-01.tsx', 'src/store/u2/Vocabulary/vo_02-02.tsx', 'src/store/u2/Vocabulary/vo_02-03.tsx', 'src/store/u2/Vocabulary/vo_02-04.tsx'],
           'u2-grammar': ['src/store/u2/Grammar/gr_02-01.tsx', 'src/store/u2/Grammar/gr_02-02.tsx', 'src/store/u2/Grammar/gr_02-03.tsx', 'src/store/u2/Grammar/gr_02-04.tsx'],
           'u2-reading': ['src/store/u2/Reading/re_02-01.tsx', 'src/store/u2/Reading/re_02-02.tsx', 'src/store/u2/Reading/re_02-03.tsx', 'src/store/u2/Reading/re_02-04.tsx'],
-          'u2-speaking': ['src/store/u2/Speaking/sp_02-01.tsx', 'src/store/u2/Speaking/sp_02-02.tsx', 'src/store/u2/Speaking/sp_02-03.tsx', 'src/store/u2/Speaking/sp_02-04.tsx'],
+          'u2-speaking': ['src/store/u2/Speaking/sp_02-01.tsx', 'src/store/u2/Speaking/sp_02-02.tsx', 'src/store/u2/Speaking/sp_02-04.tsx', 'src/store/u2/Speaking/sp_02-05.tsx'],
           'u2-listening': ['src/store/u2/Listening/li_02-01.tsx', 'src/store/u2/Listening/li_02-02.tsx', 'src/store/u2/Listening/li_02-03.tsx', 'src/store/u2/Listening/li_02-04.tsx'],
 
           // Unit 3 Quizzes - Each skill in its own chunk

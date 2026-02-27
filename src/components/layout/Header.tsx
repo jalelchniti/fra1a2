@@ -6,6 +6,8 @@ interface HeaderProps {
 }
 
 const Header = ({ toggleSidebar }: HeaderProps) => {
+  const baseUrl = import.meta.env.BASE_URL;
+
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +36,7 @@ const Header = ({ toggleSidebar }: HeaderProps) => {
             </button>
             <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
               <img
-                src="/slim/assets/images/lnkd_profile_picture-01.jpg"
+                src={`${baseUrl}assets/images/lnkd_profile_picture-01.jpg`}
                 alt={fr.smarthub_tunis_logo}
                 className="h-12 w-12 rounded-full object-cover shadow-md border-2 border-orange-400"
               />

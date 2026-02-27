@@ -26,7 +26,7 @@ const SpeakingPage = () => {
     // Unit 2
     {
       id: 'sp_02-01',
-      title: fr.asking_for_directions,
+      title: fr.ask_directions,
       content: fr.learn_key_phrases_asking_directions_understanding_responses,
       level: 'A1',
       topic: fr.directions_speaking
@@ -37,13 +37,6 @@ const SpeakingPage = () => {
       content: fr.practice_essential_phrases_shopping_conversations,
       level: 'A1',
       topic: fr.shopping_speaking
-    },
-    {
-      id: 'sp_02-03',
-      title: fr.dialogue_practice,
-      content: fr.engage_practical_dialogue_scenarios_directions_shopping,
-      level: 'A1',
-      topic: fr.conversations
     },
     {
       id: 'sp_02-04',
@@ -62,7 +55,7 @@ const SpeakingPage = () => {
     // Unit 3
     {
       id: 'sp_03-01',
-      title: fr.asking_for_directions,
+      title: fr.ask_directions,
       content: fr.learn_how_to_ask_for_understand_directions_english,
       level: 'A1',
       topic: fr.transportation_speaking

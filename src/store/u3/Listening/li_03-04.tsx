@@ -22,78 +22,78 @@ const Li_03_04 = () => {
   const isSpeakingRef = useRef(false);
 
   const transcript = `
-    TRANSPORTATION STORY: PAST, PRESENT, AND FUTURE
+    HISTOIRE DE TRANSPORT PASSE PRESENT ET FUTUR
 
-    A: Hi Sarah! I am waiting for the bus right now. I am going to the market.
-    B: Oh! Do you remember last week? We took the train together to the beach!
-    A: Yes! That was wonderful. The train was comfortable and the journey was fast.
-    B: I took photos on that train. Do you remember? I was taking many photos!
-    A: I remember! You were smiling all the time. And look at you now!
-    B: Yes! Today I am sitting at the bus stop. Tomorrow I am going to travel by car.
-    A: Where are you going to go tomorrow?
-    B: I am going to go to the mountains. The car is going to pick me up at 9 AM.
-    A: That sounds nice. So, right now you are waiting, last week you traveled by train, and tomorrow you are going by car!
-    B: Exactly! I love traveling!
+    A: Salut Sarah ! J'attends le bus en ce moment. Je vais au marche.
+    B: Oh ! Tu te souviens de la semaine derniere ? Nous avons pris le train ensemble pour aller a la plage !
+    A: Oui ! C'etait merveilleux. Le train etait confortable et le trajet etait rapide.
+    B: J'ai pris des photos dans ce train. Tu te souviens ? Je prenais beaucoup de photos !
+    A: Je m'en souviens ! Tu souriais tout le temps. Et regarde-toi maintenant !
+    B: Oui ! Aujourd'hui je suis assise a l'arret de bus. Demain je vais voyager en voiture.
+    A: Ou vas-tu aller demain ?
+    B: Je vais aller a la montagne. La voiture va venir me chercher a 9 h.
+    A: Ca a l'air sympa. Donc, la tu attends, la semaine derniere tu as voyage en train, et demain tu vas en voiture !
+    B: Exactement ! J'adore voyager !
   `;
 
   const questions: Question[] = [
-    {
-      id: 1,
-      question: 'What is Sarah doing RIGHT NOW?',
-      options: ['Taking a train', 'Waiting for the bus', 'Sitting in a car', 'Walking to the market'],
-      correct: 1,
-      explanation: 'Sarah says: "I am waiting for the bus right now."'
-    },
-    {
-      id: 2,
-      question: 'Where is Sarah GOING TO go today?',
-      options: ['To the beach', 'To the mountains', 'To the market', 'To the station'],
-      correct: 2,
-      explanation: 'Sarah says: "I am going to the market."'
-    },
-    {
-      id: 3,
-      question: 'What transportation did Sarah use LAST WEEK?',
-      options: ['Bus', 'Train', 'Car', 'Taxi'],
-      correct: 1,
-      explanation: 'The speaker says: "Last week? We took the train together to the beach!"'
-    },
-    {
-      id: 4,
-      question: 'Was the train journey long?',
-      options: ['Yes, it was very long', 'No, it was short', 'We do not know', 'It was average'],
-      correct: 1,
-      explanation: 'Sarah says: "The journey was fast" which means it was short/quick.'
-    },
-    {
-      id: 5,
-      question: 'Was the train comfortable?',
-      options: ['Yes', 'No', 'Not very', 'The passage does not say'],
-      correct: 0,
-      explanation: 'Sarah says: "The train was comfortable."'
-    },
-    {
-      id: 6,
-      question: 'What is Sarah going to do TOMORROW?',
-      options: ['Take the train', 'Wait for the bus', 'Travel by car', 'Stay home'],
-      correct: 2,
-      explanation: 'Sarah says: "Tomorrow I am going to travel by car."'
-    },
-    {
-      id: 7,
-      question: 'Where is Sarah GOING TO GO tomorrow?',
-      options: ['To the beach', 'To the market', 'To the mountains', 'To the station'],
-      correct: 2,
-      explanation: 'Sarah says: "I am going to go to the mountains."'
-    },
-    {
-      id: 8,
-      question: 'What time is the car GOING TO PICK UP Sarah tomorrow?',
-      options: ['8 AM', '9 AM', '10 AM', '11 AM'],
-      correct: 1,
-      explanation: 'Sarah says: "The car is going to pick me up at 9 AM."'
-    }
-  ];
+  {
+    id: 1,
+    question: "Que fait Sarah EN CE MOMENT ?",
+    options: ["Prendre le train", "Attendre le bus", "Etre assise dans une voiture", "Aller a pied au marche"],
+    correct: 1,
+    explanation: "Sarah dit : 'J'attends le bus en ce moment.'"
+  },
+  {
+    id: 2,
+    question: "Ou Sarah VA-T-ELLE aller aujourd'hui ?",
+    options: ["A la plage", "A la montagne", "Au marche", "A la gare"],
+    correct: 2,
+    explanation: "Sarah dit : 'Je vais au marche.'"
+  },
+  {
+    id: 3,
+    question: "Quel moyen de transport Sarah a-t-elle utilise LA SEMAINE DERNIERE ?",
+    options: ["Bus", "Train", "Voiture", "Taxi"],
+    correct: 1,
+    explanation: "La personne dit : 'La semaine derniere ? Nous avons pris le train ensemble pour aller a la plage !'"
+  },
+  {
+    id: 4,
+    question: "Le trajet en train etait-il long ?",
+    options: ["Oui, tres long", "Non, il etait court", "On ne sait pas", "Il etait moyen"],
+    correct: 1,
+    explanation: "Sarah dit : 'Le trajet etait rapide', ce qui veut dire qu'il etait court/rapide."
+  },
+  {
+    id: 5,
+    question: "Le train etait-il confortable ?",
+    options: ["Oui", "Non", "Pas vraiment", "Le passage ne le dit pas"],
+    correct: 0,
+    explanation: "Sarah dit : 'Le train etait confortable.'"
+  },
+  {
+    id: 6,
+    question: "Que va faire Sarah DEMAIN ?",
+    options: ["Prendre le train", "Attendre le bus", "Voyager en voiture", "Rester a la maison"],
+    correct: 2,
+    explanation: "Sarah dit : 'Demain je vais voyager en voiture.'"
+  },
+  {
+    id: 7,
+    question: "Ou Sarah VA-T-ELLE aller demain ?",
+    options: ["A la plage", "Au marche", "A la montagne", "A la gare"],
+    correct: 2,
+    explanation: "Sarah dit : 'Je vais aller a la montagne.'"
+  },
+  {
+    id: 8,
+    question: "A quelle heure la voiture va-t-elle venir chercher Sarah demain ?",
+    options: ["8 h", "9 h", "10 h", "11 h"],
+    correct: 1,
+    explanation: "Sarah dit : 'La voiture va venir me chercher a 9 h.'"
+  }
+];
 
   const speakWithPauses = () => {
     if (isSpeakingRef.current) return;
@@ -117,7 +117,7 @@ const Li_03_04 = () => {
 
       const line = lines[currentIndex];
       const utterance = new SpeechSynthesisUtterance(line);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.85;
 
       utterance.onend = () => {
@@ -199,10 +199,10 @@ const Li_03_04 = () => {
             className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-white/80 rounded-lg transition"
           >
             <ChevronLeft size={20} />
-            Back
+            Retour
           </button>
           <h1 className="text-2xl font-bold text-gray-800 text-center">
-            Listening: Transportation Story (All Tenses)
+            Comprehension orale : histoire de transport (tous les temps)
           </h1>
           <div className="w-[100px]"></div>
         </div>
@@ -210,7 +210,7 @@ const Li_03_04 = () => {
         {/* Transcript Box */}
         <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-bold text-gray-800">Listening Transcript:</h2>
+            <h2 className="text-lg font-bold text-gray-800">Transcription d'ecoute :</h2>
             <div className="flex gap-2">
               <button
                 onClick={speakWithPauses}
@@ -218,14 +218,14 @@ const Li_03_04 = () => {
                 className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition disabled:opacity-50"
               >
                 <Volume2 size={18} />
-                {isSpeaking ? 'Playing...' : 'Play Audio'}
+                {isSpeaking ? 'Lecture...' : "Ecouter l'audio"}
               </button>
               <button
                 onClick={() => setShowTranscript(!showTranscript)}
                 className="flex items-center gap-2 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition"
               >
                 {showTranscript ? <EyeOff size={18} /> : <Eye size={18} />}
-                {showTranscript ? 'Hide' : 'Show'}
+                {showTranscript ? 'Masquer' : 'Afficher'}
               </button>
             </div>
           </div>
@@ -240,10 +240,10 @@ const Li_03_04 = () => {
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <p className="text-gray-700 font-semibold">
-              Question {currentQuestionIndex + 1} of {questions.length}
+              Question {currentQuestionIndex + 1} sur {questions.length}
             </p>
             <p className="text-gray-700 font-semibold">
-              Score: {score}/{questions.length}
+              Score : {score}/{questions.length}
             </p>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2">
@@ -319,7 +319,7 @@ const Li_03_04 = () => {
             }`}
           >
             <p className="font-semibold text-gray-800 mb-2">
-              {selectedAnswer === currentQuestion.correct ? '✓ Correct!' : '✗ Not quite right'}
+              {selectedAnswer === currentQuestion.correct ? 'Bonne reponse !' : 'Pas tout a fait'}
             </p>
             <p className="text-gray-700">{currentQuestion.explanation}</p>
           </motion.div>
@@ -332,23 +332,21 @@ const Li_03_04 = () => {
               onClick={handleNext}
               className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
             >
-              Next Question
+              Question suivante
             </button>
           )}
 
           {isComplete && (
             <div className="w-full text-center">
-              <p className="text-2xl font-bold text-gray-800 mb-4">
-                Quiz Complete! 🎉
-              </p>
+              <p className="text-2xl font-bold text-gray-800 mb-4">Quiz termine !</p>
               <p className="text-lg text-gray-700 mb-4">
-                Your score: {score} out of {questions.length}
+                Votre score : {score} sur {questions.length}
               </p>
               <button
                 onClick={handleReset}
                 className="px-6 py-3 bg-blue-500 text-white rounded-lg shadow hover:shadow-lg hover:bg-blue-600 transition"
               >
-                Try Again
+                Reessayer
               </button>
             </div>
           )}
@@ -359,3 +357,5 @@ const Li_03_04 = () => {
 };
 
 export default Li_03_04;
+
+

@@ -4,6 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { motion } from 'framer-motion';
 import { FaSearch, FaChevronLeft, FaChevronRight, FaCalendar, FaClock } from 'react-icons/fa';
+import { fr } from '../locales/fr';
 
 const courseSchedule = [
   {

@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 // Define TypeScript interfaces
 interface Question {
@@ -40,35 +40,35 @@ const IntroductionsQuiz = () => {
     // Add more questions as needed
   ], []);
 
+  const speakText = useCallback((text: string) => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "fr-FR";
+      utterance.rate = 1;
+      window.speechSynthesis.speak(utterance);
+    }
+  }, []);
+
   // Speak the current question's text and clean up
   useEffect(() => {
-    // TTS function with safety checks
-    const speakText = (text: string) => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = "en-US";
-        utterance.rate = 1;
-        window.speechSynthesis.speak(utterance);
-      }
-    };
     if (currentQuestion < questions.length) {
       speakText(questions[currentQuestion].text);
     }
-    
+
     return () => {
       if (typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.cancel();
       }
     };
-  }, [currentQuestion, questions]);
+  }, [currentQuestion, questions, speakText]);
 
   const handleAnswer = (answer: string) => {
     if (isAnswered) return; // Prevent multiple answers
-    
+
     setSelectedAnswer(answer);
     setIsAnswered(true);
     setUserAnswers([...userAnswers, answer]);
-    
+
     if (answer === questions[currentQuestion].correctAnswer) {
       setScore(score + 1);
     }
@@ -102,9 +102,9 @@ const IntroductionsQuiz = () => {
             <button
               onClick={() => speakText(questions[currentQuestion].text)}
               className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-              aria-label="Replay introduction"
+              aria-label="Reecouter l'introduction"
             >
-              🔊 {fr.replay_introduction}
+              {fr.replay_introduction}
             </button>
           </div>
 
@@ -114,7 +114,7 @@ const IntroductionsQuiz = () => {
             {questions[currentQuestion].options.map((option, index) => {
               const isCorrect = option === questions[currentQuestion].correctAnswer;
               const isSelected = option === selectedAnswer;
-              
+
               return (
                 <motion.button
                   key={index}
@@ -143,7 +143,7 @@ const IntroductionsQuiz = () => {
           <h2 className="text-2xl font-bold mb-4">
             {fr.quiz_completed} {fr.score_text_short.replace('{score}', score.toString()).replace('{total}', questions.length.toString())}
           </h2>
-          
+
           <div className="space-y-4">
             {questions.map((question, index) => (
               <div
@@ -156,18 +156,18 @@ const IntroductionsQuiz = () => {
               >
                 <p className="font-semibold text-lg">{question.question}</p>
                 <p className="mt-2">
-                  {fr.your_answer} {userAnswers[index]} 
+                  {fr.your_answer} {userAnswers[index]}
                   {userAnswers[index] === question.correctAnswer ? (
-                    <span className="text-green-600 ml-2">✓</span>
+                    <span className="text-green-600 ml-2">OK</span>
                   ) : (
-                    <span className="text-red-600 ml-2">✗</span>
+                    <span className="text-red-600 ml-2">NON</span>
                   )}
                 </p>
                 <p>{fr.correct_answer} {question.correctAnswer}</p>
               </div>
             ))}
           </div>
-          
+
           <button
             onClick={resetQuiz}
             className="mt-6 w-full p-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"

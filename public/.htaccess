@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteBase /slim/
+  RewriteBase /fra1a2/
 
   # Don't rewrite files or directories
   RewriteCond %{REQUEST_FILENAME} -f [OR]
@@ -8,7 +8,7 @@
   RewriteRule ^ - [L]
 
   # Rewrite everything else to index.html
-  RewriteRule ^ index.html [QSA,L]
+  RewriteRule ^ /fra1a2/index.html [QSA,L]
 </IfModule>
 
 # Cache control for assets

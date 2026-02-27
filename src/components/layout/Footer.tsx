@@ -8,7 +8,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="mb-4 md:mb-0 flex items-center gap-3">
               <img
-                src="/slim/assets/images/lnkd_profile_picture-01.jpg"
+                src="/assets/images/lnkd_profile_picture-01.jpg"
                 alt={fr.smarthub_tunis_logo}
                 className="h-12 w-12 rounded-full object-cover shadow-md border-2 border-orange-400"
               />

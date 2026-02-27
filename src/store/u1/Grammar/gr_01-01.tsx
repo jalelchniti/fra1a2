@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import 'tailwindcss/tailwind.css';
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const VerbToBeQuiz: React.FC = () => {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);

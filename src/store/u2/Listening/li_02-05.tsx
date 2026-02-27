@@ -1,5 +1,5 @@
 // src/store/u2/Listening/li_02-05.tsx
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 import { Volume2 } from "lucide-react";
 
@@ -20,47 +20,48 @@ const PresentProgressiveListeningQuiz = () => {
 
   const questions: Question[] = useMemo(() => [
     {
-      text: "Hello everyone! I am shopping at the market right now. I am looking for fresh vegetables and fruits. The vegetables are looking good today. I am complaining about the price because they are very expensive!",
-      question: "What is the speaker doing right now?",
-      options: ["She is cooking food.", "She is shopping at the market.", "She is at the hospital.", "She is teaching a class."],
-      correctAnswer: "She is shopping at the market."
+      text: "Bonjour a tous ! Je fais des courses au marche en ce moment. Je cherche des legumes et des fruits frais. Les legumes ont l'air bons aujourd'hui. Je me plains du prix car c'est tres cher !",
+      question: "Que fait la personne en ce moment ?",
+      options: ["Elle cuisine.", "Elle fait des courses au marche.", "Elle est a l'hopital.", "Elle donne un cours."],
+      correctAnswer: "Elle fait des courses au marche."
     },
     {
-      text: "My friends are having a meeting at the coffee shop. We are discussing a new project. John is presenting his ideas, and everyone is listening carefully. We are very excited about this project!",
-      question: "What are the friends doing right now?",
-      options: ["They are playing sports.", "They are having a meeting.", "They are watching a movie.", "They are cooking dinner."],
-      correctAnswer: "They are having a meeting."
+      text: "Mes amis sont en reunion au cafe. Nous discutons d'un nouveau projet. John presente ses idees et tout le monde ecoute attentivement. Nous sommes tres enthousiastes pour ce projet !",
+      question: "Que font les amis en ce moment ?",
+      options: ["Ils font du sport.", "Ils sont en reunion.", "Ils regardent un film.", "Ils preparent le diner."],
+      correctAnswer: "Ils sont en reunion."
     },
     {
-      text: "I am sitting in my office, and I am working on a very difficult task. My computer is making strange noises. I am complaining about this because it is very annoying! I am also frustrated because the internet is very slow.",
-      question: "What is the speaker complaining about?",
-      options: ["The weather is bad.", "The computer is making noises and the internet is slow.", "The office is too small.", "His boss is rude."],
-      correctAnswer: "The computer is making noises and the internet is slow."
+      text: "Je suis assis dans mon bureau et je travaille sur une tache tres difficile. Mon ordinateur fait des bruits etranges. Je m'en plains parce que c'est tres agacant ! Je suis aussi frustre parce que l'internet est tres lent.",
+      question: "De quoi la personne se plaint-elle ?",
+      options: ["Il fait mauvais temps.", "L'ordinateur fait du bruit et internet est lent.", "Le bureau est trop petit.", "Son patron est impoli."],
+      correctAnswer: "L'ordinateur fait du bruit et internet est lent."
     },
     {
-      text: "The children are playing in the park right now. Some children are playing soccer, others are playing on the playground. They are having a wonderful time! Parents are watching them and smiling because everyone is being safe and happy.",
-      question: "What are the children doing?",
-      options: ["They are studying.", "They are working in the factory.", "They are playing in the park.", "They are sleeping."],
-      correctAnswer: "They are playing in the park."
+      text: "Les enfants jouent au parc en ce moment. Certains jouent au football, d'autres sur l'aire de jeux. Ils passent un moment formidable ! Les parents les regardent et sourient parce que tout le monde est en securite et heureux.",
+      question: "Que font les enfants ?",
+      options: ["Ils etudient.", "Ils travaillent a l'usine.", "Ils jouent au parc.", "Ils dorment."],
+      correctAnswer: "Ils jouent au parc."
     },
     {
-      text: "My neighbor is complaining about the noise because I am practicing my guitar. I am playing loudly, and she is very angry. I am feeling sorry, but I am also practicing for an important concert this weekend. The situation is difficult right now.",
-      question: "Why is the neighbor complaining?",
-      options: ["The music is too beautiful.", "Someone is making too much noise from guitar playing.", "The house is too old.", "The street is busy."],
-      correctAnswer: "Someone is making too much noise from guitar playing."
+      text: "Ma voisine se plaint du bruit parce que je m'entraine a la guitare. Je joue fort et elle est tres en colere. Je suis desole, mais je me prepare pour un concert important ce week-end. La situation est compliquee en ce moment.",
+      question: "Pourquoi la voisine se plaint-elle ?",
+      options: ["La musique est trop belle.", "Quelqu'un fait trop de bruit avec la guitare.", "La maison est trop vieille.", "La rue est trop passante."],
+      correctAnswer: "Quelqu'un fait trop de bruit avec la guitare."
     }
   ], []);
 
+  const speakText = useCallback((text: string) => {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "fr-FR";
+      utterance.rate = 0.95;
+      window.speechSynthesis.speak(utterance);
+    }
+  }, []);
+
   useEffect(() => {
-    const speakText = (text: string) => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        window.speechSynthesis.cancel(); // Stop any current speech
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = "en-US";
-        utterance.rate = 0.9; // Slightly slower for clarity
-        window.speechSynthesis.speak(utterance);
-      }
-    };
     if (currentQuestion < questions.length) {
       speakText(questions[currentQuestion].text);
     }
@@ -70,7 +71,7 @@ const PresentProgressiveListeningQuiz = () => {
         window.speechSynthesis.cancel();
       }
     };
-  }, [currentQuestion, questions]);
+  }, [currentQuestion, questions, speakText]);
 
   const handleAnswer = (answer: string) => {
     setSelectedAnswer(answer);
@@ -113,16 +114,16 @@ const PresentProgressiveListeningQuiz = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl font-bold text-purple-700 mb-4">Quiz Complete! 🎉</h2>
+          <h2 className="text-4xl font-bold text-purple-700 mb-4">Quiz termine !</h2>
           <p className="text-6xl font-bold text-purple-600 mb-4">
             {score}/{questions.length}
           </p>
           <p className="text-xl text-gray-600 mb-8">
             {score === questions.length
-              ? 'Perfect! You understood all the Present Progressive listening passages! 🌟'
+              ? 'Parfait ! Tu as compris tous les passages au present progressif !'
               : score >= questions.length * 0.8
-              ? 'Great listening comprehension! Keep practicing! 👍'
-              : 'Good effort! Listen again and focus on the "-ing" actions! 💪'}
+              ? "Super comprehension ! Continue a t'entrainer !"
+              : 'Bon effort ! Reecoute et concentre-toi sur les verbes en "-ing" !'}
           </p>
 
           <motion.button
@@ -131,7 +132,7 @@ const PresentProgressiveListeningQuiz = () => {
             onClick={restartQuiz}
             className="px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
           >
-            Restart Listening Quiz
+            Recommencer le quiz d'ecoute
           </motion.button>
         </motion.div>
       </div>
@@ -148,10 +149,10 @@ const PresentProgressiveListeningQuiz = () => {
       >
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-purple-700 mb-2 text-center">
-            Present Progressive Listening
+            Comprehension orale : present progressif
           </h1>
           <p className="text-lg text-gray-600 text-center">
-            Listen carefully and answer questions about what's happening
+            Ecoute attentivement et reponds aux questions sur ce qui se passe
           </p>
         </div>
 
@@ -159,10 +160,10 @@ const PresentProgressiveListeningQuiz = () => {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm font-semibold text-gray-700">
-              Question {currentQuestion + 1} of {questions.length}
+              Question {currentQuestion + 1} sur {questions.length}
             </span>
             <span className="text-sm font-semibold text-purple-600">
-              Score: {score}
+              Score : {score}
             </span>
           </div>
           <div className="w-full bg-gray-300 rounded-full h-2">
@@ -179,7 +180,7 @@ const PresentProgressiveListeningQuiz = () => {
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-purple-700 flex items-center gap-2">
               <Volume2 size={24} />
-              Listen to This:
+              Ecoute ceci :
             </h3>
             <motion.button
               whileHover={{ scale: 1.1, rotate: 360 }}
@@ -188,14 +189,14 @@ const PresentProgressiveListeningQuiz = () => {
               className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
             >
               <Volume2 size={18} />
-              Play Again
+              Reecouter
             </motion.button>
           </div>
           <p className="text-gray-800 text-lg leading-relaxed bg-white p-4 rounded-lg border-l-4 border-purple-500">
             {questions[currentQuestion].text}
           </p>
           <p className="text-xs text-gray-500 mt-3 text-center">
-            💡 The text will be read aloud. Listen carefully for Present Progressive actions!
+            Note : Le texte sera lu a voix haute. Ecoute bien les verbes en "-ing" !
           </p>
         </div>
 
@@ -247,8 +248,8 @@ const PresentProgressiveListeningQuiz = () => {
               }`}
             >
               {selectedAnswer === questions[currentQuestion].correctAnswer
-                ? '✓ Correct! Great listening!'
-                : '✗ Not quite. Listen again!'}
+                ? 'Bonne reponse ! Bonne ecoute !'
+                : 'Pas tout a fait. Reecoute !'}
             </p>
           </motion.div>
         )}
@@ -263,14 +264,14 @@ const PresentProgressiveListeningQuiz = () => {
             onClick={handleNext}
             className="w-full py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors"
           >
-            {currentQuestion === questions.length - 1 ? 'See Results' : 'Next Question'}
+            {currentQuestion === questions.length - 1 ? 'Voir les resultats' : 'Question suivante'}
           </motion.button>
         )}
 
         {/* Hint */}
         <div className="mt-6 p-4 bg-pink-50 rounded-lg border-l-4 border-pink-500">
           <p className="text-sm text-gray-700">
-            <strong>💡 Tip:</strong> Listen for "ing" words like "shopping", "playing", "complaining" to find Present Progressive actions!
+            <strong>Astuce :</strong> Repere les mots en "ing" comme "shopping", "playing" ou "complaining" pour identifier le present progressif.
           </p>
         </div>
       </motion.div>

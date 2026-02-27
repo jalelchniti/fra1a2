@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Layout from './components/layout/layout';
 import HomePage from './pages/HomePage';
 import VocabularyPage from './pages/VocabularyPage';
@@ -65,6 +65,7 @@ function App() {
 
           {/* Teacher Test Route - Hidden from navigation, accessible via /test URL only */}
           <Route path="/test" element={<Test />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>
       </Layout>

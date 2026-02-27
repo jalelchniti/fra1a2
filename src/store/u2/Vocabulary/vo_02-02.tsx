@@ -1,7 +1,7 @@
 // Unit 2 Lesson 2 - Directions & Landmarks Vocabulary
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { fr } from '../../../../locales/fr';
+import { fr } from '../../../locales/fr';
 
 const flashcards = [
   { sideA: fr.left_sideA, sideB: fr.left_sideB },

@@ -24,16 +24,16 @@ interface Flashcard {
 }
 
 const flashcards: Flashcard[] = [
-  { sentence: "I need to book a hotel room.", question: "What do I need to do?", answer: "You need to book a hotel room.", hint: "book a hotel room" },
-  { sentence: "Where is the nearest train station?", question: "What am I asking?", answer: "You're asking where the nearest train station is.", hint: "train station" },
-  { sentence: "Can I have a map, please?", question: "What do I need?", answer: "You need a map.", hint: "map" },
-  { sentence: "How much is a ticket to Paris?", question: "What am I asking?", answer: "You're asking about the price of a ticket to Paris.", hint: "price of a ticket" },
-  { sentence: "I'd like to rent a car.", question: "What do I want to do?", answer: "You want to rent a car.", hint: "rent a car" },
-  { sentence: "The museum is open until 6 PM.", question: "When does the museum close?", answer: "The museum closes at 6 PM.", hint: "6 PM" },
-  { sentence: "I lost my wallet.", question: "What happened?", answer: "You lost your wallet.", hint: "lost my wallet" },
-  { sentence: "Where can I exchange currency?", question: "What am I looking for?", answer: "You're looking for a place to exchange currency.", hint: "exchange currency" },
-  { sentence: "The tour starts at 9 AM.", question: "When does the tour start?", answer: "It starts at 9 AM.", hint: "9 AM" },
-  { sentence: "I need an adapter for my phone.", question: "What do I need?", answer: "You need an adapter for your phone.", hint: "adapter" },
+  { sentence: "Je dois reserver une chambre d'hotel.", question: "Que dois-je faire ?", answer: "Vous devez reserver une chambre d'hotel.", hint: "reserver une chambre d'hotel" },
+  { sentence: "Ou est la gare la plus proche ?", question: "Qu'est-ce que je demande ?", answer: "Vous demandez ou est la gare la plus proche.", hint: "gare la plus proche" },
+  { sentence: "Puis-je avoir un plan, s'il vous plait ?", question: "De quoi ai-je besoin ?", answer: "Vous avez besoin d'un plan.", hint: "plan" },
+  { sentence: "Combien coute un billet pour Paris ?", question: "Qu'est-ce que je demande ?", answer: "Vous demandez le prix d'un billet pour Paris.", hint: "prix d'un billet" },
+  { sentence: "Je voudrais louer une voiture.", question: "Que veux-je faire ?", answer: "Vous voulez louer une voiture.", hint: "louer une voiture" },
+  { sentence: "Le musee est ouvert jusqu'a 18 h.", question: "Quand le musee ferme-t-il ?", answer: "Le musee ferme a 18 h.", hint: "18 h" },
+  { sentence: "J'ai perdu mon portefeuille.", question: "Que s'est-il passe ?", answer: "Vous avez perdu votre portefeuille.", hint: "perdu mon portefeuille" },
+  { sentence: "Ou puis-je changer de la monnaie ?", question: "Que suis-je en train de chercher ?", answer: "Vous cherchez un endroit pour changer de la monnaie.", hint: "changer de la monnaie" },
+  { sentence: "La visite commence a 9 h.", question: "Quand la visite commence-t-elle ?", answer: "Elle commence a 9 h.", hint: "9 h" },
+  { sentence: "J'ai besoin d'un adaptateur pour mon telephone.", question: "De quoi ai-je besoin ?", answer: "Vous avez besoin d'un adaptateur pour votre telephone.", hint: "adaptateur" },
 ];
 
 const quizData: QuizItem[] = flashcards.map((card) => ({
@@ -41,13 +41,12 @@ const quizData: QuizItem[] = flashcards.map((card) => ({
   sentence: card.sentence,
   question: card.question,
   correct: card.answer,
-  positive: 'Correct!',
-  negative: 'Incorrect.',
+  positive: 'Bonne reponse !',
+  negative: 'Mauvaise reponse.',
   hint: card.hint,
 }));
 
 const InteractiveTypeAnswerQuiz: React.FC = () => {
-
   // State management
   const [shuffledQuizData, setShuffledQuizData] = useState<QuizItem[]>([]);
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -109,13 +108,13 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
       window.speechSynthesis.cancel();
       setAudioPlaying(true);
       const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
+      utterance.lang = 'fr-FR';
       utterance.rate = 0.85;
-      
+
       utterance.onend = () => {
         setAudioPlaying(false);
       };
-      
+
       window.speechSynthesis.speak(utterance);
     }
   };
@@ -124,7 +123,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
     if ('speechSynthesis' in window) {
       setTimeout(() => {
         const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
+        utterance.lang = 'fr-FR';
         window.speechSynthesis.speak(utterance);
       }, 500);
     }
@@ -168,7 +167,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
       setScore(prev => prev + 1);
       speakFeedback(currentItem.positive);
     } else {
-      speakFeedback(`${currentItem.negative} The correct answer is: ${currentItem.correct}`);
+      speakFeedback(`${currentItem.negative} La bonne reponse est : ${currentItem.correct}`);
     }
 
     setUserAnswers(prev => [...prev, {
@@ -192,7 +191,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
       setScore(prev => prev + 1);
       speakFeedback(currentItem.positive);
     } else {
-      speakFeedback(`${currentItem.negative} The correct answer is: ${currentItem.correct}`);
+      speakFeedback(`${currentItem.negative} La bonne reponse est : ${currentItem.correct}`);
     }
 
     setUserAnswers(prev => [...prev, {
@@ -253,8 +252,6 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
     }
   };
 
-
-
   const progressPercentage = ((currentQuestion + 1) / shuffledQuizData.length) * 100;
   const currentItem = shuffledQuizData[currentQuestion];
 
@@ -265,43 +262,46 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
           <>
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-3xl font-bold text-indigo-800 text-center flex-grow">
-                Listen and Answer
+                Ecoutez et repondez
               </h2>
-              <motion.button 
+              <motion.button
                 onClick={repeatSentence}
                 className={`flex items-center justify-center w-12 h-12 ${audioPlaying ? 'bg-green-500' : 'bg-indigo-600'} text-white p-3 rounded-full hover:bg-indigo-700 shadow-md`}
-                title="Listen again"
+                title="Reecouter"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
-                {audioPlaying ? 
-                  <span className="text-xl animate-pulse">🔊</span> : 
-                  <span className="text-xl">🔊</span>
-                }
+                {audioPlaying ? (
+                  <span className="text-xs font-bold">SON</span>
+                ) : (
+                  <span className="text-xs font-bold">SON</span>
+                )}
               </motion.button>
             </div>
-            
+
             <div className="bg-indigo-50 p-5 rounded-lg border border-indigo-200 mb-6">
               <h3 className="text-2xl font-medium text-indigo-900 mb-3 text-center">
                 {currentItem?.question}
               </h3>
-              
+
               {currentItem?.hint && (
                 <div className="bg-green-50 border-l-4 border-green-500 p-3 rounded">
                   <p className="font-medium text-green-700 text-center">
-                    Hint: <span className="text-green-900 font-bold">{currentItem.hint}</span>
+                    Indice : <span className="text-green-900 font-bold">{currentItem.hint}</span>
                   </p>
                 </div>
               )}
             </div>
-            
+
             <div className="w-full mb-6">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium text-indigo-700">Progress</span>
+                <span className="text-sm font-medium text-indigo-700">Progression</span>
                 <span className="text-sm font-medium text-indigo-700">{Math.round(progressPercentage)}%</span>
               </div>
               <Progress value={progressPercentage} className="w-full h-3 bg-gray-200" />
-              <p className="text-sm font-medium text-gray-700 mt-2 text-right">Question {currentQuestion + 1} of {shuffledQuizData.length}</p>
+              <p className="text-sm font-medium text-gray-700 mt-2 text-right">
+                Question {currentQuestion + 1} sur {shuffledQuizData.length}
+              </p>
             </div>
 
             {currentItem?.type === 'mc' && (
@@ -318,7 +318,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                           : selectedAnswer === option
                             ? 'bg-red-500 text-white border-red-600'
                             : 'bg-gray-100 text-gray-800 border-gray-300'
-                          : 'bg-white text-indigo-800 border-indigo-300 hover:bg-indigo-50'
+                        : 'bg-white text-indigo-800 border-indigo-300 hover:bg-indigo-50'
                     }`}
                     onClick={() => handleOptionSelect(option)}
                     disabled={answered}
@@ -333,14 +333,14 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
               <div className="mb-6">
                 <div className="mb-4">
                   <label htmlFor="answer-input" className="block text-sm font-medium text-gray-700 mb-2">
-                    Type your answer:
+                    Tapez votre reponse :
                   </label>
                   <Input
                     id="answer-input"
                     type="text"
                     value={typedAnswer}
                     onChange={(e) => setTypedAnswer(e.target.value)}
-                    placeholder="Type your answer here..."
+                    placeholder="Tapez votre reponse ici..."
                     className="w-full text-lg py-6 px-4 rounded-lg border-2 border-indigo-300 focus:border-indigo-500 focus:ring-indigo-500"
                     disabled={answered}
                     onKeyDown={(e) => {
@@ -353,7 +353,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
 
                 {showHint && !answered && (
                   <div className="mb-4 p-3 bg-yellow-100 border border-yellow-300 rounded-lg">
-                    <p className="font-medium text-yellow-800">Hint: {hintText}</p>
+                    <p className="font-medium text-yellow-800">Indice : {hintText}</p>
                   </div>
                 )}
 
@@ -365,7 +365,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    Submit Answer
+                    Valider la reponse
                   </motion.button>
 
                   {!answered && currentItem?.type === 'type' && (
@@ -374,13 +374,13 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                       disabled={hintLevel >= currentItem.correct.length || answered}
                       className="bg-yellow-500 text-white text-lg hover:bg-yellow-600 py-4 px-4 rounded-lg font-bold shadow-md"
                     >
-                      Need a Hint
+                      Besoin d'un indice
                     </Button>
                   )}
                 </div>
 
                 {answered && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`mt-6 p-5 rounded-lg shadow-md ${
@@ -391,12 +391,12 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                   >
                     <p className="font-bold text-lg mb-1">
                       {userAnswers[currentQuestion]?.isCorrect
-                        ? '✓ ' + currentItem.positive
-                        : '✗ ' + currentItem.negative}
+                        ? 'OK ' + currentItem.positive
+                        : 'NON ' + currentItem.negative}
                     </p>
                     {!userAnswers[currentQuestion]?.isCorrect && (
                       <p className="font-medium">
-                        The correct answer is: <span className="underline">{currentItem.correct}</span>
+                        La bonne reponse est : <span className="underline">{currentItem.correct}</span>
                       </p>
                     )}
                   </motion.div>
@@ -416,17 +416,17 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                 whileHover={currentQuestion !== 0 ? { scale: 1.05 } : {}}
                 whileTap={currentQuestion !== 0 ? { scale: 0.95 } : {}}
               >
-                ← Previous
+                Precedent
               </motion.button>
 
               <motion.button
                 onClick={nextQuestion}
                 // Removed disabled={!answered} to allow skipping
-                className={`flex items-center px-6 py-3 rounded-full font-bold shadow-md bg-indigo-600 text-white hover:bg-indigo-700`}
+                className="flex items-center px-6 py-3 rounded-full font-bold shadow-md bg-indigo-600 text-white hover:bg-indigo-700"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {currentQuestion === shuffledQuizData.length - 1 ? 'Finish →' : 'Next →'}
+                {currentQuestion === shuffledQuizData.length - 1 ? 'Terminer' : 'Suivant'}
               </motion.button>
             </div>
           </>
@@ -437,10 +437,10 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-4xl font-bold text-indigo-800 mb-2">Quiz Completed!</h2>
+              <h2 className="text-4xl font-bold text-indigo-800 mb-2">Quiz termine !</h2>
               <div className="bg-indigo-100 p-5 rounded-lg mb-8">
                 <p className="text-3xl font-bold text-indigo-900">
-                  Your score: {score} / {shuffledQuizData.length}
+                  Votre score : {score} / {shuffledQuizData.length}
                 </p>
                 <p className="text-xl font-medium text-indigo-700">
                   ({Math.round((score / shuffledQuizData.length) * 100)}%)
@@ -449,7 +449,7 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
             </motion.div>
 
             <div className="mt-8 space-y-4">
-              <h3 className="text-2xl font-bold text-gray-800 border-b-2 border-indigo-300 pb-2 mb-4">Review Your Answers</h3>
+              <h3 className="text-2xl font-bold text-gray-800 border-b-2 border-indigo-300 pb-2 mb-4">Revisez vos reponses</h3>
               {userAnswers.map((answer, index) => (
                 <motion.div
                   key={index}
@@ -464,26 +464,26 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
                 >
                   <div className="flex justify-between items-center mb-3">
                     <p className="font-bold text-lg text-gray-800">{index + 1}. {answer.question}</p>
-                    <motion.button 
+                    <motion.button
                       onClick={() => speakSentence(shuffledQuizData[index].sentence)}
                       className="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 text-sm flex items-center justify-center w-8 h-8 shadow-sm"
-                      title="Listen to sentence"
+                      title="Reecouter la phrase"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      🔊
+                      <span className="text-xs font-bold">SON</span>
                     </motion.button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
                     <div className="bg-white p-3 rounded border border-gray-200">
-                      <p className="text-sm text-gray-500 mb-1">Your answer:</p>
+                      <p className="text-sm text-gray-500 mb-1">Votre reponse :</p>
                       <p className={`font-medium ${answer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                        {answer.userAnswer || '(Skipped)'}
+                        {answer.userAnswer || '(Passe)'}
                       </p>
                     </div>
                     {!answer.isCorrect && (
                       <div className="bg-white p-3 rounded border border-gray-200">
-                        <p className="text-sm text-gray-500 mb-1">Correct answer:</p>
+                        <p className="text-sm text-gray-500 mb-1">Bonne reponse :</p>
                         <p className="font-medium text-green-600">{answer.correct}</p>
                       </div>
                     )}
@@ -495,24 +495,22 @@ const InteractiveTypeAnswerQuiz: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-12">
               <motion.button
                 onClick={resetQuiz}
-                className="w-full bg-amber-500 text-white text-lg hover:bg-amber-600 py-4 rounded-lg font-bold shadow-md flex items-center justify-center space-x-2"
+                className="w-full bg-amber-500 text-white text-lg hover:bg-amber-600 py-4 rounded-lg font-bold shadow-md"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <span>🔄</span>
-                <span>Try Again</span>
+                Reessayer
               </motion.button>
 
-{/* Removed the Back to Flashcards button */}
-{/* <motion.button
-  onClick={goToFlashcards}
-  className="w-full bg-green-600 text-white text-lg hover:bg-green-700 py-4 rounded-lg font-bold shadow-md flex items-center justify-center space-x-2"
-  whileHover={{ scale: 1.03 }}
-  whileTap={{ scale: 0.97 }}
->
-  <span>📚</span>
-  <span>Back to Flashcards</span>
-</motion.button> */}
+              {/* Removed the Retour aux cartes button */}
+              {/* <motion.button
+                onClick={goToFlashcards}
+                className="w-full bg-green-600 text-white text-lg hover:bg-green-700 py-4 rounded-lg font-bold shadow-md"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Retour aux cartes
+              </motion.button> */}
             </div>
           </div>
         )}
